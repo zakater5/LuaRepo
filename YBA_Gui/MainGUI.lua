@@ -1,3 +1,5 @@
+local UI_Name = "ShitStain Lite"
+
 -- Instances:
 
 local YBA = Instance.new("ScreenGui")
