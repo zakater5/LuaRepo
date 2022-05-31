@@ -1,4 +1,106 @@
+
+-- YBA item ESP --
+
+
+-- config
 local UI_Name = "ShitStain Lite"
+local superSpeed_speedValue = 150 --temporary
+local superSpeed_KeyBind = "v" --temporary
+local fly_KeyBind = "e" --temporary
+local max_flightSpeed = 50
+local flightSpeed = 25
+
+-- services
+local players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+local TS = game:GetService("TweenService")
+
+-- vars
+local player = players.LocalPlayer
+local itemsFolder = game.Workspace.Item_Spawns.Items
+local mouse = player:GetMouse()
+local Debris = game:GetService("Debris")
+
+local speedOn = false
+
+local toggles = {
+    --items
+    ItemESP = false,
+    ItemAutoFarm = false,
+    ItemNotifs = false,
+    
+    --combat
+    superSpeed = false,
+    jump = false,
+    isFlying = false,
+    ClickTP = false,
+    targetPlayer = false,
+    
+    --extras
+    playerHealthBars = false,
+}
+
+local isPickingUpItem = false
+local searchForAllItems = true
+local FilterItems = {} -- if user is looking for specific items instead of all
+local itemColors = {
+    ["Gold Coin"] = Color3.fromRGB(245, 239, 66),
+    ["Rokakaka"] = Color3.fromRGB(255, 82, 85),
+    ["Pure Roka."] = Color3.fromRGB(255, 1, 5),
+    ["Myst. Arrow"] = Color3.fromRGB(253, 255, 96),
+    ["Lucky Arrow"] = Color3.fromRGB(255, 217, 0),
+    ["Rib Cage"] = Color3.fromRGB(206, 206, 206),
+    ["Diamond"] = Color3.fromRGB(103, 194, 255),
+    ["Anc. Scroll"] = Color3.fromRGB(255, 189, 74),
+    ["Quin. Gloves"] = Color3.fromRGB(255, 107, 88),
+    ["Steel Ball"] = Color3.fromRGB(80, 255, 115),
+    ["Headband"] = Color3.fromRGB(255, 130, 41),
+    ["Stone Mask"] = Color3.fromRGB(109, 109, 109),
+    ["Unknown"] = Color3.fromRGB(255, 255, 255),
+}
+
+local autoFarmPositionCFrames = {
+    CFrame.new(-481, 803, 496),
+    CFrame.new(-422, 803, 341),
+    CFrame.new(-419, 803, 193),
+    CFrame.new(-472, 803, 4),
+    CFrame.new(-443, 803, -208),
+    CFrame.new(-269, 803, -225),
+    CFrame.new(-56, 803, -164),
+    CFrame.new(171, 803, -223),
+    CFrame.new(316, 805, -137),
+    CFrame.new(533, 803, -255),
+    CFrame.new(710, 803, -209),
+    CFrame.new(984, 803, -257),
+    CFrame.new(744, 806, 24),
+    CFrame.new(1091, 814, -7),
+    CFrame.new(1963, 820, -6),
+    CFrame.new(2052, 819, -251),
+    CFrame.new(115, 803, 518),
+    CFrame.new(299, 803, 495),
+    CFrame.new(496, 803, 497),
+    CFrame.new(112, 803, 814),
+    CFrame.new(-57, 826, 343),
+    CFrame.new(-176, 828, 282),
+    CFrame.new(-300, 826, 259),
+    CFrame.new(-322, 826, 36),
+    CFrame.new(-224, 826, -134),
+    CFrame.new(-151, 826, 36),
+    CFrame.new(67, 826, 34),
+    CFrame.new(134, 826, -112),
+    CFrame.new(352, 826, -44),
+    CFrame.new(280, 826, 193),
+    CFrame.new(54, 826, 190),
+    CFrame.new(127, 826, 374),
+    CFrame.new(514, 826, 336),
+}
+
+
+-- [[ CREATING MAIN UI ]] --
+
+-- Checking for existing UI --
+local UI_Exists = game.CoreGui:FindFirstChild(UI_Name)
+if UI_Exists then UI_Exists:Destroy() end
 
 -- Instances:
 
@@ -1338,3 +1440,1130 @@ BorderBG.ImageColor3 = Color3.fromRGB(216, 34, 128)
 BorderBG.ScaleType = Enum.ScaleType.Slice
 BorderBG.SliceCenter = Rect.new(100, 100, 100, 100)
 BorderBG.SliceScale = 0.120
+
+
+
+
+
+
+
+
+-- [[ CREATING CUSTOM NOTIFICATION GUI ]] --
+-- NOTIFICATION LIST:
+-- Instances:
+
+local NotificationGui = Instance.new("ScreenGui")
+local NotificationsList = Instance.new("Frame")
+local UIListLayout = Instance.new("UIListLayout")
+
+--Properties:
+
+NotificationGui.Name = "NotificationGui"
+NotificationGui.Parent = game.CoreGui
+
+NotificationsList.Name = "NotificationsList"
+NotificationsList.Parent = NotificationGui
+NotificationsList.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NotificationsList.BackgroundTransparency = 1.000
+NotificationsList.Position = UDim2.new(0.846829891, 0, 0.191411048, 0)
+NotificationsList.Size = UDim2.new(0, 236, 0, 553)
+
+UIListLayout.Parent = NotificationsList
+UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+UIListLayout.VerticalAlignment = Enum.VerticalAlignment.Bottom
+UIListLayout.Padding = UDim.new(0.00999999978, 0)
+
+
+-- NOTIFICATION TEMPLATE:
+-- Instances:
+
+local NotificationFrame = Instance.new("ImageLabel")
+local Button1 = Instance.new("TextButton")
+local Roundify = Instance.new("ImageLabel")
+local Title = Instance.new("TextLabel")
+local Roundify_2 = Instance.new("ImageLabel")
+local Text = Instance.new("TextLabel")
+local Roundify_3 = Instance.new("ImageLabel")
+local Button2 = Instance.new("TextButton")
+local Roundify_4 = Instance.new("ImageLabel")
+
+--Properties:
+
+NotificationFrame.Name = "NotificationFrame"
+NotificationFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NotificationFrame.BackgroundTransparency = 1.000
+NotificationFrame.Size = UDim2.new(0.999999762, 0, 0.149782985, 0)
+NotificationFrame.Image = "rbxassetid://3570695787"
+NotificationFrame.ImageColor3 = Color3.fromRGB(67, 67, 67)
+NotificationFrame.ImageTransparency = 0.200
+NotificationFrame.ScaleType = Enum.ScaleType.Slice
+NotificationFrame.SliceCenter = Rect.new(100, 100, 100, 100)
+NotificationFrame.SliceScale = 0.120
+
+Button1.Name = "Button1"
+Button1.Parent = NotificationFrame
+Button1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Button1.BackgroundTransparency = 1.000
+Button1.BorderSizePixel = 0
+Button1.Position = UDim2.new(0.0149999997, 0, 0.6875, 0)
+Button1.Size = UDim2.new(0.479999989, 0, 0.280000001, 0)
+Button1.ZIndex = 2
+Button1.Font = Enum.Font.GothamBold
+Button1.TextColor3 = Color3.fromRGB(235, 235, 235)
+Button1.TextSize = 14.000
+
+Roundify.Name = "Roundify"
+Roundify.Parent = Button1
+Roundify.AnchorPoint = Vector2.new(0.5, 0.5)
+Roundify.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Roundify.BackgroundTransparency = 1.000
+Roundify.Position = UDim2.new(0.5, 0, 0.5, 0)
+Roundify.Size = UDim2.new(1, 0, 1, 0)
+Roundify.Image = "rbxassetid://3570695787"
+Roundify.ImageColor3 = Color3.fromRGB(102, 102, 102)
+Roundify.ImageTransparency = 0.500
+Roundify.ScaleType = Enum.ScaleType.Slice
+Roundify.SliceCenter = Rect.new(100, 100, 100, 100)
+Roundify.SliceScale = 0.120
+
+Title.Name = "Title"
+Title.Parent = NotificationFrame
+Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Title.BackgroundTransparency = 1.000
+Title.BorderSizePixel = 0
+Title.Position = UDim2.new(0.192139745, 0, 0.0500000007, 0)
+Title.Size = UDim2.new(0.600000024, 0, 0.25, 0)
+Title.ZIndex = 2
+Title.Font = Enum.Font.GothamBold
+Title.TextColor3 = Color3.fromRGB(232, 232, 232)
+Title.TextScaled = true
+Title.TextSize = 14.000
+Title.TextWrapped = true
+
+Roundify_2.Name = "Roundify"
+Roundify_2.Parent = Title
+Roundify_2.AnchorPoint = Vector2.new(0.5, 0.5)
+Roundify_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Roundify_2.BackgroundTransparency = 1.000
+Roundify_2.Position = UDim2.new(0.5, 0, 0.5, 0)
+Roundify_2.Size = UDim2.new(1, 0, 1, 0)
+Roundify_2.Image = "rbxassetid://3570695787"
+Roundify_2.ImageColor3 = Color3.fromRGB(121, 121, 121)
+Roundify_2.ImageTransparency = 0.500
+Roundify_2.ScaleType = Enum.ScaleType.Slice
+Roundify_2.SliceCenter = Rect.new(100, 100, 100, 100)
+Roundify_2.SliceScale = 0.120
+
+Text.Name = "Text"
+Text.Parent = NotificationFrame
+Text.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Text.BackgroundTransparency = 1.000
+Text.BorderSizePixel = 0
+Text.Position = UDim2.new(0.113537118, 0, 0.349999994, 0)
+Text.Size = UDim2.new(0.779999971, 0, 0.300000012, 0)
+Text.ZIndex = 2
+Text.Font = Enum.Font.GothamBold
+Text.TextColor3 = Color3.fromRGB(232, 232, 232)
+Text.TextScaled = true
+Text.TextSize = 14.000
+Text.TextWrapped = true
+
+Roundify_3.Name = "Roundify"
+Roundify_3.Parent = Text
+Roundify_3.AnchorPoint = Vector2.new(0.5, 0.5)
+Roundify_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Roundify_3.BackgroundTransparency = 1.000
+Roundify_3.Position = UDim2.new(0.5, 0, 0.5, 0)
+Roundify_3.Size = UDim2.new(1, 0, 1, 0)
+Roundify_3.Image = "rbxassetid://3570695787"
+Roundify_3.ImageColor3 = Color3.fromRGB(121, 121, 121)
+Roundify_3.ImageTransparency = 0.500
+Roundify_3.ScaleType = Enum.ScaleType.Slice
+Roundify_3.SliceCenter = Rect.new(100, 100, 100, 100)
+Roundify_3.SliceScale = 0.120
+
+Button2.Name = "Button2"
+Button2.Parent = NotificationFrame
+Button2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Button2.BackgroundTransparency = 1.000
+Button2.BorderSizePixel = 0
+Button2.Position = UDim2.new(0.509000003, 0, 0.6875, 0)
+Button2.Size = UDim2.new(0.479999989, 0, 0.280000001, 0)
+Button2.ZIndex = 2
+Button2.Font = Enum.Font.GothamBold
+Button2.TextColor3 = Color3.fromRGB(235, 235, 235)
+Button2.TextSize = 14.000
+
+Roundify_4.Name = "Roundify"
+Roundify_4.Parent = Button2
+Roundify_4.AnchorPoint = Vector2.new(0.5, 0.5)
+Roundify_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Roundify_4.BackgroundTransparency = 1.000
+Roundify_4.Position = UDim2.new(0.5, 0, 0.5, 0)
+Roundify_4.Size = UDim2.new(1, 0, 1, 0)
+Roundify_4.Image = "rbxassetid://3570695787"
+Roundify_4.ImageColor3 = Color3.fromRGB(102, 102, 102)
+Roundify_4.ImageTransparency = 0.500
+Roundify_4.ScaleType = Enum.ScaleType.Slice
+Roundify_4.SliceCenter = Rect.new(100, 100, 100, 100)
+Roundify_4.SliceScale = 0.120
+
+-- Popup Effect:
+-- Instances:
+
+local PopupEffect = Instance.new("Frame")
+local UIGradient = Instance.new("UIGradient")
+local UICorner = Instance.new("UICorner")
+
+--Properties:
+
+PopupEffect.Name = "PopupEffect"
+PopupEffect.Parent = NotificationFrame
+PopupEffect.BackgroundTransparency = 1
+PopupEffect.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+PopupEffect.BorderSizePixel = 0
+PopupEffect.Position = UDim2.new(.5, 0, .5, 0)
+PopupEffect.Size = UDim2.new(0, 0, 0, 0)
+PopupEffect.ZIndex = 0
+PopupEffect.AnchorPoint = Vector2.new(.5, .5)
+
+UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(17, 192, 255)), ColorSequenceKeypoint.new(0.5, Color3.fromRGB(17, 192, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(17, 192, 255))}
+UIGradient.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.00, 1.00), NumberSequenceKeypoint.new(0.40, 0.76), NumberSequenceKeypoint.new(0.50, 0.66), NumberSequenceKeypoint.new(0.60, 0.76), NumberSequenceKeypoint.new(1.00, 1.00)}
+UIGradient.Parent = PopupEffect
+
+UICorner.CornerRadius = UDim.new(1, 0)
+UICorner.Parent = PopupEffect
+
+
+-- CONSTRUCTORS / FUNCTION FOR NOTIFICATION:
+local function sendNotification(settings)
+    local newNotification = NotificationFrame:Clone()
+    newNotification.Parent = NotificationsList
+
+    newNotification.Title.Text = settings.Title
+    newNotification["Text"].Text = settings.Text
+    newNotification["Text"].TextColor3 = settings.Color
+    newNotification.Button1.Text = settings.button1Text
+    newNotification.Button2.Text = settings.button2Text
+
+    newNotification.Button1.MouseButton1Click:Connect(settings.onButton1Click)
+    newNotification.Button2.MouseButton1Click:Connect(settings.onButton2Click)
+    
+    if settings.Color then
+        newNotification.PopupEffect.UIGradient.Color = ColorSequence.new{
+            ColorSequenceKeypoint.new(0.00, settings.Color),
+            ColorSequenceKeypoint.new(0.5, settings.Color),
+            ColorSequenceKeypoint.new(1.00, settings.Color)
+        }
+        
+        TS:Create(
+            newNotification.PopupEffect,
+            TweenInfo.new(.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 0, true, 0),
+            {Size = UDim2.new(1.5, 0, 4, 0), BackgroundTransparency = 0}
+        ):Play()
+    end
+    
+    Debris:AddItem(newNotification, settings.Duration)
+end
+
+
+
+-- [[ BYPASSES ]] --
+
+-- Anti-Teleport bypass:
+old = hookmetamethod(game,"__namecall", function(self,...)
+    local args = {...}
+    local method = getnamecallmethod()
+    if tostring(self) == "Returner" and tostring(method) == "InvokeServer" then
+        return "  ___XP DE KEY"
+    end
+    return old(self, ...)
+end)
+
+-- Fly bypass:
+local old; old = hookmetamethod(game, "__namecall", function(self, ...)
+   args = {...}
+       if getnamecallmethod() == "FireServer" and self.Name == "RemoteEvent" and args[1] == "UpdateState" and string.match(tostring(args[2]), "PlatformStanding") then
+               return print("master wyv has saved you from getting kicked")
+           end
+       return old(self,...)
+    end)
+
+
+-- WalkSpeed bypass --
+velocity = Instance.new("BodyVelocity")
+velocity.maxForce = Vector3.new(100000, 0, 100000)
+---vv Use that to change the speed v
+local speed = superSpeed_speedValue
+gyro = Instance.new("BodyGyro")
+gyro.maxTorque = Vector3.new(100000, 0, 100000)
+
+
+
+
+
+--creating ESP template Part / Setup
+local ESP_Part = Instance.new("Part")
+ESP_Part.Anchored = true
+ESP_Part.Size = Vector3.new(1, 1, 1)
+ESP_Part.Transparency = 1
+ESP_Part.CanCollide = false
+mouse.TargetFilter = ESP_Part
+
+--creating billboard gui for item name
+local itemName_BillboardGui = Instance.new("BillboardGui", ESP_Part)
+itemName_BillboardGui.Name = "itemName_Billboard"
+itemName_BillboardGui.Adornee = ESP_Part
+itemName_BillboardGui.ExtentsOffset = Vector3.new(0, 2.5, 0)
+itemName_BillboardGui.Size = UDim2.new(8, 0, 2, 0)
+itemName_BillboardGui.AlwaysOnTop = true
+
+local itemName_TextLabel = Instance.new("TextLabel", itemName_BillboardGui)
+itemName_TextLabel.Name = "itenName"
+itemName_TextLabel.Size = UDim2.new(1, 0, 1, 0)
+itemName_TextLabel.TextScaled = true
+itemName_TextLabel.BackgroundTransparency = 1
+itemName_TextLabel.TextColor3 = Color3.fromRGB(255, 1, 5)
+itemName_TextLabel.TextStrokeTransparency = .7
+
+
+local espPartsFolder_Exists =  game.Workspace:FindFirstChild("ESP_Parts")
+if espPartsFolder_Exists then
+    espPartsFolder_Exists:Destroy()
+end
+local ESPParts_Folder = Instance.new("Folder", game.Workspace)
+ESPParts_Folder.Name = "ESP_Parts"
+
+local surfaceFrame = Instance.new("Frame")
+surfaceFrame.Size = UDim2.new(1, 0, 1, 0)
+surfaceFrame.BackgroundColor3 = Color3.fromRGB(255, 1, 5)
+surfaceFrame.BackgroundTransparency = .3
+
+
+local topSurfaceGui = Instance.new("SurfaceGui", ESP_Part)
+topSurfaceGui.AlwaysOnTop = true
+topSurfaceGui.Face = Enum.NormalId.Top
+local topFrame = surfaceFrame:Clone()
+topFrame.Parent = topSurfaceGui
+
+local bottomSurfaceGui = Instance.new("SurfaceGui", ESP_Part)
+bottomSurfaceGui.AlwaysOnTop = true
+bottomSurfaceGui.Face = Enum.NormalId.Bottom
+local botFrame = surfaceFrame:Clone()
+botFrame.Parent = bottomSurfaceGui
+
+local leftSurfaceGui = Instance.new("SurfaceGui", ESP_Part)
+leftSurfaceGui.AlwaysOnTop = true
+leftSurfaceGui.Face = Enum.NormalId.Left
+local leftFrame = surfaceFrame:Clone()
+leftFrame.Parent = leftSurfaceGui
+
+local rightSurfaceGui = Instance.new("SurfaceGui", ESP_Part)
+rightSurfaceGui.AlwaysOnTop = true
+rightSurfaceGui.Face = Enum.NormalId.Right
+local rightFrame = surfaceFrame:Clone()
+rightFrame.Parent = rightSurfaceGui
+
+local FrontSurfaceGui = Instance.new("SurfaceGui", ESP_Part)
+FrontSurfaceGui.AlwaysOnTop = true
+FrontSurfaceGui.Face = Enum.NormalId.Front
+local frontFrame = surfaceFrame:Clone()
+frontFrame.Parent = FrontSurfaceGui
+
+local BackSurfaceGui = Instance.new("SurfaceGui", ESP_Part)
+BackSurfaceGui.AlwaysOnTop = true
+BackSurfaceGui.Face = Enum.NormalId.Back
+local backFrame = surfaceFrame:Clone()
+backFrame.Parent = BackSurfaceGui
+
+
+
+-- [[ FUNCTIONS 1 ]] (Item Functions mostly) --
+
+local function guessTheItem(itemModelInstance)
+    for i, v in pairs(itemModelInstance:GetChildren()) do
+        if v.Name == "MeshPart" then
+            if v.MeshId == "rbxassetid://7124126253" then
+                return "Gold Coin"
+        
+            elseif v.MeshId == "rbxassetid://7218405255" then
+                return "Rokakaka"
+        
+            elseif v.MeshId == "rbxassetid://875644059" then
+                return "Diamond"
+                
+            elseif v.MeshId == "rbxassetid://7106059151" then
+                return "Myst. Arrow"
+                
+            elseif v.MeshId == "rbxassetid://5249254947" then
+                return "Rib Cage"
+                
+            elseif v.MeshId == "rbxassetid://6924442799" then
+                return "Headband"
+                
+            elseif v.MeshId == "rbxassetid://7138936196" then
+                return "Quin. Glove"
+                
+            elseif v.MeshId == "rbxassetid://5675185488" then
+                return "DEO's Diary"
+                
+            elseif v.MeshId == "rbxassetid://4551120971" then
+                return "Stone Mask"
+                
+            elseif v.MeshId == "rbxassetid://5291254518" then
+                return "Steel Ball"
+            end
+        elseif v.Name == "Part" then
+            if v:FindFirstChild("SpecialMesh") then
+                if v.SpecialMesh.MeshId == "60791940" then
+                    return "Anc. Scroll"
+                end
+            end
+        end
+    end
+    return "Unknown"
+end
+
+
+local function refreshItemsESP()
+    for i, v in pairs(ESPParts_Folder:GetChildren()) do
+        v:Destroy()
+    end
+    for i, v in pairs(itemsFolder:GetChildren()) do
+        if v.PrimaryPart ~= nil then
+            local new_ESP_Part = ESP_Part:Clone()
+            new_ESP_Part.Name = "ESP_Part"
+            new_ESP_Part.Parent = ESPParts_Folder
+            new_ESP_Part.CFrame = v:GetPrimaryPartCFrame()
+            
+            local itemName = guessTheItem(v)
+            new_ESP_Part.itemName_Billboard.itenName.Text = itemName
+        end
+    end
+end
+
+local function onItemSpawned(itemInstance)
+    if itemInstance.PrimaryPart ~= nil then
+        wait(.1)
+        local itemName = guessTheItem(itemInstance)
+        
+        if searchForAllItems == true then
+            if toggles.ItemESP == true then
+                local new_ESP_Part = ESP_Part:Clone()
+                new_ESP_Part.Name = "ESP_Part"
+                new_ESP_Part.Parent = ESPParts_Folder
+                new_ESP_Part.CFrame = itemInstance.PrimaryPart.CFrame
+                new_ESP_Part.itemName_Billboard.itenName.Text = itemName
+            end
+            
+            if toggles.ItemNotifs == true then
+                sendNotification({
+                    Title = "Item found nearby:";
+                    Text = itemName;
+                    button1Text = "Teleport";
+                    button2Text = "Close";
+                    onButton1Click = function()
+                        player.Character.HumanoidRootPart.CFrame = itemInstance.PrimaryPart.CFrame + Vector3.new(0, 5, 0)
+                    end;
+                    onButton2Click = function()
+                        script.Parent.Parent:Destroy()
+                    end;
+                    Duration = 5;
+                    Color = itemColors[itemName]
+                })
+            end
+            
+            if toggles.ItemAutoFarm == true then
+                isPickingUpItem = true
+                player.Character.HumanoidRootPart.CFrame = itemInstance.PrimaryPart.CFrame + Vector3.new(0, 5, 0)
+                local clickDetector = itemInstance:FindFirstChild("ClickDetector")
+                if clickDetector then
+                    fireclickdetector(clickDetector, 5)
+                end
+                isPickingUpItem = false
+            end
+        else
+            if table.find(FilterItems, itemName) then
+                if toggles.ItemESP == true then
+                    local new_ESP_Part = ESP_Part:Clone()
+                    new_ESP_Part.Name = "ESP_Part"
+                    new_ESP_Part.Parent = ESPParts_Folder
+                    new_ESP_Part.CFrame = itemInstance.PrimaryPart.CFrame
+                    new_ESP_Part.itemName_Billboard.itenName.Text = itemName
+                end
+                
+                if toggles.ItemNotifs == true then
+                    sendNotification({
+                        Title = "Item found nearby:";
+                        Text = itemName;
+                        button1Text = "Teleport";
+                        button2Text = "Close";
+                        onButton1Click = function()
+                            player.Character.HumanoidRootPart.CFrame = itemInstance.PrimaryPart.CFrame + Vector3.new(0, 5, 0)
+                        end;
+                        onButton2Click = function()
+                            script.Parent:Destroy()
+                        end;
+                        Duration = 5;
+                        Color = itemColors[itemName]
+                    })
+                end
+                
+                if toggles.ItemAutoFarm == true then
+                    isPickingUpItem = true
+                    player.Character.HumanoidRootPart.CFrame = itemInstance.PrimaryPart.CFrame + Vector3.new(0, 5, 0)
+                    local clickDetector = itemInstance:FindFirstChild("ClickDetector")
+                    if clickDetector then
+                        fireclickdetector(clickDetector, 5)
+                    end
+                    isPickingUpItem = false
+                end
+            end
+        end
+    end
+end
+
+local function pickupNearbyItems()
+    for i, v in pairs(itemsFolder:GetChildren()) do
+        if v.PrimaryPart ~= nil and toggles.ItemAutoFarm == true then
+            isPickingUpItem = true
+            player.Character.HumanoidRootPart.CFrame = v.PrimaryPart.CFrame + Vector3.new(0, 5, 0)
+            local clickDetector = v:FindFirstChild("ClickDetector")
+            if clickDetector then
+                fireclickdetector(clickDetector, 5)
+            end
+            isPickingUpItem = false
+        end
+    end
+end
+
+local function startAutoFarm()
+    local lastPosition = player.Character.HumanoidRootPart.CFrame
+    player.Character.HumanoidRootPart.Anchored = true
+    while toggles.ItemAutoFarm == true and wait(.1) do
+        for i, v in pairs(autoFarmPositionCFrames) do
+            if toggles.ItemAutoFarm == true then
+                if isPickingUpItem == false then
+                    player.Character.HumanoidRootPart.CFrame = v
+                end
+            else
+                break
+            end
+            wait(2)
+        end
+    end
+    player.Character.HumanoidRootPart.CFrame = lastPosition
+    player.Character.HumanoidRootPart.Anchored = false
+end
+
+local function clearESP_Parts()
+    for i, v in pairs(ESPParts_Folder:GetChildren()) do
+        v:Destroy()
+    end
+end
+
+local function onItemDespawned(itemInstance)
+    if toggles.ItemESP == true then
+        refreshItemsESP()
+    end
+end
+
+itemsFolder.ChildAdded:Connect(onItemSpawned)
+itemsFolder.ChildRemoved:Connect(onItemDespawned)
+
+
+
+
+
+-- [[ FUNCTIONS 2 ]] (Combat functions mostly) --
+
+local inputBegan_SuperSpeed = nil
+local inputEnded_SuperSpeed = nil
+
+local function toggle_SuperSpeed(boolean)
+    if boolean == true then
+        inputBegan_SuperSpeed = mouse.KeyDown:Connect(function(key)
+            if key:lower()== superSpeed_KeyBind then
+                speedOn = true
+                velocity.Parent = player.Character.UpperTorso
+                velocity.velocity = (player.Character.Humanoid.MoveDirection) * speed
+                gyro.Parent = player.Character.UpperTorso
+                while speedOn do
+                    if not speedOn then break end
+                    velocity.velocity = (player.Character.Humanoid.MoveDirection) * speed
+                    local refpos = gyro.Parent.Position + (gyro.Parent.Position - workspace.CurrentCamera.CoordinateFrame.p).unit * 5
+                    gyro.cframe = CFrame.new(gyro.Parent.Position, Vector3.new(refpos.x, gyro.Parent.Position.y, refpos.z))
+                    wait(0.1)
+                end
+            end
+        end)
+
+        inputEnded_SuperSpeed = mouse.KeyUp:Connect(function(key)
+            if key:lower()== superSpeed_KeyBind then
+                velocity.Parent = nil
+                gyro.Parent = nil
+                speedOn = false
+            end
+        end)
+        
+    else
+        inputBegan_SuperSpeed:Disconnect()
+        inputEnded_SuperSpeed:Disconnect()
+        velocity.Parent = nil
+        gyro.Parent = nil
+        speedOn = false
+    end
+end
+
+local function toggle_TargetPlayer(playerName)
+    local foundPlayer = nil
+    for i, v in pairs(players:GetChildren()) do
+        if v.Name == playerName then
+            foundPlayer = v
+        else
+            if v.DisplayName == playerName then
+                foundPlayer = v
+            end
+        end
+    end
+    
+    while foundPlayer and toggles.targetPlayer == true and wait(.1) do
+        player.Character.HumanoidRootPart.CFrame = foundPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0, 0, -3)
+        --workspace.Living.zakater.RemoteEvent:FireServer("Attack", "m1")
+    end
+end
+
+
+
+local inputBegan_ClickTP = nil
+local inputEnded_ClickTP = nil
+
+local function toggle_ClickTP(boolean)
+    local ctrlIsDown = false
+    if boolean == true then
+        inputBegan_ClickTP = UserInputService.InputBegan:Connect(function(key)
+            if key.KeyCode == Enum.KeyCode.LeftControl then
+                ctrlIsDown = true
+                UserInputService.InputBegan:Connect(function(input, processed)
+                    if not processed and input.UserInputType == Enum.UserInputType.MouseButton1 and ctrlIsDown then
+                        local pos = mouse.Hit + Vector3.new(0, 2.5, 0)
+                        pos = CFrame.new(pos.X,pos.Y,pos.Z)
+                        player.Character.HumanoidRootPart.CFrame = pos
+                    end
+                end)
+            end
+        end)
+
+        inputEnded_ClickTP = UserInputService.InputEnded:Connect(function(key)
+            if key.KeyCode == Enum.KeyCode.LeftControl then
+                ctrlIsDown = false
+            end
+        end)
+    else
+        inputBegan_ClickTP:Disconnect()
+        inputEnded_ClickTP:Disconnect()
+        ctrlIsDown = false
+    end
+end
+
+
+
+
+-- FLIGHT FUNCTIONS / LISTENERS --
+local ctrl = {f = 0, b = 0, l = 0, r = 0}
+local lastctrl = {f = 0, b = 0, l = 0, r = 0}
+
+function Fly()
+    local camera = game.Workspace.CurrentCamera
+    local torso = player.Character.HumanoidRootPart
+    local bg = Instance.new("BodyGyro", torso)
+    bg.P = 9e4
+    bg.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+    bg.cframe = torso.CFrame
+    local bv = Instance.new("BodyVelocity", torso)
+    bv.velocity = Vector3.new(0, .1, 0)
+    bv.maxForce = Vector3.new(9e9, 9e9, 9e9)
+
+    if flightSpeed > max_flightSpeed then
+        flightSpeed = max_flightSpeed
+    end
+    
+    if flightSpeed < 0 then
+        flightSpeed = 25
+    end
+
+    local speed = flightSpeed
+
+    repeat wait()
+        player.Character.Humanoid.PlatformStand = true
+        if ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0 then
+            --speed = speed + .5 + (speed / max_flightSpeed)
+            speed = flightSpeed
+        elseif not (ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0) and speed ~= 0 then
+            --speed = speed-1
+            speed = 0
+        end
+        if (ctrl.l + ctrl.r) ~= 0 or (ctrl.f + ctrl.b) ~= 0 then
+            bv.velocity = ((camera.CoordinateFrame.lookVector * (ctrl.f + ctrl.b)) + ((camera.CoordinateFrame * CFrame.new(ctrl.l+ctrl.r, (ctrl.f + ctrl.b) * .2, 0).p) - camera.CoordinateFrame.p)) * speed
+            lastctrl = {f = ctrl.f, b = ctrl.b, l = ctrl.l, r = ctrl.r}
+        elseif (ctrl.l + ctrl.r) == 0 and (ctrl.f + ctrl.b) == 0 and speed ~= 0 then
+            bv.velocity = ((camera.CoordinateFrame.lookVector * (lastctrl.f + lastctrl.b)) + ((camera.CoordinateFrame * CFrame.new(lastctrl.l + lastctrl.r, (lastctrl.f+lastctrl.b) * .2, 0).p) - camera.CoordinateFrame.p)) * speed
+        else
+            bv.velocity = Vector3.new(0, .1, 0)
+        end
+        bg.cframe = camera.CoordinateFrame * CFrame.Angles(-math.rad((ctrl.f + ctrl.b) * 50 * speed / max_flightSpeed), 0, 0)
+    until not toggles.isFlying
+    
+    ctrl = {f = 0, b = 0, l = 0, r = 0}
+    lastctrl = {f = 0, b = 0, l = 0, r = 0}
+    --speed = 0
+    bg:Destroy()
+    bv:Destroy()
+    player.Character.Humanoid.PlatformStand = false
+end
+
+mouse.KeyDown:connect(function(key)
+    if key:lower() == fly_KeyBind then
+        if toggles.isFlying then
+            toggles.isFlying = false
+        else
+            toggles.isFlying = true
+            Fly()
+        end
+    elseif key:lower() == "w" then
+        ctrl.f = 1
+    elseif key:lower() == "s" then
+        ctrl.b = -1
+    elseif key:lower() == "a" then
+        ctrl.l = -1
+    elseif key:lower() == "d" then
+        ctrl.r = 1
+    end
+end)
+
+mouse.KeyUp:connect(function(key)
+    if key:lower() == "w" then
+        ctrl.f = 0
+    elseif key:lower() == "s" then
+        ctrl.b = 0
+    elseif key:lower() == "a" then
+        ctrl.l = 0
+    elseif key:lower() == "d" then
+        ctrl.r = 0
+    end
+end)
+
+
+
+
+
+
+-- [[ FUNCTIONS 3 ]] (Extras functions mostly) --
+
+local function toggle_PlayerHealthBars(boolean)
+    for i, v in pairs(players:GetChildren()) do
+        if v.Character then
+            local playerHumanoid = v.Character:FindFirstChildWhichIsA("Humanoid")
+            if playerHumanoid then
+                if boolean then
+                    playerHumanoid.HumanoidHealthDisplayType = Enum.HumanoidHealthDisplayType.AlwaysOn
+                    playerHumanoid.HealthDisplayDistance = 200
+                    playerHumanoid.NameOcclusion = Enum.NameOcclusion.NoOcclusion
+                else
+                    playerHumanoid.HumanoidHealthDisplayType = Enum.HumanoidHealthDisplayType.AlwaysOff
+                    playerHumanoid.HealthDisplayDistance = 45
+                    playerHumanoid.NameOcclusion = Enum.NameOcclusion.OccludeAll
+                end
+            end
+        end
+    end
+end
+
+
+
+
+
+
+
+
+
+-- [[ UI LOGIC ]] --
+Toggle_ItemESP.MouseButton1Click:Connect(function()
+    if toggles.ItemESP == false then
+        toggles.ItemESP = true
+        Toggle_ItemESP.Text = "ON"
+        Toggle_ItemESP.TextColor3 = Color3.fromRGB(58, 216, 137)
+        refreshItemsESP()
+    else
+        toggles.ItemESP = false
+        Toggle_ItemESP.Text = "OFF"
+        Toggle_ItemESP.TextColor3 = Color3.fromRGB(216, 34, 128)
+        clearESP_Parts()
+    end
+end)
+
+Toggle_ItemAutoFarm.MouseButton1Click:Connect(function()
+    if toggles.ItemAutoFarm == false then
+        toggles.ItemAutoFarm = true
+        Toggle_ItemAutoFarm.Text = "ON"
+        Toggle_ItemAutoFarm.TextColor3 = Color3.fromRGB(58, 216, 137)
+        pickupNearbyItems()
+        --startAutoFarm()
+    else
+        toggles.ItemAutoFarm = false
+        Toggle_ItemAutoFarm.Text = "OFF"
+        Toggle_ItemAutoFarm.TextColor3 = Color3.fromRGB(216, 34, 128)
+    end
+end)
+
+Toggle_ItemNotifs.MouseButton1Click:Connect(function()
+    if toggles.ItemNotifs == false then
+        toggles.ItemNotifs = true
+        Toggle_ItemNotifs.Text = "ON"
+        Toggle_ItemNotifs.TextColor3 = Color3.fromRGB(58, 216, 137)
+    else
+        toggles.ItemNotifs = false
+        Toggle_ItemNotifs.Text = "OFF"
+        Toggle_ItemNotifs.TextColor3 = Color3.fromRGB(216, 34, 128)
+    end
+end)
+
+
+
+Toggle_All.MouseButton1Click:Connect(function()
+    if Toggle_All.Text == "" then
+        Toggle_All.Text = "X"
+        searchForAllItems = true
+    else
+        Toggle_All.Text = ""
+        searchForAllItems = false
+    end
+end)
+
+Toggle_Arrows.MouseButton1Click:Connect(function()
+    if Toggle_Arrows.Text == "" then
+        Toggle_Arrows.Text = "X"
+        table.insert(FilterItems, "Myst. Arrow")
+    else
+        Toggle_Arrows.Text = ""
+        table.remove("Myst. Arrow")
+    end
+end)
+
+Toggle_Coins.MouseButton1Click:Connect(function()
+    if Toggle_Coins.Text == "" then
+        Toggle_Coins.Text = "X"
+        table.insert(FilterItems, "Gold Coin")
+    else
+        Toggle_Coins.Text = ""
+        table.remove("Gold Coin")
+    end
+end)
+
+Toggle_Diamond.MouseButton1Click:Connect(function()
+    if Toggle_Diamond.Text == "" then
+        Toggle_Diamond.Text = "X"
+        table.insert(FilterItems, "Diamond")
+    else
+        Toggle_Diamond.Text = ""
+        table.remove("Diamond")
+    end
+end)
+
+Toggle_Rokakaka.MouseButton1Click:Connect(function()
+    if Toggle_Rokakaka.Text == "" then
+        Toggle_Rokakaka.Text = "X"
+        table.insert(FilterItems, "Rokakaka")
+    else
+        Toggle_Rokakaka.Text = ""
+        table.remove("Rokakaka")
+    end
+end)
+
+Toggle_RibCage.MouseButton1Click:Connect(function()
+    if Toggle_RibCage.Text == "" then
+        Toggle_RibCage.Text = "X"
+        table.insert(FilterItems, "Rib Cage")
+    else
+        Toggle_RibCage.Text = ""
+        table.remove("Rib Cage")
+    end
+end)
+
+Toggle_DEOsDiary.MouseButton1Click:Connect(function()
+    if Toggle_DEOsDiary.Text == "" then
+        Toggle_DEOsDiary.Text = "X"
+        table.insert(FilterItems, "DEO's Diary")
+    else
+        Toggle_DEOsDiary.Text = ""
+        table.remove("DEO's Diary")
+    end
+end)
+
+Toggle_SteelBall.MouseButton1Click:Connect(function()
+    if Toggle_SteelBall.Text == "" then
+        Toggle_SteelBall.Text = "X"
+        table.insert(FilterItems, "Steel Ball")
+    else
+        Toggle_SteelBall.Text = ""
+        table.remove("Steel Ball")
+    end
+end)
+
+Toggle_StoneMask.MouseButton1Click:Connect(function()
+    if Toggle_StoneMask.Text == "" then
+        Toggle_StoneMask.Text = "X"
+        table.insert(FilterItems, "Stone Mask")
+    else
+        Toggle_StoneMask.Text = ""
+        table.remove("Stone Mask")
+    end
+end)
+
+Toggle_PureRokakaka.MouseButton1Click:Connect(function()
+    if Toggle_PureRokakaka.Text == "" then
+        Toggle_PureRokakaka.Text = "X"
+        table.insert(FilterItems, "Pure Roka.")
+    else
+        Toggle_PureRokakaka.Text = ""
+        table.remove("Pure Roka.")
+    end
+end)
+
+Toggle_Headband.MouseButton1Click:Connect(function()
+    if Toggle_Headband.Text == "" then
+        Toggle_Headband.Text = "X"
+        table.insert(FilterItems, "Headband")
+    else
+        Toggle_Headband.Text = ""
+        table.remove("Headband")
+    end
+end)
+
+Toggle_LuckyArrow.MouseButton1Click:Connect(function()
+    if Toggle_LuckyArrow.Text == "" then
+        Toggle_LuckyArrow.Text = "X"
+        table.insert(FilterItems, "Lucky Arrow")
+    else
+        Toggle_LuckyArrow.Text = ""
+        table.remove("Lucky Arrow")
+    end
+end)
+
+
+
+-- Combat tab listeners --
+Toggle_Speed.MouseButton1Click:Connect(function()
+    if toggles.superSpeed == false then
+        toggles.superSpeed = true
+        Toggle_Speed.Text = "ON"
+        Toggle_Speed.TextColor3 = Color3.fromRGB(58, 216, 137)
+        toggle_SuperSpeed(true)
+    else
+        toggles.superSpeed = false
+        Toggle_Speed.Text = "OFF"
+        Toggle_Speed.TextColor3 = Color3.fromRGB(216, 34, 128)
+        toggle_SuperSpeed(false)
+    end
+end)
+
+Toggle_Jump.MouseButton1Click:Connect(function()
+    if toggles.jump == false then
+        toggles.jump = true
+        Toggle_Jump.Text = "ON"
+        Toggle_Jump.TextColor3 = Color3.fromRGB(58, 216, 137)
+    else
+        toggles.jump = false
+        Toggle_Jump.Text = "OFF"
+        Toggle_Jump.TextColor3 = Color3.fromRGB(216, 34, 128)
+    end
+end)
+
+Toggle_Flight.MouseButton1Click:Connect(function()
+    if toggles.isFlying == false then
+        toggles.isFlying = true
+        Toggle_Flight.Text = "ON"
+        Toggle_Flight.TextColor3 = Color3.fromRGB(58, 216, 137)
+        Fly()
+    else
+        toggles.isFlying = false
+        Toggle_Flight.Text = "OFF"
+        Toggle_Flight.TextColor3 = Color3.fromRGB(216, 34, 128)
+    end
+end)
+
+Toggle_ClickTP.MouseButton1Click:Connect(function()
+    if toggles.ClickTP == false then
+        toggles.ClickTP = true
+        Toggle_ClickTP.Text = "ON"
+        Toggle_ClickTP.TextColor3 = Color3.fromRGB(58, 216, 137)
+        toggle_ClickTP(true)
+    else
+        toggles.ClickTP = false
+        Toggle_ClickTP.Text = "OFF"
+        Toggle_ClickTP.TextColor3 = Color3.fromRGB(216, 34, 128)
+        toggle_ClickTP(false)
+    end
+end)
+
+Toggle_TargetPlayer.MouseButton1Click:Connect(function()
+    if toggles.targetPlayer == false then
+        toggles.targetPlayer = true
+        Toggle_TargetPlayer.Text = "ON"
+        Toggle_TargetPlayer.TextColor3 = Color3.fromRGB(58, 216, 137)
+        toggle_TargetPlayer(Input_TargetPlayer.Text)
+    else
+        toggles.targetPlayer = false
+        Toggle_TargetPlayer.Text = "OFF"
+        Toggle_TargetPlayer.TextColor3 = Color3.fromRGB(216, 34, 128)
+    end
+end)
+
+
+
+-- Extras tab listeners --
+Toggle_PlayerHealthBars.MouseButton1Click:Connect(function()
+    if toggles.playerHealthBars == false then
+        toggles.playerHealthBars = true
+        Toggle_PlayerHealthBars.Text = "ON"
+        Toggle_PlayerHealthBars.TextColor3 = Color3.fromRGB(58, 216, 137)
+        toggle_PlayerHealthBars(true)
+    else
+        toggles.playerHealthBars = false
+        Toggle_PlayerHealthBars.Text = "OFF"
+        Toggle_PlayerHealthBars.TextColor3 = Color3.fromRGB(216, 34, 128)
+        toggle_PlayerHealthBars(false)
+    end
+end)
+
+
+
+-- Pages --
+Combat.MouseButton1Click:Connect(function()
+    CombatTab.Visible = true
+    ItemsTab.Visible = false
+    ExtrasTab.Visible = false
+end)
+
+Items.MouseButton1Click:Connect(function()
+    ItemsTab.Visible = true
+    CombatTab.Visible = false
+    ExtrasTab.Visible = false
+end)
+
+Extras.MouseButton1Click:Connect(function()
+    ExtrasTab.Visible = true
+    ItemsTab.Visible = false
+    CombatTab.Visible = false
+end)
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+-- Draggable UI functionality [ Made by : Spynaz ] --
+local UDim2_new = UDim2.new
+--local UserInputService = game:GetService("UserInputService")
+local DraggableObject 		= {}
+DraggableObject.__index 	= DraggableObject
+-- Sets up a new draggable object
+function DraggableObject.new(Object)
+	local self 			= {}
+	self.Object			= Object
+	self.DragStarted	= nil
+	self.DragEnded		= nil
+	self.Dragged		= nil
+	self.Dragging		= false
+
+	setmetatable(self, DraggableObject)
+
+	return self
+end
+-- Enables dragging
+function DraggableObject:Enable()
+	local object			= self.Object
+	local dragInput			= nil
+	local dragStart			= nil
+	local startPos			= nil
+	local preparingToDrag	= false
+
+	-- Updates the element
+	local function update(input)
+		local delta 		= input.Position - dragStart
+		local newPosition	= UDim2_new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+		object.Position 	= newPosition
+
+		return newPosition
+	end
+
+	self.InputBegan = object.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+			preparingToDrag = true
+			local connection 
+			connection = input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End and (self.Dragging or preparingToDrag) then
+					self.Dragging = false
+					connection:Disconnect()
+
+					if self.DragEnded and not preparingToDrag then
+						self.DragEnded()
+					end
+
+					preparingToDrag = false
+				end
+			end)
+		end
+	end)
+	self.InputChanged = object.InputChanged:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+			dragInput = input
+		end
+	end)
+	self.InputChanged2 = UserInputService.InputChanged:Connect(function(input)
+		if object.Parent == nil then
+			self:Disable()
+			return
+		end
+		if preparingToDrag then
+			preparingToDrag = false
+
+			if self.DragStarted then
+				self.DragStarted()
+			end
+
+			self.Dragging	= true
+			dragStart 		= input.Position
+			startPos 		= object.Position
+		end
+		if input == dragInput and self.Dragging then
+			local newPosition = update(input)
+
+			if self.Dragged then
+				self.Dragged(newPosition)
+			end
+		end
+	end)
+end
+-- Disables dragging
+function DraggableObject:Disable()
+	self.InputBegan:Disconnect()
+	self.InputChanged:Disconnect()
+	self.InputChanged2:Disconnect()
+	if self.Dragging then
+		self.Dragging = false
+		if self.DragEnded then
+			self.DragEnded()
+		end
+	end
+end
+
+-- Setup Draggable UI --
+local FrameDrag = DraggableObject.new(Frame)
+FrameDrag:Enable() --Enable the dragging
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
