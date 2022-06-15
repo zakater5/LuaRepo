@@ -114,6 +114,9 @@ local autoFarmPositionCFrames = {
 local UI_Exists = game.CoreGui:FindFirstChild(UI_Name)
 if UI_Exists then UI_Exists:Destroy() end
 
+-- Gui to Lua
+-- Version: 3.2
+
 -- Instances:
 
 local YBA = {
@@ -2249,7 +2252,7 @@ YBA.Option4.Position = UDim2.new(0.250659823, 0, 0.157962978, 0)
 YBA.Option4.Size = UDim2.new(1, 0, 0.056499999, 0)
 YBA.Option4.ZIndex = 9
 YBA.Option4.Font = Enum.Font.GothamBold
-YBA.Option4.Text = "Corrupt Security Guard"
+YBA.Option4.Text = "Corrupt Police"
 YBA.Option4.TextColor3 = Color3.fromRGB(209, 209, 209)
 YBA.Option4.TextSize = 17.000
 
@@ -2474,7 +2477,7 @@ YBA.ScrollingFrame_3.BorderSizePixel = 0
 YBA.ScrollingFrame_3.Position = UDim2.new(0.251000017, 0, 0.765281975, 0)
 YBA.ScrollingFrame_3.Size = UDim2.new(0.708000004, 0, 0.325900972, 0)
 YBA.ScrollingFrame_3.Visible = false
-YBA.ScrollingFrame_3.ZIndex = 4
+YBA.ScrollingFrame_3.ZIndex = 2
 YBA.ScrollingFrame_3.CanvasSize = UDim2.new(0, 0, 3, 0)
 YBA.ScrollingFrame_3.ScrollBarThickness = 10
 
@@ -2490,7 +2493,7 @@ YBA.Option1_3.BackgroundColor3 = Color3.fromRGB(62, 62, 62)
 YBA.Option1_3.BorderSizePixel = 0
 YBA.Option1_3.Position = UDim2.new(0.250659823, 0, 0.157962978, 0)
 YBA.Option1_3.Size = UDim2.new(1, 0, 0.0270000007, 0)
-YBA.Option1_3.ZIndex = 4
+YBA.Option1_3.ZIndex = 2
 YBA.Option1_3.Font = Enum.Font.GothamBold
 YBA.Option1_3.Text = "All Items"
 YBA.Option1_3.TextColor3 = Color3.fromRGB(209, 209, 209)
@@ -2503,7 +2506,7 @@ YBA.Option2_3.BackgroundColor3 = Color3.fromRGB(62, 62, 62)
 YBA.Option2_3.BorderSizePixel = 0
 YBA.Option2_3.Position = UDim2.new(0.250659823, 0, 0.157962978, 0)
 YBA.Option2_3.Size = UDim2.new(1, 0, 0.0270000007, 0)
-YBA.Option2_3.ZIndex = 4
+YBA.Option2_3.ZIndex = 2
 YBA.Option2_3.Font = Enum.Font.GothamBold
 YBA.Option2_3.Text = "Mysterious Arrow"
 YBA.Option2_3.TextColor3 = Color3.fromRGB(209, 209, 209)
@@ -2516,7 +2519,7 @@ YBA.Option3_3.BackgroundColor3 = Color3.fromRGB(62, 62, 62)
 YBA.Option3_3.BorderSizePixel = 0
 YBA.Option3_3.Position = UDim2.new(0.250659823, 0, 0.157962978, 0)
 YBA.Option3_3.Size = UDim2.new(1, 0, 0.0270000007, 0)
-YBA.Option3_3.ZIndex = 4
+YBA.Option3_3.ZIndex = 2
 YBA.Option3_3.Font = Enum.Font.GothamBold
 YBA.Option3_3.Text = "Rokakaka"
 YBA.Option3_3.TextColor3 = Color3.fromRGB(209, 209, 209)
@@ -2529,7 +2532,7 @@ YBA.Option4_3.BackgroundColor3 = Color3.fromRGB(62, 62, 62)
 YBA.Option4_3.BorderSizePixel = 0
 YBA.Option4_3.Position = UDim2.new(0.250659823, 0, 0.157962978, 0)
 YBA.Option4_3.Size = UDim2.new(1, 0, 0.0270000007, 0)
-YBA.Option4_3.ZIndex = 4
+YBA.Option4_3.ZIndex = 2
 YBA.Option4_3.Font = Enum.Font.GothamBold
 YBA.Option4_3.Text = "Pure Rokakaka"
 YBA.Option4_3.TextColor3 = Color3.fromRGB(209, 209, 209)
@@ -2542,7 +2545,7 @@ YBA.Option5_3.BackgroundColor3 = Color3.fromRGB(62, 62, 62)
 YBA.Option5_3.BorderSizePixel = 0
 YBA.Option5_3.Position = UDim2.new(0.250659823, 0, 0.157962978, 0)
 YBA.Option5_3.Size = UDim2.new(1, 0, 0.0270000007, 0)
-YBA.Option5_3.ZIndex = 4
+YBA.Option5_3.ZIndex = 2
 YBA.Option5_3.Font = Enum.Font.GothamBold
 YBA.Option5_3.Text = "Gold Coin"
 YBA.Option5_3.TextColor3 = Color3.fromRGB(209, 209, 209)
@@ -2555,7 +2558,7 @@ YBA.Option6_3.BackgroundColor3 = Color3.fromRGB(62, 62, 62)
 YBA.Option6_3.BorderSizePixel = 0
 YBA.Option6_3.Position = UDim2.new(0.250659823, 0, 0.157962978, 0)
 YBA.Option6_3.Size = UDim2.new(1, 0, 0.0270000007, 0)
-YBA.Option6_3.ZIndex = 4
+YBA.Option6_3.ZIndex = 2
 YBA.Option6_3.Font = Enum.Font.GothamBold
 YBA.Option6_3.Text = "Diamond"
 YBA.Option6_3.TextColor3 = Color3.fromRGB(209, 209, 209)
@@ -2568,7 +2571,7 @@ YBA.Option7.BackgroundColor3 = Color3.fromRGB(62, 62, 62)
 YBA.Option7.BorderSizePixel = 0
 YBA.Option7.Position = UDim2.new(0.250659823, 0, 0.157962978, 0)
 YBA.Option7.Size = UDim2.new(1, 0, 0.0270000007, 0)
-YBA.Option7.ZIndex = 4
+YBA.Option7.ZIndex = 2
 YBA.Option7.Font = Enum.Font.GothamBold
 YBA.Option7.Text = "Stone Mask"
 YBA.Option7.TextColor3 = Color3.fromRGB(209, 209, 209)
@@ -2581,7 +2584,7 @@ YBA.Option8.BackgroundColor3 = Color3.fromRGB(62, 62, 62)
 YBA.Option8.BorderSizePixel = 0
 YBA.Option8.Position = UDim2.new(0.250659823, 0, 0.157962978, 0)
 YBA.Option8.Size = UDim2.new(1, 0, 0.0270000007, 0)
-YBA.Option8.ZIndex = 4
+YBA.Option8.ZIndex = 2
 YBA.Option8.Font = Enum.Font.GothamBold
 YBA.Option8.Text = "Quinton's Glove"
 YBA.Option8.TextColor3 = Color3.fromRGB(209, 209, 209)
@@ -2594,9 +2597,9 @@ YBA.Option9.BackgroundColor3 = Color3.fromRGB(62, 62, 62)
 YBA.Option9.BorderSizePixel = 0
 YBA.Option9.Position = UDim2.new(0.250659823, 0, 0.157962978, 0)
 YBA.Option9.Size = UDim2.new(1, 0, 0.0270000007, 0)
-YBA.Option9.ZIndex = 4
+YBA.Option9.ZIndex = 2
 YBA.Option9.Font = Enum.Font.GothamBold
-YBA.Option9.Text = "Zeppeli's Headband"
+YBA.Option9.Text = "Zepellin's Headband"
 YBA.Option9.TextColor3 = Color3.fromRGB(209, 209, 209)
 YBA.Option9.TextSize = 17.000
 YBA.Option9.TextWrapped = true
@@ -2607,7 +2610,7 @@ YBA.Option10.BackgroundColor3 = Color3.fromRGB(62, 62, 62)
 YBA.Option10.BorderSizePixel = 0
 YBA.Option10.Position = UDim2.new(0.250659823, 0, 0.157962978, 0)
 YBA.Option10.Size = UDim2.new(1, 0, 0.0270000007, 0)
-YBA.Option10.ZIndex = 4
+YBA.Option10.ZIndex = 2
 YBA.Option10.Font = Enum.Font.GothamBold
 YBA.Option10.Text = "Ancient Scroll"
 YBA.Option10.TextColor3 = Color3.fromRGB(209, 209, 209)
@@ -2620,7 +2623,7 @@ YBA.Option11.BackgroundColor3 = Color3.fromRGB(62, 62, 62)
 YBA.Option11.BorderSizePixel = 0
 YBA.Option11.Position = UDim2.new(0.250659823, 0, 0.157962978, 0)
 YBA.Option11.Size = UDim2.new(1, 0, 0.0270000007, 0)
-YBA.Option11.ZIndex = 4
+YBA.Option11.ZIndex = 2
 YBA.Option11.Font = Enum.Font.GothamBold
 YBA.Option11.Text = "Steel Ball"
 YBA.Option11.TextColor3 = Color3.fromRGB(209, 209, 209)
@@ -2633,7 +2636,7 @@ YBA.Option12.BackgroundColor3 = Color3.fromRGB(62, 62, 62)
 YBA.Option12.BorderSizePixel = 0
 YBA.Option12.Position = UDim2.new(0.250659823, 0, 0.157962978, 0)
 YBA.Option12.Size = UDim2.new(1, 0, 0.0270000007, 0)
-YBA.Option12.ZIndex = 4
+YBA.Option12.ZIndex = 2
 YBA.Option12.Font = Enum.Font.GothamBold
 YBA.Option12.Text = "Ribcage Of The Saint's Corpse"
 YBA.Option12.TextColor3 = Color3.fromRGB(209, 209, 209)
@@ -2647,7 +2650,6 @@ YBA.DropDownBG_3.BackgroundTransparency = 1.000
 YBA.DropDownBG_3.Position = UDim2.new(0.251000017, 0, 0.675780714, 0)
 YBA.DropDownBG_3.Size = UDim2.new(0.708000004, 0, 0.441484571, 0)
 YBA.DropDownBG_3.Visible = false
-YBA.DropDownBG_3.ZIndex = 3
 YBA.DropDownBG_3.Image = "rbxassetid://3570695787"
 YBA.DropDownBG_3.ImageColor3 = Color3.fromRGB(62, 62, 62)
 YBA.DropDownBG_3.ScaleType = Enum.ScaleType.Slice
@@ -2673,7 +2675,7 @@ YBA.DropDown_QuickSell.BackgroundTransparency = 1.000
 YBA.DropDown_QuickSell.BorderSizePixel = 0
 YBA.DropDown_QuickSell.Position = UDim2.new(0.250659823, 0, 0.675744653, 0)
 YBA.DropDown_QuickSell.Size = UDim2.new(0.708037317, 0, 0.0922130644, 0)
-YBA.DropDown_QuickSell.ZIndex = 5
+YBA.DropDown_QuickSell.ZIndex = 3
 YBA.DropDown_QuickSell.Font = Enum.Font.GothamBold
 YBA.DropDown_QuickSell.Text = "Mysterious Arrow"
 YBA.DropDown_QuickSell.TextColor3 = Color3.fromRGB(209, 209, 209)
@@ -3007,6 +3009,30 @@ local function sendNotification(settings)
     
     Debris:AddItem(newNotification, settings.Duration)
 end
+
+
+-- Health Bar Billboard --
+local BillboardGui = Instance.new("BillboardGui")
+local Frame = Instance.new("Frame")
+local Frame_2 = Instance.new("Frame")
+
+--Properties:
+BillboardGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+BillboardGui.Active = true
+BillboardGui.ExtentsOffset = Vector3.new(0, 2, 0)
+BillboardGui.LightInfluence = 1
+BillboardGui.Size = UDim2.new(3, 0, .3, 0)
+
+Frame.Parent = BillboardGui
+Frame.BackgroundColor3 = Color3.fromRGB(255, 62, 65)
+Frame.BorderSizePixel = 0
+Frame.Size = UDim2.new(1, 0, 1, 0)
+
+Frame_2.Parent = Frame
+Frame_2.BackgroundColor3 = Color3.fromRGB(94, 255, 99)
+Frame_2.BorderSizePixel = 0
+Frame_2.Size = UDim2.new(.5, 0, 1, 0)
+
 
 
 
@@ -3536,24 +3562,34 @@ end)
 
 -- [[ FUNCTIONS 3 ]] (Extras functions mostly) --
 
-local function toggle_PlayerHealthBars(boolean)
-    for i, v in pairs(players:GetChildren()) do
-        if v.Character then
-            local playerHumanoid = v.Character:FindFirstChildWhichIsA("Humanoid")
-            if playerHumanoid then
-                if boolean then
-                    playerHumanoid.HumanoidHealthDisplayType = Enum.HumanoidHealthDisplayType.AlwaysOn
-                    playerHumanoid.HealthDisplayDistance = 200
-                    playerHumanoid.NameOcclusion = Enum.NameOcclusion.NoOcclusion
+local function toggle_PlayerHealthBars()
+    while wait(.1) and toggles.playerHealthBars == true do
+        for i, v in pairs(game:GetService("Players"):GetChildren()) do
+            if v.Character then
+                local head = v.Character:WaitForChild("Head")
+                local health = v.Character:WaitForChild("Health")
+                local healthBillboard = head:FindFirstChild(BillboardGui.Name)
+                if healthBillboard then
+                    local result = 1 * health.Value / health.MaxValue --new size
+                    healthBillboard.Frame.Frame.Size = UDim2.new(result, 0, 1, 0)
                 else
-                    playerHumanoid.HumanoidHealthDisplayType = Enum.HumanoidHealthDisplayType.AlwaysOff
-                    playerHumanoid.HealthDisplayDistance = 45
-                    playerHumanoid.NameOcclusion = Enum.NameOcclusion.OccludeAll
+                    new_BillboardGui = BillboardGui:Clone()
+                    new_BillboardGui.Parent = v.Character.Head
+                    new_BillboardGui.Adornee = v.Character.Head
+                    local result = 1 * health.Value / health.MaxValue --new size
+                    new_BillboardGui.Frame.Frame.Size = UDim2.new(result, 0, 1, 0)
                 end
             end
         end
     end
+    for _, v in pairs(players:GetChildren()) do
+        if v.Character then
+            local healthBillboard = v.Character:FindFirstChild(BillboardGui.Name)
+            if healthBillboard then healthBillboard:Destroy() end
+        end
+    end
 end
+
 
 
 local function toggle_standAttach(playerName)
@@ -3653,8 +3689,6 @@ end
 
 
 
-
-
 -- [[ FUNCTIONS 4 ]] (NPCs functions mostly) --
 
 local function toggle_NPCFarm(npcName, amount)
@@ -3664,15 +3698,14 @@ local function toggle_NPCFarm(npcName, amount)
         amount = -1
     end
     
-    local char
-    repeat wait()
-        char = player.Character
-    until char
-    local humanoid = player.Character:WaitForChild("Humanoid")
-    if humanoid.Health < .2 then toggle_NPCFarm(npcName, amount) end
+    local humanoid
+    repeat wait(.1)
+        humanoid = player.Character:FindFirstChild("Humanoid")
+    until humanoid and humanoid.Health > .2
+    
     local rootPart = player.Character.HumanoidRootPart
     local lastPosition = player.Character.HumanoidRootPart.CFrame
-    
+
     local foundNPC
     for _, v in pairs(game.Workspace.Living:GetChildren()) do
         if v.Name == npcName and v.Humanoid.Health > .2 then
@@ -3690,13 +3723,14 @@ local function toggle_NPCFarm(npcName, amount)
     end
     
     local npcRoot = foundNPC:FindFirstChild("HumanoidRootPart")
+    local human = foundNPC:WaitForChild("Humanoid")
     
     local connection = RS.Heartbeat:Connect(function()
         if foundNPC and (toggles.NPCFarm == true or toggles.QuestFarm == true) then
             rootPart.CFrame = npcRoot.CFrame * CFrame.new(0, 0, 3)
             local distance = (rootPart.Position - npcRoot.Position).Magnitude
             if distance > 5 then
-                rootPart.CFrame = npcRoot.CFrame
+                rootPart.CFrame = afkSpot
             end
         end
     end)
@@ -3736,11 +3770,17 @@ local function toggle_QuestFarm(questTitle)
     
     if questTitle == "Officer Sam [Lvl. 1+]" then
         player.Character.RemoteEvent:FireServer("EndDialogue", {["NPC"] = "Officer Sam", ["Option"] = "Option1", ["Dialogue"] = "Dialogue5"}) --if not first time
+        player.Character.RemoteEvent:FireServer("EndDialogue", {["NPC"] = "Officer Sam", ["Option"] = "Option1", ["Dialogue"] = "Dialogue2"}) --if first time
         toggle_NPCFarm("Thug", 5)
         
-        
+    elseif questTitle == "Deputy Bertrude [Lvl. 10+]" then
+        player.Character.RemoteEvent:FireServer("EndDialogue", {["NPC"] = "Deputy Bertrude", ["Option"] = "Option1", ["Dialogue"] = "Dialogue5"}) --if not first time
+        player.Character.RemoteEvent:FireServer("EndDialogue", {["NPC"] = "Deputy Bertrude", ["Option"] = "Option1", ["Dialogue"] = "Dialogue2"}) --if first time
+        toggle_NPCFarm("Corrupt Police", 5)
+    
     elseif questTitle == "Lion Abbacho's Partner [Lvl 15+]" then
         player.Character.RemoteEvent:FireServer("EndDialogue", {["NPC"] = "Lion Abbacho's Partner", ["Option"] = "Option1", ["Dialogue"] = "Dialogue7"}) --if not first time
+        player.Character.RemoteEvent:FireServer("EndDialogue", {["NPC"] = "Lion Abbacho's Partner", ["Option"] = "Option1", ["Dialogue"] = "Dialogue6"}) --if first time
         toggle_NPCFarm("Alpha Thug", 5)
     
     elseif questTitle == "Dracula [Lvl. 20+]" then
@@ -4025,12 +4065,11 @@ YBA.Toggle_PlayerHealthBars.MouseButton1Click:Connect(function()
         toggles.playerHealthBars = true
         YBA.Toggle_PlayerHealthBars.Text = "ON"
         YBA.Toggle_PlayerHealthBars.TextColor3 = Color3.fromRGB(58, 216, 137)
-        toggle_PlayerHealthBars(true)
+        toggle_PlayerHealthBars()
     else
         toggles.playerHealthBars = false
         YBA.Toggle_PlayerHealthBars.Text = "OFF"
         YBA.Toggle_PlayerHealthBars.TextColor3 = Color3.fromRGB(216, 34, 128)
-        toggle_PlayerHealthBars(false)
     end
 end)
 
