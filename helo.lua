@@ -63,23 +63,3 @@ local Initialize = function()
 end
 Initialize()
 
-
---------------------------------------------------------------------------------------------------------------------------------------
-
--- Anti afk script --
-local bb = game:service'VirtualUser'
-plr.Idled:connect(function()
-    bb:CaptureController()bb:ClickButton2(Vector2.new())
-    wait(2)
-end)
-
-
-
-
-
-
-
-
-
-
-
