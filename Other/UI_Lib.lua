@@ -590,7 +590,7 @@ function Library.new(UI_Name, version, ThemeColor)
                 newSliderBar.Size = UDim2.new(1, 0, 1, 0)
                 newSliderBar.ZIndex = 2
                 newSliderBar.Image = "rbxassetid://3570695787"
-                newSliderBar.ImageColor3 = Color3.fromRGB(214, 0, 204)
+                newSliderBar.ImageColor3 = ThemeColor
                 newSliderBar.ScaleType = Enum.ScaleType.Slice
                 newSliderBar.SliceCenter = Rect.new(100, 100, 100, 100)
 
@@ -637,7 +637,7 @@ function Library.new(UI_Name, version, ThemeColor)
                 
                 UIS.InputChanged:Connect(function(input)
                     if input.UserInputType == Enum.UserInputType.MouseMovement then
-                        if isDragging_Jump then
+                        if isSliding then
                             local mouseLoc = UIS:GetMouseLocation()
                             local relativePos = mouseLoc - newSliderFrame.AbsolutePosition
                             local percentage = math.clamp(relativePos.X / newSliderFrame.AbsoluteSize.X, 0, 1)
