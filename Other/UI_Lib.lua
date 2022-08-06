@@ -321,7 +321,7 @@ function Library.new(UI_Name, version, ThemeColor)
             newSection.Parent = NewTab
             newSection.BackgroundTransparency = 1
             newSection.Position = UDim2.new(0, 0, 0.130746022, 0)
-            newSection.Size = UDim2.new(0.972, 0, 0.085, 0)
+            newSection.Size = UDim2.new(0.972, 0, 0.09, 0)
             newSection.Image = "rbxassetid://3570695787"
             newSection.ImageColor3 = Color3.fromRGB(44, 44, 44)
             newSection.ScaleType = Enum.ScaleType.Slice
@@ -467,7 +467,7 @@ function Library.new(UI_Name, version, ThemeColor)
                 newFeature.Parent = NewTab
                 newFeature.BackgroundTransparency = 1
                 newFeature.Position = UDim2.new(0, 0, 0.623232245, 0)
-                newFeature.Size = UDim2.new(0.971999943, 0, 0.0582926236, 0)
+                newFeature.Size = UDim2.new(0.972, 0, 0.075, 0)
                 newFeature.Image = "rbxassetid://3570695787"
                 newFeature.ImageColor3 = Color3.fromRGB(44, 44, 44)
                 newFeature.ScaleType = Enum.ScaleType.Slice
@@ -547,7 +547,7 @@ function Library.new(UI_Name, version, ThemeColor)
                 newSlider.Parent = NewTab
                 newSlider.BackgroundTransparency = 1
                 newSlider.Position = UDim2.new(0, 0, 0.381000012, 0)
-                newSlider.Size = UDim2.new(0.971999943, 0, 0.0581988841, 0)
+                newSlider.Size = UDim2.new(0.972, 0, 0.075, 0)
                 newSlider.Image = "rbxassetid://3570695787"
                 newSlider.ImageColor3 = Color3.fromRGB(44, 44, 44)
                 newSlider.ScaleType = Enum.ScaleType.Slice
@@ -629,16 +629,16 @@ function Library.new(UI_Name, version, ThemeColor)
                     isSliding = true
                 end)
                 
-                UserInputService.InputEnded:Connect(function(input)
+                UIS.InputEnded:Connect(function(input)
                     if input.UserInputType == Enum.UserInputType.MouseButton1 then
                         isSliding = false
                     end
                 end)
                 
-                UserInputService.InputChanged:Connect(function(input)
+                UIS.InputChanged:Connect(function(input)
                     if input.UserInputType == Enum.UserInputType.MouseMovement then
                         if isDragging_Jump then
-                            local mouseLoc = UserInputService:GetMouseLocation()
+                            local mouseLoc = UIS:GetMouseLocation()
                             local relativePos = mouseLoc - newSliderFrame.AbsolutePosition
                             local percentage = math.clamp(relativePos.X / newSliderFrame.AbsoluteSize.X, 0, 1)
                             newSliderKnob.Position = UDim2.new(percentage - newSliderKnob.Size.X.Scale / 2, 0, .5, 0)
@@ -652,7 +652,7 @@ function Library.new(UI_Name, version, ThemeColor)
                 
                 newSliderFrame.MouseButton1Click:Connect(function()
                     if not isSliding then
-                        local mouseLoc = UserInputService:GetMouseLocation()
+                        local mouseLoc = UIS:GetMouseLocation()
                         local relativePos = mouseLoc - newSliderFrame.AbsolutePosition
                         local percentage = math.clamp(relativePos.X / newSliderFrame.AbsoluteSize.X, 0, 1)
                         newSliderKnob:TweenPosition(UDim2.new(percentage - newSliderKnob.Size.X.Scale / 2, 0, .5, 0),"In","Sine",.1)
@@ -665,7 +665,7 @@ function Library.new(UI_Name, version, ThemeColor)
                 
                 newSliderBar.MouseButton1Click:Connect(function()
                     if not isSliding then
-                        local mouseLoc = UserInputService:GetMouseLocation()
+                        local mouseLoc = UIS:GetMouseLocation()
                         local relativePos = mouseLoc - newSliderFrame.AbsolutePosition
                         local percentage = math.clamp(relativePos.X / newSliderFrame.AbsoluteSize.X, 0, 1)
                         YBA.Jump_Slider:TweenPosition(UDim2.new(percentage - YBA.Jump_Slider.Size.X.Scale / 2, 0, .5, 0),"In","Sine",.1)
