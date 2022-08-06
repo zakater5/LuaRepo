@@ -537,8 +537,8 @@ function Library.new(UI_Name, version, ThemeColor)
                 -- Instances:
                 local newSlider = Instance.new("ImageLabel")
                 local newSlider_TL = Instance.new("TextLabel")
-                local newSliderFrame = Instance.new("ImageLabel")
-                local newSliderBar = Instance.new("ImageLabel")
+                local newSliderFrame = Instance.new("ImageButton")
+                local newSliderBar = Instance.new("ImageButton")
                 local newSliderKnob = Instance.new("ImageButton")
                 local newSliderValue_TL = Instance.new("TextLabel")
 
