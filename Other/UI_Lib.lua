@@ -323,7 +323,7 @@ function Library.new(UI_Name, version, ThemeColor)
             newSection.Position = UDim2.new(0, 0, 0.130746022, 0)
             newSection.Size = UDim2.new(0.972, 0, 0.085, 0)
             newSection.Image = "rbxassetid://3570695787"
-            newSection.ImageColor3 = ThemeColor
+            newSection.ImageColor3 = Color3.fromRGB(44, 44, 44)
             newSection.ScaleType = Enum.ScaleType.Slice
             newSection.SliceCenter = Rect.new(100, 100, 100, 100)
             newSection.SliceScale = 0.06
@@ -362,7 +362,7 @@ function Library.new(UI_Name, version, ThemeColor)
                 newLabel.ScaleType = Enum.ScaleType.Slice
                 newLabel.SliceCenter = Rect.new(100, 100, 100, 100)
                 newLabel.SliceScale = 0.06
-                newLabel.ImageColor3 = Color3.fromRGB(62, 62, 62)
+                newLabel.ImageColor3 = Color3.fromRGB(44, 44, 44)
 
                 newLabelText.Name = LabelText.."_TL"
                 newLabelText.Parent = newLabel
@@ -401,7 +401,7 @@ function Library.new(UI_Name, version, ThemeColor)
                 newFeature.ScaleType = Enum.ScaleType.Slice
                 newFeature.SliceCenter = Rect.new(100, 100, 100, 100)
                 newFeature.SliceScale = 0.06
-                newFeature.ImageColor3 = Color3.fromRGB(62, 62, 62)
+                newFeature.ImageColor3 = Color3.fromRGB(44, 44, 44)
 
                 newFeature_TL.Name = FeatureText.."_TL"
                 newFeature_TL.Parent = newFeature
@@ -469,7 +469,7 @@ function Library.new(UI_Name, version, ThemeColor)
                 newFeature.Position = UDim2.new(0, 0, 0.623232245, 0)
                 newFeature.Size = UDim2.new(0.971999943, 0, 0.0582926236, 0)
                 newFeature.Image = "rbxassetid://3570695787"
-                newFeature.ImageColor3 = Color3.fromRGB(38, 38, 38)
+                newFeature.ImageColor3 = Color3.fromRGB(44, 44, 44)
                 newFeature.ScaleType = Enum.ScaleType.Slice
                 newFeature.SliceCenter = Rect.new(100, 100, 100, 100)
                 newFeature.SliceScale = 0.06
