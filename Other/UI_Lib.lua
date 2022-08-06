@@ -232,7 +232,7 @@ function Library.new(UI_Name, version, ThemeColor)
     Library:DraggingEnabled(MainFrame, TopBar)
 
     local Tabs = {}
-    function Tabs:NewTab(tabName)
+    function Tabs:AddTab(tabName)
         tabName = tabName or "Tab"
         
         --Instances:
@@ -309,7 +309,7 @@ function Library.new(UI_Name, version, ThemeColor)
         end)
 
         Sections = {}
-        function Sections:NewSection(SectionName)
+        function Sections:AddSection(SectionName)
             SectionName = SectionName or "UnNamed-Section"
 
             -- Instances:
@@ -687,3 +687,9 @@ function Library.new(UI_Name, version, ThemeColor)
 end
 
 return Library
+
+
+--local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/zakater5/LuaRepo/main/Other/UI_Lib.lua"))()
+--local newUI = Library.new("e", "e", nil)
+--local newTab = newUI:NewTab("tabname")
+--newTab:AddSlider("Label", 100, 0, 30)
