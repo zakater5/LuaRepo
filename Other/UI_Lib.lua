@@ -668,7 +668,7 @@ function Library.new(UI_Name, version, ThemeColor)
                         local mouseLoc = UIS:GetMouseLocation()
                         local relativePos = mouseLoc - newSliderFrame.AbsolutePosition
                         local percentage = math.clamp(relativePos.X / newSliderFrame.AbsoluteSize.X, 0, 1)
-                        YBA.Jump_Slider:TweenPosition(UDim2.new(percentage - YBA.Jump_Slider.Size.X.Scale / 2, 0, .5, 0),"In","Sine",.1)
+                        newSliderKnob:TweenPosition(UDim2.new(percentage - newSliderKnob.Size.X.Scale / 2, 0, .5, 0),"In","Sine",.1)
                         newSliderBar:TweenSize(UDim2.new(percentage, 0, newSliderBar.Size.Y.Scale, 0),"In","Sine",.1)
                         local value = math.floor(math.clamp((percentage * maxValue), minValue, maxValue))
                         newSliderValue_TL.Text = value
