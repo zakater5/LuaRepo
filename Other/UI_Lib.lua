@@ -310,8 +310,9 @@ function Library.new(UI_Name, version, ThemeColor)
         end)
 
         Sections = {}
-        function Sections:AddSection(SectionName)
+        function Sections:AddSection(SectionName, isVisible)
             SectionName = SectionName or "UnNamed-Section"
+            isVisible = isVisible or true
 
             -- Instances:
             local newSection = Instance.new("ImageLabel")
@@ -328,6 +329,7 @@ function Library.new(UI_Name, version, ThemeColor)
             newSection.ScaleType = Enum.ScaleType.Slice
             newSection.SliceCenter = Rect.new(100, 100, 100, 100)
             newSection.SliceScale = 0.06
+            newSection.Visible = isVisible
 
             newSection_TL.Name = SectionName.."_TL"
             newSection_TL.Parent = newSection
