@@ -542,7 +542,7 @@ function Library.new(UI_Name, version, ThemeColor)
                 newFeature.Parent = NewTab
                 newFeature.BackgroundTransparency = 1
                 newFeature.Position = UDim2.new(0, 0, 0.702, 0)
-                newFeature.Size = UDim2.new(0.971999943, 0, 0.0582926236, 0)
+                newFeature.Size = UDim2.new(0.972, 0, 0.075, 0)
                 newFeature.Image = "rbxassetid://3570695787"
                 newFeature.ImageColor3 = Color3.fromRGB(44, 44, 44)
                 newFeature.ScaleType = Enum.ScaleType.Slice
