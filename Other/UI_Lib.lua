@@ -793,12 +793,12 @@ function Library.new(UI_Name, version, ThemeColor)
                 newDropdown.Parent = NewTab
                 newDropdown.BackgroundTransparency = 1
                 newDropdown.Position = UDim2.new(0, 0, 0.52, 0)
-                newDropdown.Size = UDim2.new(0.972, 0, 0.0581988841, 0)
+                newDropdown.Size = UDim2.new(0.972, 0, 0.075, 0)
                 newDropdown.Image = "rbxassetid://3570695787"
                 newDropdown.ImageColor3 = Color3.fromRGB(44, 44, 44)
                 newDropdown.ScaleType = Enum.ScaleType.Slice
                 newDropdown.SliceCenter = Rect.new(100, 100, 100, 100)
-                newDropdown.SliceScale = 0.060
+                newDropdown.SliceScale = 0.06
 
                 newDropdown_TL.Name = "newDropdown_TL"
                 newDropdown_TL.Parent = newDropdown
@@ -879,23 +879,24 @@ function Library.new(UI_Name, version, ThemeColor)
                 DropDownBG.Position = UDim2.new(0.294, 0, 0.206, 0)
                 DropDownBG.Size = UDim2.new(0.692, 0, 3.072, 0)
                 DropDownBG.ZIndex = 2
+                DropDownBG.Visible = false
                 DropDownBG.Image = "rbxassetid://3570695787"
                 DropDownBG.ImageColor3 = Color3.fromRGB(62, 62, 62)
                 DropDownBG.ScaleType = Enum.ScaleType.Slice
                 DropDownBG.SliceCenter = Rect.new(100, 100, 100, 100)
                 DropDownBG.SliceScale = 0.12
 
-                DropDownBG_BG.Name = "DropDownBG_BG"
-                DropDownBG_BG.Parent = DropDownBG
-                DropDownBG_BG.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                DropDownBG_BG.BackgroundTransparency = 1
-                DropDownBG_BG.Position = UDim2.new(-0.01, 0, -0.01, 0)
-                DropDownBG_BG.Size = UDim2.new(1.02, 0, 1.02, 0)
-                DropDownBG_BG.Image = "rbxassetid://3570695787"
-                DropDownBG_BG.ImageColor3 = Color3.fromRGB(216, 34, 128)
-                DropDownBG_BG.ScaleType = Enum.ScaleType.Slice
-                DropDownBG_BG.SliceCenter = Rect.new(100, 100, 100, 100)
-                DropDownBG_BG.SliceScale = 0.12
+                --DropDownBG_BG.Name = "DropDownBG_BG"
+                --DropDownBG_BG.Parent = DropDownBG
+                --DropDownBG_BG.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                --DropDownBG_BG.BackgroundTransparency = 1
+                --DropDownBG_BG.Position = UDim2.new(-0.01, 0, -0.01, 0)
+                --DropDownBG_BG.Size = UDim2.new(1.02, 0, 1.02, 0)
+                --DropDownBG_BG.Image = "rbxassetid://3570695787"
+                --DropDownBG_BG.ImageColor3 = Color3.fromRGB(216, 34, 128)
+                --DropDownBG_BG.ScaleType = Enum.ScaleType.Slice
+                --DropDownBG_BG.SliceCenter = Rect.new(100, 100, 100, 100)
+                --DropDownBG_BG.SliceScale = 0.12
 
                 for _, v in pairs(Options) do
                     local newOption = Instance.new("TextButton")
