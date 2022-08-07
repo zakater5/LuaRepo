@@ -539,7 +539,7 @@ function Library.new(UI_Name, version, ThemeColor)
 
                 -- Properties:
                 newFeature.Name = FeatureText
-                newFeature.Parent = newTab
+                newFeature.Parent = NewTab
                 newFeature.BackgroundTransparency = 1
                 newFeature.Position = UDim2.new(0, 0, 0.702, 0)
                 newFeature.Size = UDim2.new(0.971999943, 0, 0.0582926236, 0)
