@@ -770,7 +770,7 @@ function Library.new(UI_Name, version, ThemeColor)
 
             function Controls:AddDropdown(FeatureText, Options, callback)
                 local Dropdown = {}
-                local Options = {}
+                local OptionsTable = {}
 
                 FeatureText = FeatureText or "Untitled"
                 Options = Options or {}
@@ -911,7 +911,7 @@ function Library.new(UI_Name, version, ThemeColor)
                     newOption.TextColor3 = Color3.fromRGB(209, 209, 209)
                     newOption.TextSize = 12
                     newOption.TextWrapped = true
-                    table.insert(Options, newOption)
+                    table.insert(OptionsTable, newOption)
 
                     newOption.MouseButton1Click:Connect(function()
                         SelectedOption_Btn.Text = v
@@ -945,7 +945,7 @@ function Library.new(UI_Name, version, ThemeColor)
                     newOption.TextColor3 = Color3.fromRGB(209, 209, 209)
                     newOption.TextSize = 12
                     newOption.TextWrapped = true
-                    table.insert(Options, newOption)
+                    table.insert(OptionsTable, newOption)
 
                     newOption.MouseButton1Click:Connect(function()
                         SelectedOption_Btn.Text = v
@@ -956,9 +956,9 @@ function Library.new(UI_Name, version, ThemeColor)
                 end
 
                 function Dropdown:RemoveItem(optionTitle)
-                    for i, v in pairs(Options) do
+                    for i, v in pairs(OptionsTable) do
                         if v.Name == optionTitle then
-                            table.remove(Options, i)
+                            table.remove(OptionsTable, i)
                             v:Destroy()
                         end
                     end
