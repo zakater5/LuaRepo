@@ -790,7 +790,7 @@ function Library.new(UI_Name, version, ThemeColor)
 
                 -- Properties:
                 newDropdown.Name = "newDropdown"
-                newDropdown.Parent = game.StarterGui.YBA.MainFrame.Tabs.NPCsTab
+                newDropdown.Parent = NewTab
                 newDropdown.BackgroundTransparency = 1
                 newDropdown.Position = UDim2.new(0, 0, 0.52, 0)
                 newDropdown.Size = UDim2.new(0.972, 0, 0.0581988841, 0)
@@ -931,6 +931,40 @@ function Library.new(UI_Name, version, ThemeColor)
                     end
                 end)
 
+                function Dropdown:AddItem(optionTitle, newCallback)
+                    local newOption = Instance.new("TextButton")
+                    newOption.Name = optionTitle
+                    newOption.Parent = Dropdown_Items
+                    newOption.BackgroundColor3 = Color3.fromRGB(62, 62, 62)
+                    newOption.BorderSizePixel = 0
+                    newOption.Position = UDim2.new(0.250659823, 0, 0.157962978, 0)
+                    newOption.Size = UDim2.new(1, 0, 0.3, 0)
+                    newOption.ZIndex = 4
+                    newOption.Font = Enum.Font.GothamBold
+                    newOption.Text = optionTitle
+                    newOption.TextColor3 = Color3.fromRGB(209, 209, 209)
+                    newOption.TextSize = 12
+                    newOption.TextWrapped = true
+                    table.insert(OptionsTable, newOption)
+
+                    newOption.MouseButton1Click:Connect(function()
+                        SelectedOption_Btn.Text = v
+                        ScrollingFrame.Visible = false
+                        DropDownBG.Visible = false
+                        newCallback(v)
+                    end)
+                end
+
+                function Dropdown:RemoveItem(optionTitle)
+                    for i, v in pairs(OptionsTable) do
+                        if v.Name == optionTitle then
+                            table.remove(OptionsTable, i)
+                            v:Destroy()
+                        end
+                    end
+                end
+
+                return Dropdown
             end
 
             return Controls
