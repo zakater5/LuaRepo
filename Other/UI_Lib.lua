@@ -591,10 +591,12 @@ function Library.new(UI_Name, version, ThemeColor)
 
                 local function toggle()
                     if not isToggled then
+                        isToggled = true
                         newToggle_Btn:TweenPosition(newToggle_Btn.Position + UDim2.new(.066,0,0,0),"In","Sine",.1)
                         newToggle_BG.ImageColor3 = Color3.fromRGB(227, 32, 240)
                         callback(isToggled)
                     else
+                        isToggled = false
                         newToggle_Btn:TweenPosition(newToggle_Btn.Position + UDim2.new(-.066,0,0,0),"In","Sine",.1)
                         newToggle_BG.ImageColor3 = Color3.fromRGB(62, 62, 62)
                         callback(isToggled)
