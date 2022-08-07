@@ -323,7 +323,7 @@ function Library.new(UI_Name, version, ThemeColor)
             newSection.Position = UDim2.new(0, 0, 0.130746022, 0)
             newSection.Size = UDim2.new(0.972, 0, 0.09, 0)
             newSection.Image = "rbxassetid://3570695787"
-            newSection.ImageColor3 = Color3.fromRGB(44, 44, 44)
+            newSection.ImageColor3 = Color3.fromRGB(38, 38, 38)
             newSection.ScaleType = Enum.ScaleType.Slice
             newSection.SliceCenter = Rect.new(100, 100, 100, 100)
             newSection.SliceScale = 0.06
@@ -477,12 +477,12 @@ function Library.new(UI_Name, version, ThemeColor)
                 newFeature_TL.Name = FeatureText.."_TL"
                 newFeature_TL.Parent = newFeature
                 newFeature_TL.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                newFeature_TL.BackgroundTransparency = 1.000
+                newFeature_TL.BackgroundTransparency = 1
                 newFeature_TL.Position = UDim2.new(0.0489282086, 0, 0, 0)
                 newFeature_TL.Size = UDim2.new(0.308889121, 0, 1, 0)
                 newFeature_TL.ZIndex = 6
                 newFeature_TL.Font = Enum.Font.GothamBold
-                newFeature_TL.Text = "Target Player"
+                newFeature_TL.Text = FeatureText
                 newFeature_TL.TextColor3 = Color3.fromRGB(234, 234, 234)
                 newFeature_TL.TextSize = 12
                 newFeature_TL.TextWrapped = true
@@ -527,6 +527,89 @@ function Library.new(UI_Name, version, ThemeColor)
                 end)
             end
 
+            function Controls:AddToggle(FeatureText, callback)
+                FeatureText = FeatureText or "Untitled"
+                callback = callback or function() end
+
+                -- Instances:
+                local newFeature = Instance.new("ImageLabel")
+                local newFeature_TL = Instance.new("TextLabel")
+                local newToggle_BG = Instance.new("ImageButton")
+                local newToggle_Btn = Instance.new("ImageButton")
+
+                -- Properties:
+                newFeature.Name = FeatureText
+                newFeature.Parent = newTab
+                newFeature.BackgroundTransparency = 1
+                newFeature.Position = UDim2.new(0, 0, 0.702, 0)
+                newFeature.Size = UDim2.new(0.971999943, 0, 0.0582926236, 0)
+                newFeature.Image = "rbxassetid://3570695787"
+                newFeature.ImageColor3 = Color3.fromRGB(44, 44, 44)
+                newFeature.ScaleType = Enum.ScaleType.Slice
+                newFeature.SliceCenter = Rect.new(100, 100, 100, 100)
+                newFeature.SliceScale = 0.06
+
+                newFeature_TL.Name = FeatureText.."_TL"
+                newFeature_TL.Parent = newFeature
+                newFeature_TL.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                newFeature_TL.BackgroundTransparency = 1
+                newFeature_TL.Position = UDim2.new(0.0489282086, 0, 0, 0)
+                newFeature_TL.Size = UDim2.new(0.308889121, 0, 1, 0)
+                newFeature_TL.ZIndex = 6
+                newFeature_TL.Font = Enum.Font.GothamBold
+                newFeature_TL.Text = FeatureText
+                newFeature_TL.TextColor3 = Color3.fromRGB(234, 234, 234)
+                newFeature_TL.TextSize = 12
+                newFeature_TL.TextWrapped = true
+                newFeature_TL.TextXAlignment = Enum.TextXAlignment.Left
+
+                newToggle_BG.Name = "Toggle_BG"
+                newToggle_BG.Parent = newFeature
+                newToggle_BG.AnchorPoint = Vector2.new(0, 0.5)
+                newToggle_BG.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                newToggle_BG.BackgroundTransparency = 1
+                newToggle_BG.Position = UDim2.new(0.835, 0, 0.5, 0)
+                newToggle_BG.Size = UDim2.new(0.12, 0, 0.5, 0)
+                newToggle_BG.Image = "rbxassetid://3570695787"
+                newToggle_BG.ImageColor3 = Color3.fromRGB(62, 62, 62)
+                newToggle_BG.ScaleType = Enum.ScaleType.Slice
+                newToggle_BG.SliceCenter = Rect.new(100, 100, 100, 100)
+
+                newToggle_Btn.Name = "newToggle_Btn"
+                newToggle_Btn.Parent = newFeature
+                newToggle_Btn.AnchorPoint = Vector2.new(0, 0.5)
+                newToggle_Btn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                newToggle_Btn.BackgroundTransparency = 1
+                newToggle_Btn.Position = UDim2.new(0.835, 0, 0.5, 0)
+                newToggle_Btn.Size = UDim2.new(0.055, 0, 0.5, 0)
+                newToggle_Btn.ZIndex = 2
+                newToggle_Btn.Image = "rbxassetid://3570695787"
+                newToggle_Btn.ScaleType = Enum.ScaleType.Slice
+                newToggle_Btn.SliceCenter = Rect.new(100, 100, 100, 100)
+
+                local isToggled = false
+
+                local function toggle()
+                    if not isToggled then
+                        newToggle_Btn:TweenPosition(newToggle_Btn.Position + UDim2.new(.066,0,0,0),"In","Sine",.1)
+                        newToggle_BG.ImageColor3 = Color3.fromRGB(227, 32, 240)
+                        callback(isToggled)
+                    else
+                        newToggle_Btn:TweenPosition(newToggle_Btn.Position + UDim2.new(-.066,0,0,0),"In","Sine",.1)
+                        newToggle_BG.ImageColor3 = Color3.fromRGB(62, 62, 62)
+                        callback(isToggled)
+                    end
+                end
+
+                newToggle_Btn.MouseButton1Click:Connect(function()
+                    toggle()
+                end)
+
+                newToggle_BG.MouseButton1Click:Connect(function()
+                    toggle()
+                end)
+            end
+
             function Controls:AddSlider(FeatureText, maxValue, minValue, defaultValue, callback)
                 FeatureText = FeatureText or "Untitled"
                 maxValue = maxValue or 100
@@ -557,12 +640,12 @@ function Library.new(UI_Name, version, ThemeColor)
                 newSlider_TL.Name = FeatureText .."_TL"
                 newSlider_TL.Parent = newSlider
                 newSlider_TL.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                newSlider_TL.BackgroundTransparency = 1.000
+                newSlider_TL.BackgroundTransparency = 1
                 newSlider_TL.Position = UDim2.new(0.0489282086, 0, 0, 0)
                 newSlider_TL.Size = UDim2.new(0.16822055, 0, 1, 0)
                 newSlider_TL.ZIndex = 6
                 newSlider_TL.Font = Enum.Font.GothamBold
-                newSlider_TL.Text = "Flight"
+                newSlider_TL.Text = FeatureText
                 newSlider_TL.TextColor3 = Color3.fromRGB(234, 234, 234)
                 newSlider_TL.TextSize = 12
                 newSlider_TL.TextWrapped = true
@@ -646,6 +729,7 @@ function Library.new(UI_Name, version, ThemeColor)
                             local value = math.floor(math.clamp((percentage * maxValue), minValue, maxValue))
                             newSliderValue_TL.Text = value
                             defaultValue = value
+                            pcall(function() callback(value) end)
                         end
                     end
                 end)
@@ -660,6 +744,7 @@ function Library.new(UI_Name, version, ThemeColor)
                         local value = math.floor(math.clamp((percentage * maxValue), minValue, maxValue))
                         newSliderValue_TL.Text = value
                         defaultValue = value
+                        pcall(function() callback(value) end)
                     end
                 end)
                 
@@ -673,6 +758,7 @@ function Library.new(UI_Name, version, ThemeColor)
                         local value = math.floor(math.clamp((percentage * maxValue), minValue, maxValue))
                         newSliderValue_TL.Text = value
                         defaultValue = value
+                        pcall(function() callback(value) end)
                     end
                 end)
             end
