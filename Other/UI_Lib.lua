@@ -275,7 +275,7 @@ function Library.new(UI_Name, version, ThemeColor)
         NewTab.Visible = false
         NewTab.CanvasSize = UDim2.new(0, 0, 1, 0)
         NewTab.ScrollBarThickness = 6
-        NewTab.AutomaticCanvasSize = true
+        NewTab.AutomaticCanvasSize = Enum.AutomaticSize.Y
         
         UIListLayout_Tabs.Parent = NewTab
         UIListLayout_Tabs.SortOrder = Enum.SortOrder.LayoutOrder
@@ -824,7 +824,7 @@ function Library.new(UI_Name, version, ThemeColor)
                 ScrollingFrame.ZIndex = 8
                 ScrollingFrame.CanvasSize = UDim2.new(0, 0, 1.5, 0)
                 ScrollingFrame.ScrollBarThickness = 10
-                ScrollingFrame.AutomaticCanvasSize = true
+                ScrollingFrame.AutomaticCanvasSize = Enum.AutomaticSize.Y
 
                 Dropdown_Items.Name = "Dropdown_Items"
                 Dropdown_Items.Parent = ScrollingFrame
