@@ -768,7 +768,170 @@ function Library.new(UI_Name, version, ThemeColor)
                 end)
             end
 
-            
+            function Controls:AddDropdown(FeatureText, Options, callback)
+                local Dropdown = {}
+                local OptionsTable = {}
+
+                FeatureText = FeatureText or "Untitled"
+                Options = Options or {}
+                callback = callback or function() end
+
+                -- Instances:
+                local newDropdown = Instance.new("ImageLabel")
+                local newDropdown_TL = Instance.new("TextLabel")
+                local ScrollingFrame = Instance.new("ScrollingFrame")
+                local Dropdown_Items = Instance.new("Folder")
+                local UIListLayout = Instance.new("UIListLayout")
+                local SelectedOption_Btn = Instance.new("TextButton")
+                local SelectedOption_Btn_BG = Instance.new("ImageLabel")
+                local Arrow = Instance.new("ImageLabel")
+                local DropDownBG = Instance.new("ImageLabel")
+                local DropDownBG_BG = Instance.new("ImageLabel")
+
+                -- Properties:
+                newDropdown.Name = "newDropdown"
+                newDropdown.Parent = game.StarterGui.YBA.MainFrame.Tabs.NPCsTab
+                newDropdown.BackgroundTransparency = 1
+                newDropdown.Position = UDim2.new(0, 0, 0.52, 0)
+                newDropdown.Size = UDim2.new(0.972, 0, 0.0581988841, 0)
+                newDropdown.Image = "rbxassetid://3570695787"
+                newDropdown.ImageColor3 = Color3.fromRGB(44, 44, 44)
+                newDropdown.ScaleType = Enum.ScaleType.Slice
+                newDropdown.SliceCenter = Rect.new(100, 100, 100, 100)
+                newDropdown.SliceScale = 0.060
+
+                newDropdown_TL.Name = "newDropdown_TL"
+                newDropdown_TL.Parent = newDropdown
+                newDropdown_TL.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                newDropdown_TL.BackgroundTransparency = 1
+                newDropdown_TL.Position = UDim2.new(0.0489282086, 0, 0, 0)
+                newDropdown_TL.Size = UDim2.new(0.16822055, 0, 1, 0)
+                newDropdown_TL.ZIndex = 6
+                newDropdown_TL.Font = Enum.Font.GothamBold
+                newDropdown_TL.Text = "Quest"
+                newDropdown_TL.TextColor3 = Color3.fromRGB(234, 234, 234)
+                newDropdown_TL.TextSize = 12
+                newDropdown_TL.TextWrapped = true
+                newDropdown_TL.TextXAlignment = Enum.TextXAlignment.Left
+
+                ScrollingFrame.Name = "ScrollingFrame"
+                ScrollingFrame.Parent = newDropdown
+                ScrollingFrame.Active = true
+                ScrollingFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                ScrollingFrame.BackgroundTransparency = 1
+                ScrollingFrame.BorderSizePixel = 0
+                ScrollingFrame.Position = UDim2.new(0.294, 0, 0.829, 0)
+                ScrollingFrame.Size = UDim2.new(0.692, 0, 2.268, 0)
+                ScrollingFrame.Visible = false
+                ScrollingFrame.ZIndex = 8
+                ScrollingFrame.CanvasSize = UDim2.new(0, 0, 1.5, 0)
+                ScrollingFrame.ScrollBarThickness = 10
+                ScrollingFrame.AutomaticCanvasSize = Enum.AutomaticSize.Y
+
+                Dropdown_Items.Name = "Dropdown_Items"
+                Dropdown_Items.Parent = ScrollingFrame
+
+                UIListLayout.Parent = Dropdown_Items
+                UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+
+                SelectedOption_Btn.Name = "SelectedOption_Btn"
+                SelectedOption_Btn.Parent = newDropdown
+                SelectedOption_Btn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                SelectedOption_Btn.BackgroundTransparency = 1
+                SelectedOption_Btn.BorderSizePixel = 0
+                SelectedOption_Btn.Position = UDim2.new(0.293, 0, 0.206, 0)
+                SelectedOption_Btn.Size = UDim2.new(0.692, 0, 0.642, 0)
+                SelectedOption_Btn.ZIndex = 6
+                SelectedOption_Btn.Font = Enum.Font.GothamBold
+                SelectedOption_Btn.Text = "Officer Sam [Lvl. 1+]"
+                SelectedOption_Btn.TextColor3 = Color3.fromRGB(209, 209, 209)
+                SelectedOption_Btn.TextSize = 12
+
+                SelectedOption_Btn_BG.Name = "SelectedOption_Btn_BG"
+                SelectedOption_Btn_BG.Parent = SelectedOption_Btn
+                SelectedOption_Btn_BG.AnchorPoint = Vector2.new(0.5, 0.5)
+                SelectedOption_Btn_BG.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                SelectedOption_Btn_BG.BackgroundTransparency = 1
+                SelectedOption_Btn_BG.Position = UDim2.new(0.5, 0, 0.5, 0)
+                SelectedOption_Btn_BG.Size = UDim2.new(1, 0, 1, 0)
+                SelectedOption_Btn_BG.ZIndex = 2
+                SelectedOption_Btn_BG.Image = "rbxassetid://3570695787"
+                SelectedOption_Btn_BG.ImageColor3 = Color3.fromRGB(62, 62, 62)
+                SelectedOption_Btn_BG.ScaleType = Enum.ScaleType.Slice
+                SelectedOption_Btn_BG.SliceCenter = Rect.new(100, 100, 100, 100)
+                SelectedOption_Btn_BG.SliceScale = 0.120
+
+                Arrow.Name = "Arrow"
+                Arrow.Parent = SelectedOption_Btn
+                Arrow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                Arrow.BackgroundTransparency = 1
+                Arrow.Position = UDim2.new(0.05, 0, 0.15, 0)
+                Arrow.Rotation = 90
+                Arrow.Size = UDim2.new(0.07, 0, 0.7, 0)
+                Arrow.ZIndex = 2
+                Arrow.Image = "rbxassetid://71659683"
+                Arrow.ImageColor3 = Color3.fromRGB(230, 230, 230)
+
+                DropDownBG.Name = "DropDownBG"
+                DropDownBG.Parent = newDropdown
+                DropDownBG.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                DropDownBG.BackgroundTransparency = 1
+                DropDownBG.Position = UDim2.new(0.294, 0, 0.206, 0)
+                DropDownBG.Size = UDim2.new(0.692, 0, 3.072, 0)
+                DropDownBG.ZIndex = 2
+                DropDownBG.Image = "rbxassetid://3570695787"
+                DropDownBG.ImageColor3 = Color3.fromRGB(62, 62, 62)
+                DropDownBG.ScaleType = Enum.ScaleType.Slice
+                DropDownBG.SliceCenter = Rect.new(100, 100, 100, 100)
+                DropDownBG.SliceScale = 0.12
+
+                DropDownBG_BG.Name = "DropDownBG_BG"
+                DropDownBG_BG.Parent = DropDownBG
+                DropDownBG_BG.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                DropDownBG_BG.BackgroundTransparency = 1
+                DropDownBG_BG.Position = UDim2.new(-0.01, 0, -0.01, 0)
+                DropDownBG_BG.Size = UDim2.new(1.02, 0, 1.02, 0)
+                DropDownBG_BG.Image = "rbxassetid://3570695787"
+                DropDownBG_BG.ImageColor3 = Color3.fromRGB(216, 34, 128)
+                DropDownBG_BG.ScaleType = Enum.ScaleType.Slice
+                DropDownBG_BG.SliceCenter = Rect.new(100, 100, 100, 100)
+                DropDownBG_BG.SliceScale = 0.12
+
+                for _, v in pairs(Options) do
+                    local newOption = Instance.new("TextButton")
+                    newOption.Name = v
+                    newOption.Parent = Dropdown_Items
+                    newOption.BackgroundColor3 = Color3.fromRGB(62, 62, 62)
+                    newOption.BorderSizePixel = 0
+                    newOption.Position = UDim2.new(0.250659823, 0, 0.157962978, 0)
+                    newOption.Size = UDim2.new(1, 0, 0.3, 0)
+                    newOption.ZIndex = 4
+                    newOption.Font = Enum.Font.GothamBold
+                    newOption.Text = v
+                    newOption.TextColor3 = Color3.fromRGB(209, 209, 209)
+                    newOption.TextSize = 12
+                    newOption.TextWrapped = true
+                    table.insert(OptionsTable, newOption)
+
+                    newOption.MouseButton1Click:Connect(function()
+                        SelectedOption_Btn.Text = v
+                        ScrollingFrame.Visible = false
+                        DropDownBG.Visible = false
+                        callback(v)
+                    end)
+                end
+
+                SelectedOption_Btn.MouseButton1Click:Connect(function()
+                    if ScrollingFrame.Visible == true then
+                        ScrollingFrame.Visible = false
+                        DropDownBG.Visible = false
+                    else
+                        ScrollingFrame.Visible = true
+                        DropDownBG.Visible = true
+                    end
+                end)
+
+            end
 
             return Controls
         end
