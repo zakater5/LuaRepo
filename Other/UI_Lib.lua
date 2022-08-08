@@ -932,40 +932,153 @@ function Library.new(UI_Name, version, ThemeColor)
                     end
                 end)
 
-                function Dropdown:AddItem(optionTitle, newCallback)
-                    local newOption = Instance.new("TextButton")
-                    newOption.Name = optionTitle
-                    newOption.Parent = Dropdown_Items
-                    newOption.BackgroundColor3 = Color3.fromRGB(62, 62, 62)
-                    newOption.BorderSizePixel = 0
-                    newOption.Position = UDim2.new(0.250659823, 0, 0.157962978, 0)
-                    newOption.Size = UDim2.new(1, 0, 0.3, 0)
-                    newOption.ZIndex = 4
-                    newOption.Font = Enum.Font.GothamBold
-                    newOption.Text = optionTitle
-                    newOption.TextColor3 = Color3.fromRGB(209, 209, 209)
-                    newOption.TextSize = 12
-                    newOption.TextWrapped = true
-                    table.insert(OptionsTable, newOption)
+                function Dropdown:RefreshDropdown(newOptions, newCallback)
+                    newOptions = newOptions or {}
+                    newCallback = newCallback or function() end
 
-                    newOption.MouseButton1Click:Connect(function()
-                        SelectedOption_Btn.Text = v
-                        ScrollingFrame.Visible = false
-                        DropDownBG.Visible = false
-                        newCallback(v)
-                    end)
-                end
+                    for i, v in pairs(newOptions) do
+                        local newOption = Instance.new("TextButton")
+                        newOption.Name = v
+                        newOption.Parent = Dropdown_Items
+                        newOption.BackgroundColor3 = Color3.fromRGB(62, 62, 62)
+                        newOption.BorderSizePixel = 0
+                        newOption.Position = UDim2.new(0.250659823, 0, 0.157962978, 0)
+                        newOption.Size = UDim2.new(1, 0, 0.3, 0)
+                        newOption.ZIndex = 4
+                        newOption.Font = Enum.Font.GothamBold
+                        newOption.Text = v
+                        newOption.TextColor3 = Color3.fromRGB(209, 209, 209)
+                        newOption.TextSize = 12
+                        newOption.TextWrapped = true
 
-                function Dropdown:RemoveItem(optionTitle)
-                    for i, v in pairs(OptionsTable) do
-                        if v.Name == optionTitle then
-                            table.remove(OptionsTable, i)
-                            v:Destroy()
-                        end
+                        newOption.MouseButton1Click:Connect(function()
+                            SelectedOption_Btn.Text = v
+                            ScrollingFrame.Visible = false
+                            DropDownBG.Visible = false
+                            newCallback(v)
+                        end)
                     end
                 end
 
                 return Dropdown
+            end
+
+            function Controls:AddSelection(FeatureText, Options, itemSelected_callback, itemUnselected_callback)
+                FeatureText = FeatureText or "Untitled"
+                Options = Options or {}
+                itemSelected_callback = itemSelected_callback or function() end
+                itemUnselected_callback = itemUnselected_callback or function() end
+
+                local selectedOptions = {}
+
+                -- Instances:
+                local newSelection = Instance.new("ImageLabel")
+                local newSelection_TL = Instance.new("TextLabel")
+                local SelectionFrame = Instance.new("Frame")
+                local SelectionItems = Instance.new("Folder")
+                local UIGridLayout = Instance.new("UIGridLayout")
+
+                -- Properties:
+                newSelection.Name = "newSelection"
+                newSelection.Parent = NewTab
+                newSelection.BackgroundTransparency = 1
+                newSelection.Position = UDim2.new(0, 0, 0.21, 0)
+                newSelection.Size = UDim2.new(0.971999943, 0, 0.25, 0)
+                newSelection.Image = "rbxassetid://3570695787"
+                newSelection.ImageColor3 = Color3.fromRGB(44, 44, 44)
+                newSelection.ScaleType = Enum.ScaleType.Slice
+                newSelection.SliceCenter = Rect.new(100, 100, 100, 100)
+                newSelection.SliceScale = 0.06
+
+                newSelection_TL.Name = "newSelection_TL"
+                newSelection_TL.Parent = newSelection
+                newSelection_TL.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                newSelection_TL.BackgroundTransparency = 1
+                newSelection_TL.Position = UDim2.new(0.0489280932, 0, 0, 0)
+                newSelection_TL.Size = UDim2.new(0.663618565, 0, 0.225675911, 0)
+                newSelection_TL.ZIndex = 6
+                newSelection_TL.Font = Enum.Font.GothamBold
+                newSelection_TL.Text = "Look for"
+                newSelection_TL.TextColor3 = Color3.fromRGB(234, 234, 234)
+                newSelection_TL.TextSize = 12
+                newSelection_TL.TextWrapped = true
+                newSelection_TL.TextXAlignment = Enum.TextXAlignment.Left
+
+                SelectionFrame.Name = "SelectionFrame"
+                SelectionFrame.Parent = newSelection
+                SelectionFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                SelectionFrame.BackgroundTransparency = 1
+                SelectionFrame.Position = UDim2.new(0.0314923562, 0, 0.235058755, 0)
+                SelectionFrame.Size = UDim2.new(0.934548557, 0, 0.74648416, 0)
+
+                SelectionItems.Name = "SelectionItems"
+                SelectionItems.Parent = SelectionFrame
+
+                UIGridLayout.Parent = SelectionItems
+                UIGridLayout.SortOrder = Enum.SortOrder.LayoutOrder
+                UIGridLayout.CellPadding = UDim2.new(0.3, 0, 0.05, 0)
+                UIGridLayout.CellSize = UDim2.new(0.05, 0, 0.18, 0)
+
+                for i, v in pairs(Options) do
+                    -- Instances:
+                    local newOption = Instance.new("ImageButton")
+                    local option_BG = Instance.new("ImageLabel")
+                    local option_TL = Instance.new("TextLabel")
+
+                    -- Properties:
+                    newOption.Name = v
+                    newOption.Parent = SelectionItems
+                    newOption.AnchorPoint = Vector2.new(0, 0.5)
+                    newOption.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                    newOption.BackgroundTransparency = 1
+                    newOption.Position = UDim2.new(0.04, 0, 0.301115066, 0)
+                    newOption.Size = UDim2.new(0.045, 0, 0.116359457, 0)
+                    newOption.ZIndex = 2
+                    newOption.Image = "rbxassetid://3570695787"
+                    newOption.ScaleType = Enum.ScaleType.Slice
+                    newOption.SliceCenter = Rect.new(100, 100, 100, 100)
+
+                    option_BG.Name = "option_BG"
+                    option_BG.Parent = newOption
+                    option_BG.AnchorPoint = Vector2.new(0.5, 0.5)
+                    option_BG.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                    option_BG.BackgroundTransparency = 1
+                    option_BG.Position = UDim2.new(0.5, 0, 0.5, 0)
+                    option_BG.Size = UDim2.new(1.5, 0, 1.5, 0)
+                    option_BG.Image = "rbxassetid://3570695787"
+                    option_BG.ImageColor3 = Color3.fromRGB(62, 62, 62)
+                    option_BG.ScaleType = Enum.ScaleType.Slice
+                    option_BG.SliceCenter = Rect.new(100, 100, 100, 100)
+
+                    option_TL.Name = "option_TL"
+                    option_TL.Parent = newOption
+                    option_TL.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                    option_TL.BackgroundTransparency = 1
+                    option_TL.Position = UDim2.new(1.5, 0, 0, 0)
+                    option_TL.Size = UDim2.new(5, 0, 1, 0)
+                    option_TL.ZIndex = 6
+                    option_TL.Font = Enum.Font.GothamBold
+                    option_TL.Text = v
+                    option_TL.TextColor3 = Color3.fromRGB(234, 234, 234)
+                    option_TL.TextSize = 11
+                    option_TL.TextWrapped = true
+                    option_TL.TextXAlignment = Enum.TextXAlignment.Left
+
+                    newOption.MouseButton1Click:Connect(function()
+                        if newOption.ImageTransparency == 1 then
+                            newOption.ImageTransparency = 0
+                            table.insert(selectedOptions, newOption.Name)
+                            itemSelected_callback(newOption.Name, selectedOptions)
+                        else
+                            newOption.ImageTransparency = 1
+                            local findOption = table.find(selectedOptions, newOption.Name)
+                            if findOption then
+                                table.remove(selectedOptions, findOption)
+                                itemUnselected_callback(newOption.Name, selectedOptions)
+                            end
+                        end
+                    end)
+                end
             end
 
             return Controls
