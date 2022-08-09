@@ -4,6 +4,10 @@ Library.__index = Library
 local TS = game:GetService("TweenService")
 local UIS = game:GetService("UserInputService")
 local RS = game:GetService("RunService")
+local players = game:GetService("Players")
+
+local player = players.LocalPlayer
+local mouse = player:GetMouse()
 
 function Library:DraggingEnabled(MainFrame, DragRegObj)
     frame = DragRegObj
@@ -1079,6 +1083,93 @@ function Library.new(UI_Name, version, ThemeColor)
                         end
                     end)
                 end
+            end
+
+            function Controls:AddKeybind(FeatureText, keyString, onKey_Callback)
+                FeatureText = FeatureText or "Untitled"
+                keyString = keyString:upper() or "F"
+                onKey_Callback = onKey_Callback or function() end
+
+                -- Instances:
+                local newKeybind = Instance.new("ImageLabel")
+                local newKeybind_TL = Instance.new("TextLabel")
+                local newKeybind_Btn = Instance.new("TextButton")
+                local Btn_BG = Instance.new("ImageLabel")
+
+                -- Properties:
+                newKeybind.Name = "newKeybind"
+                newKeybind.Parent = NewTab
+                newKeybind.BackgroundTransparency = 1
+                newKeybind.Position = UDim2.new(4.6708, 0, -0.5, 0)
+                newKeybind.Size = UDim2.new(0.972, 0, 0.08, 0)
+                newKeybind.Image = "rbxassetid://3570695787"
+                newKeybind.ImageColor3 = Color3.fromRGB(38, 38, 38)
+                newKeybind.ScaleType = Enum.ScaleType.Slice
+                newKeybind.SliceCenter = Rect.new(100, 100, 100, 100)
+                newKeybind.SliceScale = 0.06
+
+                newKeybind_TL.Name = "newKeybind_TL"
+                newKeybind_TL.Parent = newKeybind
+                newKeybind_TL.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                newKeybind_TL.BackgroundTransparency = 1
+                newKeybind_TL.Position = UDim2.new(0.0489282086, 0, 0, 0)
+                newKeybind_TL.Size = UDim2.new(0.663618565, 0, 1, 0)
+                newKeybind_TL.ZIndex = 6
+                newKeybind_TL.Font = Enum.Font.GothamBold
+                newKeybind_TL.Text = FeatureText
+                newKeybind_TL.TextColor3 = Color3.fromRGB(234, 234, 234)
+                newKeybind_TL.TextSize = 12
+                newKeybind_TL.TextWrapped = true
+                newKeybind_TL.TextXAlignment = Enum.TextXAlignment.Left
+
+                newKeybind_Btn.Name = "newKeybind_Btn"
+                newKeybind_Btn.Parent = newKeybind
+                newKeybind_Btn.AnchorPoint = Vector2.new(0, 0.5)
+                newKeybind_Btn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                newKeybind_Btn.BackgroundTransparency = 1
+                newKeybind_Btn.BorderSizePixel = 0
+                newKeybind_Btn.Position = UDim2.new(0.749213159, 0, 0.5, 0)
+                newKeybind_Btn.Size = UDim2.new(0.23855485, 0, 0.8, 0)
+                newKeybind_Btn.ZIndex = 2
+                newKeybind_Btn.Font = Enum.Font.GothamBold
+                newKeybind_Btn.Text = keyString
+                newKeybind_Btn.TextColor3 = Color3.fromRGB(211, 211, 211)
+                newKeybind_Btn.TextSize = 12
+                newKeybind_Btn.TextWrapped = true
+
+                Btn_BG.Name = "Btn_BG"
+                Btn_BG.Parent = newKeybind_Btn
+                Btn_BG.AnchorPoint = Vector2.new(0.5, 0.5)
+                Btn_BG.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                Btn_BG.BackgroundTransparency = 1
+                Btn_BG.Position = UDim2.new(0.5, 0, 0.5, 0)
+                Btn_BG.Size = UDim2.new(1, 0, 1, 0)
+                Btn_BG.Image = "rbxassetid://3570695787"
+                Btn_BG.ImageColor3 = Color3.fromRGB(62, 62, 62)
+                Btn_BG.ScaleType = Enum.ScaleType.Slice
+                Btn_BG.SliceCenter = Rect.new(100, 100, 100, 100)
+                Btn_BG.SliceScale = 0.06
+
+                local logKey = false
+                mouse.KeyDown:Connect(function(key)
+                    local pressedKey = key:upper()
+
+                    if pressedKey == keyString and not logKey then
+                        onKey_Callback()
+                    end
+
+                    if logKey then
+                        _G.settings.flight_KeyBind = pressedKey
+                        newKeybind_Btn.Text = pressedKey:upper()
+                        logKey = false
+                        saveSettings()
+                    end
+                end)
+
+                newKeybind_Btn.MouseButton1Click:Connect(function()
+                    newKeybind_Btn.Text = "Press Key"
+                    logKey = true
+                end)
             end
 
             return Controls
