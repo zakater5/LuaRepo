@@ -379,15 +379,15 @@ function Library.new(UI_Name, version, ThemeColor)
                 newLabelText.Size = UDim2.new(0.903747737, 0, 1, 0)
                 newLabelText.ZIndex = 6
                 newLabelText.Font = Enum.Font.GothamBold
-                newLabelText.Text = FeatureText
+                newLabelText.Text = Title
                 newLabelText.TextColor3 = Color3.fromRGB(234, 234, 234)
                 newLabelText.TextSize = 12
                 newLabelText.TextWrapped = true
                 newLabelText.TextXAlignment = Enum.TextXAlignment.Left
             end
 
-            function Controls:AddButton(FeatureText, ButtonText, callback)
-                FeatureText = FeatureText or "Untitled"
+            function Controls:AddButton(Title, ButtonText, callback)
+                Title = Title or "Untitled"
                 ButtonText = ButtonText or "Text"
                 callback = callback or function() end
 
@@ -398,7 +398,7 @@ function Library.new(UI_Name, version, ThemeColor)
                 local Btn_Background = Instance.new("ImageLabel")
 
                 -- Properties (background):
-                newFeature.Name = FeatureText
+                newFeature.Name = Title
                 newFeature.Parent = NewTab
                 newFeature.BackgroundTransparency = 1
                 newFeature.Position = UDim2.new(0, 0, 0.130746022, 0)
@@ -410,7 +410,7 @@ function Library.new(UI_Name, version, ThemeColor)
                 newFeature.SliceScale = 0.06
                 newFeature.ImageColor3 = Color3.fromRGB(44, 44, 44)
 
-                newFeature_TL.Name = FeatureText.."_TL"
+                newFeature_TL.Name = Title.."_TL"
                 newFeature_TL.Parent = newFeature
                 newFeature_TL.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
                 newFeature_TL.BackgroundTransparency = 1
@@ -418,14 +418,14 @@ function Library.new(UI_Name, version, ThemeColor)
                 newFeature_TL.Size = UDim2.new(0.903747737, 0, 1, 0)
                 newFeature_TL.ZIndex = 6
                 newFeature_TL.Font = Enum.Font.GothamBold
-                newFeature_TL.Text = FeatureText
+                newFeature_TL.Text = Title
                 newFeature_TL.TextColor3 = Color3.fromRGB(234, 234, 234)
                 newFeature_TL.TextSize = 12
                 newFeature_TL.TextWrapped = true
                 newFeature_TL.TextXAlignment = Enum.TextXAlignment.Left
 
                 -- Properties (button):
-                new_Button.Name = FeatureText.."_Btn"
+                new_Button.Name = Title.."_Btn"
                 new_Button.Parent = newFeature
                 new_Button.AnchorPoint = Vector2.new(0, 0.5)
                 new_Button.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -458,8 +458,8 @@ function Library.new(UI_Name, version, ThemeColor)
                 end)
             end
 
-            function Controls:AddTextBox(FeatureText, placeholderText, callback)
-                FeatureText = FeatureText or "Untitled"
+            function Controls:AddTextBox(Title, placeholderText, callback)
+                Title = Title or "Untitled"
                 placeholderText = placeholderText or ""
                 callback = callback or function() end
 
@@ -470,7 +470,7 @@ function Library.new(UI_Name, version, ThemeColor)
                 local Input_Background = Instance.new("ImageLabel")
 
                 -- Properties (background):
-                newFeature.Name = FeatureText
+                newFeature.Name = Title
                 newFeature.Parent = NewTab
                 newFeature.BackgroundTransparency = 1
                 newFeature.Position = UDim2.new(0, 0, 0.623232245, 0)
@@ -481,7 +481,7 @@ function Library.new(UI_Name, version, ThemeColor)
                 newFeature.SliceCenter = Rect.new(100, 100, 100, 100)
                 newFeature.SliceScale = 0.06
 
-                newFeature_TL.Name = FeatureText.."_TL"
+                newFeature_TL.Name = Title.."_TL"
                 newFeature_TL.Parent = newFeature
                 newFeature_TL.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
                 newFeature_TL.BackgroundTransparency = 1
@@ -489,14 +489,14 @@ function Library.new(UI_Name, version, ThemeColor)
                 newFeature_TL.Size = UDim2.new(0.308889121, 0, 1, 0)
                 newFeature_TL.ZIndex = 6
                 newFeature_TL.Font = Enum.Font.GothamBold
-                newFeature_TL.Text = FeatureText
+                newFeature_TL.Text = Title
                 newFeature_TL.TextColor3 = Color3.fromRGB(234, 234, 234)
                 newFeature_TL.TextSize = 12
                 newFeature_TL.TextWrapped = true
                 newFeature_TL.TextXAlignment = Enum.TextXAlignment.Left
 
                 -- Properties (TextBox):
-                Input_newFeature.Name = "Input_"..FeatureText
+                Input_newFeature.Name = "Input_"..Title
                 Input_newFeature.Parent = newFeature
                 Input_newFeature.AnchorPoint = Vector2.new(0, 0.5)
                 Input_newFeature.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -534,8 +534,8 @@ function Library.new(UI_Name, version, ThemeColor)
                 end)
             end
 
-            function Controls:AddToggle(FeatureText, callback)
-                FeatureText = FeatureText or "Untitled"
+            function Controls:AddToggle(Title, callback)
+                Title = Title or "Untitled"
                 callback = callback or function() end
 
                 -- Instances:
@@ -545,7 +545,7 @@ function Library.new(UI_Name, version, ThemeColor)
                 local newToggle_Btn = Instance.new("ImageButton")
 
                 -- Properties:
-                newFeature.Name = FeatureText
+                newFeature.Name = Title
                 newFeature.Parent = NewTab
                 newFeature.BackgroundTransparency = 1
                 newFeature.Position = UDim2.new(0, 0, 0.702, 0)
@@ -556,7 +556,7 @@ function Library.new(UI_Name, version, ThemeColor)
                 newFeature.SliceCenter = Rect.new(100, 100, 100, 100)
                 newFeature.SliceScale = 0.06
 
-                newFeature_TL.Name = FeatureText.."_TL"
+                newFeature_TL.Name = Title.."_TL"
                 newFeature_TL.Parent = newFeature
                 newFeature_TL.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
                 newFeature_TL.BackgroundTransparency = 1
@@ -564,7 +564,7 @@ function Library.new(UI_Name, version, ThemeColor)
                 newFeature_TL.Size = UDim2.new(0.308889121, 0, 1, 0)
                 newFeature_TL.ZIndex = 6
                 newFeature_TL.Font = Enum.Font.GothamBold
-                newFeature_TL.Text = FeatureText
+                newFeature_TL.Text = Title
                 newFeature_TL.TextColor3 = Color3.fromRGB(234, 234, 234)
                 newFeature_TL.TextSize = 12
                 newFeature_TL.TextWrapped = true
@@ -619,8 +619,8 @@ function Library.new(UI_Name, version, ThemeColor)
                 end)
             end
 
-            function Controls:AddSlider(FeatureText, maxValue, minValue, defaultValue, callback)
-                FeatureText = FeatureText or "Untitled"
+            function Controls:AddSlider(Title, maxValue, minValue, defaultValue, callback)
+                Title = Title or "Untitled"
                 maxValue = maxValue or 100
                 minValue = minValue or 0
                 defaultValue = defaultValue or minValue
@@ -635,7 +635,7 @@ function Library.new(UI_Name, version, ThemeColor)
                 local newSliderValue_TL = Instance.new("TextLabel")
 
                 -- Properties (background):
-                newSlider.Name = FeatureText
+                newSlider.Name = Title
                 newSlider.Parent = NewTab
                 newSlider.BackgroundTransparency = 1
                 newSlider.Position = UDim2.new(0, 0, 0.381000012, 0)
@@ -646,7 +646,7 @@ function Library.new(UI_Name, version, ThemeColor)
                 newSlider.SliceCenter = Rect.new(100, 100, 100, 100)
                 newSlider.SliceScale = 0.06
 
-                newSlider_TL.Name = FeatureText .."_TL"
+                newSlider_TL.Name = Title .."_TL"
                 newSlider_TL.Parent = newSlider
                 newSlider_TL.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
                 newSlider_TL.BackgroundTransparency = 1
@@ -654,14 +654,14 @@ function Library.new(UI_Name, version, ThemeColor)
                 newSlider_TL.Size = UDim2.new(0.16822055, 0, 1, 0)
                 newSlider_TL.ZIndex = 6
                 newSlider_TL.Font = Enum.Font.GothamBold
-                newSlider_TL.Text = FeatureText
+                newSlider_TL.Text = Title
                 newSlider_TL.TextColor3 = Color3.fromRGB(234, 234, 234)
                 newSlider_TL.TextSize = 12
                 newSlider_TL.TextWrapped = true
                 newSlider_TL.TextXAlignment = Enum.TextXAlignment.Left
 
                 -- Properties (slider):
-                newSliderFrame.Name = FeatureText.."_SliderFrame"
+                newSliderFrame.Name = Title.."_SliderFrame"
                 newSliderFrame.Parent = newSlider
                 newSliderFrame.AnchorPoint = Vector2.new(0, 0.5)
                 newSliderFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -673,7 +673,7 @@ function Library.new(UI_Name, version, ThemeColor)
                 newSliderFrame.ScaleType = Enum.ScaleType.Slice
                 newSliderFrame.SliceCenter = Rect.new(100, 100, 100, 100)
 
-                newSliderBar.Name = FeatureText.."_SliderBar"
+                newSliderBar.Name = Title.."_SliderBar"
                 newSliderBar.Parent = newSliderFrame
                 newSliderBar.AnchorPoint = Vector2.new(0, 0.5)
                 newSliderBar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -686,7 +686,7 @@ function Library.new(UI_Name, version, ThemeColor)
                 newSliderBar.ScaleType = Enum.ScaleType.Slice
                 newSliderBar.SliceCenter = Rect.new(100, 100, 100, 100)
 
-                newSliderKnob.Name = FeatureText.."_Slider"
+                newSliderKnob.Name = Title.."_Slider"
                 newSliderKnob.Parent = newSliderFrame
                 newSliderKnob.AnchorPoint = Vector2.new(0, 0.5)
                 newSliderKnob.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -698,7 +698,7 @@ function Library.new(UI_Name, version, ThemeColor)
                 newSliderKnob.ScaleType = Enum.ScaleType.Slice
                 newSliderKnob.SliceCenter = Rect.new(100, 100, 100, 100)
 
-                newSliderValue_TL.Name = FeatureText.."Value_TL"
+                newSliderValue_TL.Name = Title.."Value_TL"
                 newSliderValue_TL.Parent = newSlider
                 newSliderValue_TL.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
                 newSliderValue_TL.BackgroundTransparency = 1
@@ -772,11 +772,11 @@ function Library.new(UI_Name, version, ThemeColor)
                 end)
             end
 
-            function Controls:AddDropdown(FeatureText, Options, callback)
+            function Controls:AddDropdown(Title, Options, callback)
                 local Dropdown = {}
                 local OptionsTable = {}
 
-                FeatureText = FeatureText or "Untitled"
+                Title = Title or "Untitled"
                 Options = Options or {}
                 callback = callback or function() end
 
@@ -967,8 +967,8 @@ function Library.new(UI_Name, version, ThemeColor)
                 return Dropdown
             end
 
-            function Controls:AddSelection(FeatureText, Options, itemSelected_callback, itemUnselected_callback)
-                FeatureText = FeatureText or "Untitled"
+            function Controls:AddSelection(Title, Options, itemSelected_callback, itemUnselected_callback)
+                Title = Title or "Untitled"
                 Options = Options or {}
                 itemSelected_callback = itemSelected_callback or function() end
                 itemUnselected_callback = itemUnselected_callback or function() end
@@ -1085,8 +1085,8 @@ function Library.new(UI_Name, version, ThemeColor)
                 end
             end
 
-            function Controls:AddKeybind(FeatureText, keyString, onKey_Callback)
-                FeatureText = FeatureText or "Untitled"
+            function Controls:AddKeybind(Title, keyString, onKey_Callback)
+                Title = Title or "Untitled"
                 keyString = keyString:upper() or "F"
                 onKey_Callback = onKey_Callback or function() end
 
@@ -1116,7 +1116,7 @@ function Library.new(UI_Name, version, ThemeColor)
                 newKeybind_TL.Size = UDim2.new(0.663618565, 0, 1, 0)
                 newKeybind_TL.ZIndex = 6
                 newKeybind_TL.Font = Enum.Font.GothamBold
-                newKeybind_TL.Text = FeatureText
+                newKeybind_TL.Text = Title
                 newKeybind_TL.TextColor3 = Color3.fromRGB(234, 234, 234)
                 newKeybind_TL.TextSize = 12
                 newKeybind_TL.TextWrapped = true
