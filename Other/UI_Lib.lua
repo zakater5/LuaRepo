@@ -532,6 +532,8 @@ function Library.new(UI_Name, version, ThemeColor)
                         return
                     end
                 end)
+
+                return Input_newFeature
             end
 
             function Controls:AddToggle(Title, callback)
