@@ -400,11 +400,11 @@ function Library.new(UI_Name, ThemeColor)
             UIGradient.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.00, 1.00), NumberSequenceKeypoint.new(0.25, 1.00), NumberSequenceKeypoint.new(0.50, 0.00), NumberSequenceKeypoint.new(0.74, 1.00), NumberSequenceKeypoint.new(1.00, 1.00)}
             UIGradient.Parent = Line
 
-            new_Button.MouseButton1Click:Connect(function()
+            TextButton.MouseButton1Click:Connect(function()
                 callback()
             end)
 
-            return new_Button
+            return TextButton
         end
 
         function Controls:AddTextBox(Title, placeholderText, callback)
