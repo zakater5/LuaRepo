@@ -513,24 +513,35 @@ function Library.new(UI_Name, ThemeColor)
 
         --Tab Button Event/s:
         newTabButton_Frame.MouseEnter:Connect(function()
-            background:TweenSize(UDim2.new(1, 0, 1, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Sine, .2, false, function()
-                TabButtonLogo.ImageColor3 = Color3.fromRGB(255, 255, 255)
-            end)
+            local opening_tween = TS:Create(
+                background,
+                TweenInfo.new(.2, Enum.EasingStyle.Sine),
+                {Size = UDim2.new(1, 0, 1, 0)}
+            )
+            opening_tween:Play()
+            TabButtonLogo.ImageColor3 = Color3.fromRGB(255, 255, 255)
         end)
         
         newTabButton_Frame.MouseLeave:Connect(function()
-            background:TweenSize(UDim2.new(0, 0, 0, 0), Enum.EasingDirection.In, Enum.EasingStyle.Sine, .2, false, function()
-                TabButtonLogo.ImageColor3 = Color3.fromRGB(44, 115, 216)
-            end)
+            local closing_tween = TS:Create(
+                background,
+                TweenInfo.new(.2, Enum.EasingStyle.Sine),
+                {Size = UDim2.new(0, 0, 0, 0)}
+            )
+            closing_tween:Play()
+            TabButtonLogo.ImageColor3 = Color3.fromRGB(44, 115, 216)
         end)
 
         New_TabButton.MouseButton1Click:Connect(function()
+            print("x")
             for _, v in pairs(Tabs_Folder:GetChildren()) do
                 if v:IsA("Frame") then
                     v.Visible = false
+                    print("xx")
                 end
             end
             NewTab.Visible = true
+            print("xxx")
         end)
 
         TabButtonLogo.MouseButton1Click:Connect(function()
