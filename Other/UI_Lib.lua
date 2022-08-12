@@ -223,7 +223,7 @@ function setupSettings(TabsFolder)
     optionsTab.UIGradient.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.00, 1.00), NumberSequenceKeypoint.new(0.25, 1.00), NumberSequenceKeypoint.new(0.50, 0.00), NumberSequenceKeypoint.new(0.74, 1.00), NumberSequenceKeypoint.new(1.00, 1.00)}
     optionsTab.UIGradient.Parent = optionsTab.Line
 
-    optionsTab.Frame_3.Parent = OptionsTab
+    optionsTab.Frame_3.Parent = optionsTab.OptionsTab
     optionsTab.Frame_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     optionsTab.Frame_3.BackgroundTransparency = 1.000
     optionsTab.Frame_3.Size = UDim2.new(0.972, 0, 0.058, 0)
@@ -243,7 +243,7 @@ function setupSettings(TabsFolder)
     for i, v in pairs(uiAccentColors) do
         local newColorBtn = Instance.new("ImageButton")
         newColorBtn.Name = i
-        newColorBtn.Parent = optionsTab.OptionsTab
+        newColorBtn.Parent = optionsTab.Frame_4
         newColorBtn.AnchorPoint = Vector2.new(0, 0.5)
         newColorBtn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         newColorBtn.BackgroundTransparency = 1.000
