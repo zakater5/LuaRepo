@@ -256,6 +256,7 @@ function setupSettings(TabsFolder)
         newColorBtn.SliceCenter = Rect.new(100, 100, 100, 100)
 
         local innerButton = newColorBtn:Clone()
+        innerButton.Parent = newColorBtn
         innerButton.Name = "Inner"
         innerButton.Size = UDim2.new(0.5, 0, 0.5, 0)
         innerButton.Position = UDim2.new(0.5, 0, 0.5, 0)
