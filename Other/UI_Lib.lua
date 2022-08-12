@@ -533,15 +533,14 @@ function Library.new(UI_Name, ThemeColor)
         end)
 
         New_TabButton.MouseButton1Click:Connect(function()
-            print("x")
             for _, v in pairs(Tabs_Folder:GetChildren()) do
+                print(v.Name)
                 if v:IsA("Frame") then
                     v.Visible = false
                     print("xx")
                 end
             end
             NewTab.Visible = true
-            print("xxx")
         end)
 
         TabButtonLogo.MouseButton1Click:Connect(function()
