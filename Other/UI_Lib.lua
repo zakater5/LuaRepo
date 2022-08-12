@@ -22,6 +22,18 @@ local uiAccentColors = {
     ["Cyan"] = Color3.fromRGB(0, 230, 255),
 }
 
+local lightTheme_Shades = {
+    ["Primary"] = Color3.fromRGB(156, 156, 158),
+    ["Secondary"] = Color3.fromRGB(163, 162, 165),
+    ["Tertiary"] = Color3.fromRGB(176, 176, 176),
+}
+
+local darkTheme_Shades = {
+    ["Primary"] = Color3.fromRGB(50, 50, 50),
+    ["Secondary"] = Color3.fromRGB(63, 63, 63),
+    ["Tertiary"] = Color3.fromRGB(38, 38, 38),
+}
+
 -- [[ SAVING/LOADING SETTINGS ]] --
 _G.settings = {}
 function loadSettings()
@@ -44,12 +56,37 @@ function saveSettings()
     end
 end
 
-function updateUI_settings(mainFrame)
+function updateUI_accents(mainFrame)
     for i, v in pairs(mainFrame:GetDescendants()) do
         if v:IsA("ImageLabel") or v:IsA("ImageButton") then
             for _, color in pairs(uiAccentColors) do
                 if v.ImageColor3 == color then
-                    v.ImageColor3 = _G.settings.AccentColor
+                    v.ImageColor3 = uiAccentColors[_G.settings.AccentColor]
+                end
+            end
+        end
+    end
+end
+
+function updateUI_theme(mainFrame, theme)
+    if theme == "Dark" then
+        for i, v in pairs(mainFrame:GetDescendants()) do
+            if v:IsA("ImageLabel") or v:IsA("ImageButton") then
+                for i, shade in pairs(lightTheme_Shades) do
+                    if v.ImageColor3 == shade then
+                        v.ImageColor3 = darkTheme_Shades[i]
+                    end
+                end
+            end
+        end
+
+    elseif theme == "Light" then
+        for i, v in pairs(mainFrame:GetDescendants()) do
+            if v:IsA("ImageLabel") or v:IsA("ImageButton") then
+                for i, shade in pairs(darkTheme_Shades) do
+                    if v.ImageColor3 == shade then
+                        v.ImageColor3 = lightTheme_Shades[i]
+                    end
                 end
             end
         end
@@ -291,7 +328,7 @@ function setupSettings(TabsFolder, mainFrame)
             innerButton.Visible = true
             _G.settings.AccentColor = i
             saveSettings()
-            updateUI_settings(mainFrame)
+            updateUI_accents(mainFrame)
         end)
     end
 
@@ -323,6 +360,15 @@ function setupSettings(TabsFolder, mainFrame)
 
     optionsTab.UIListLayout_2.Parent = optionsTab.OptionsTab
     optionsTab.UIListLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
+
+
+    optionsTab.LightMode.MouseButton1Click:Connect(function()
+        updateUI_theme(mainFrame, "Light")
+    end)
+
+    optionsTab.DarkMode.MouseButton1Click:Connect(function()
+        updateUI_theme(mainFrame, "Dark")
+    end)
 end
 
 
@@ -523,7 +569,7 @@ function Library.new(UI_Name, ThemeColor)
         background.Size = UDim2.new(0, 0, 0, 0)
         background.ZIndex = 4
         background.Image = "rbxassetid://3570695787"
-        background.ImageColor3 = Color3.fromRGB(44, 115, 216)
+        background.ImageColor3 = _G.settings.AccentColor
         background.ScaleType = Enum.ScaleType.Slice
         background.SliceCenter = Rect.new(100, 100, 100, 100)
         background.SliceScale = 0.06
@@ -546,7 +592,7 @@ function Library.new(UI_Name, ThemeColor)
                 {Size = UDim2.new(0, 0, 0, 0)}
             )
             closing_tween:Play()
-            TabButtonLogo.ImageColor3 = Color3.fromRGB(44, 115, 216)
+            TabButtonLogo.ImageColor3 = _G.settings.AccentColor
         end)
 
         New_TabButton.MouseButton1Click:Connect(function()
