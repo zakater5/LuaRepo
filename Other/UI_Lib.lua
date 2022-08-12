@@ -166,6 +166,7 @@ function Library.new(UI_Name, ThemeColor)
     Library:DraggingEnabled(MainFrame, SideBar)
 
     local Tabs = {}
+    local activePageBtn = nil
     function Tabs:AddTab(tabName)
         tabName = tabName or "Tab"
 
@@ -238,10 +239,10 @@ function Library.new(UI_Name, ThemeColor)
 
         background.Name = "background"
         background.Parent = New_TabButton
-        background.AnchorPoint = Vector2.new(0.5, 0)
+        background.AnchorPoint = Vector2.new(.5, .5)
         background.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         background.BackgroundTransparency = 1
-        background.Position = UDim2.new(0.5, 0, 0, 0)
+        background.Position = UDim2.new(.5, 0, .5, 0)
         background.Size = UDim2.new(1, 0, 1, 0)
         background.ZIndex = 3
         background.Image = "rbxassetid://3570695787"
@@ -252,14 +253,22 @@ function Library.new(UI_Name, ThemeColor)
 
         --Tab Button Event/s:
         New_TabButton.MouseEnter:Connect(function()
-            background:TweenSize(UDim2.new(1, 0, 1, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Sine, .2)
+            if New_TabButton == activePageBtn then
+                background:TweenSize(UDim2.new(1, 0, 1, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Sine, .2)
+            end
         end)
         
         New_TabButton.MouseLeave:Connect(function()
-            background:TweenSize(UDim2.new(0, 0, 0, 0), Enum.EasingDirection.In, Enum.EasingStyle.Sine, .2)
+            if New_TabButton == activePageBtn then
+                background:TweenSize(UDim2.new(0, 0, 0, 0), Enum.EasingDirection.In, Enum.EasingStyle.Sine, .2)
+            end
         end)
 
         New_TabButton.MouseButton1Click:Connect(function()
+            New_TabButton = nil
+            if New_TabButton ~= activePageBtn then
+                activePageBtn = New_TabButton
+            end
             for _, v in pairs(Tabs_Folder:GetChildren()) do
                 if v:IsA("Frame") then
                     v.Visible = false
