@@ -778,7 +778,7 @@ function Library.new(UI_Name, ThemeColor)
 
             -- Instances:
             local newToggle = Instance.new("Frame")
-            local newToggle_BG = Instance.new("ImageLabel")
+            local newToggle_BG = Instance.new("ImageButton")
             local newToggle_Btn = Instance.new("ImageButton")
             local newToggle_TL = Instance.new("TextLabel")
             local Line = Instance.new("Frame")
@@ -789,15 +789,15 @@ function Library.new(UI_Name, ThemeColor)
             newToggle.Parent = NewTab
             newToggle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             newToggle.BackgroundTransparency = 1
-            newToggle.Size = UDim2.new(0.972000003, 0, 0.0579999983, 0)
+            newToggle.Size = UDim2.new(0.972, 0, 0.058, 0)
 
             newToggle_BG.Name = "newToggle_BG"
             newToggle_BG.Parent = newToggle
             newToggle_BG.AnchorPoint = Vector2.new(0, 0.5)
             newToggle_BG.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             newToggle_BG.BackgroundTransparency = 1
-            newToggle_BG.Position = UDim2.new(0.850000143, 0, 0.500000238, 0)
-            newToggle_BG.Size = UDim2.new(0.104999833, 0, 0.50000006, 0)
+            newToggle_BG.Position = UDim2.new(0.85, 0, 0.5, 0)
+            newToggle_BG.Size = UDim2.new(0.105, 0, 0.5, 0)
             newToggle_BG.ZIndex = 2
             newToggle_BG.Image = "rbxassetid://3570695787"
             newToggle_BG.ImageColor3 = Color3.fromRGB(38, 38, 38)
@@ -809,8 +809,8 @@ function Library.new(UI_Name, ThemeColor)
             newToggle_Btn.AnchorPoint = Vector2.new(0, 0.5)
             newToggle_Btn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             newToggle_Btn.BackgroundTransparency = 1
-            newToggle_Btn.Position = UDim2.new(0.100000001, 0, 0.5, 0)
-            newToggle_Btn.Size = UDim2.new(0.319999993, 0, 0.699999988, 0)
+            newToggle_Btn.Position = UDim2.new(0.1, 0, 0.5, 0)
+            newToggle_Btn.Size = UDim2.new(0.32, 0, 0.7, 0)
             newToggle_Btn.ZIndex = 3
             newToggle_Btn.Image = "rbxassetid://3570695787"
             newToggle_Btn.ScaleType = Enum.ScaleType.Slice
@@ -821,7 +821,7 @@ function Library.new(UI_Name, ThemeColor)
             newToggle_TL.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             newToggle_TL.BackgroundTransparency = 1
             newToggle_TL.Position = UDim2.new(0.0489281081, 0, 0, 0)
-            newToggle_TL.Size = UDim2.new(0.759346068, 0, 100012, 0)
+            newToggle_TL.Size = UDim2.new(0.759346068, 0, 1, 0)
             newToggle_TL.ZIndex = 3
             newToggle_TL.Font = Enum.Font.GothamBold
             newToggle_TL.Text = "Flight"
@@ -848,12 +848,12 @@ function Library.new(UI_Name, ThemeColor)
             local function toggle()
                 if not isToggled then
                     isToggled = true
-                    newToggle_Btn:TweenPosition(newToggle_Btn.Position + UDim2.new(.066,0,0,0),"In","Sine",.1)
+                    newToggle_Btn:TweenPosition(newToggle_Btn.Position + UDim2.new(.5,0,0,0),"In","Sine",.1)
                     newToggle_BG.ImageColor3 = uiAccentColors[_G.settings.AccentColor]
                     callback(isToggled)
                 else
                     isToggled = false
-                    newToggle_Btn:TweenPosition(newToggle_Btn.Position + UDim2.new(-.066,0,0,0),"In","Sine",.1)
+                    newToggle_Btn:TweenPosition(newToggle_Btn.Position + UDim2.new(-.5,0,0,0),"In","Sine",.1)
                     newToggle_BG.ImageColor3 = Color3.fromRGB(62, 62, 62)
                     callback(isToggled)
                 end
