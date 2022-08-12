@@ -360,7 +360,7 @@ function Library.new(UI_Name, ThemeColor)
     Min_Button.Name = "Min_Button"
     Min_Button.Parent = TopBar_Frame
     Min_Button.BackgroundTransparency = 1
-    Min_Button.Position = UDim2.new(0.3, 0, 0.221589461, 0)
+    Min_Button.Position = UDim2.new(0.2, 0, 0.221589461, 0)
     Min_Button.Size = UDim2.new(0.11929135, 0, 0.539204836, 0)
     Min_Button.ZIndex = 5
     Min_Button.Image = "rbxassetid://3570695787"
@@ -430,7 +430,7 @@ function Library.new(UI_Name, ThemeColor)
 
     Opt_Button.MouseButton1Click:Connect(function()
         for _, v in pairs(Tabs_Folder:GetChildren()) do
-            if v:IsA("Frame") then
+            if v:IsA("Frame") or v:IsA("ScrollingFrame") then
                 v.Visible = false
             end
         end
@@ -534,10 +534,8 @@ function Library.new(UI_Name, ThemeColor)
 
         New_TabButton.MouseButton1Click:Connect(function()
             for _, v in pairs(Tabs_Folder:GetChildren()) do
-                print(v.Name)
-                if v:IsA("Frame") then
+                if v:IsA("Frame") or v:IsA("ScrollingFrame") then
                     v.Visible = false
-                    print("xx")
                 end
             end
             NewTab.Visible = true
@@ -545,7 +543,7 @@ function Library.new(UI_Name, ThemeColor)
 
         TabButtonLogo.MouseButton1Click:Connect(function()
             for _, v in pairs(Tabs_Folder:GetChildren()) do
-                if v:IsA("Frame") then
+                if v:IsA("Frame") or v:IsA("ScrollingFrame") then
                     v.Visible = false
                 end
             end
