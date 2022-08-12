@@ -131,19 +131,19 @@ function setupSettings(TabsFolder)
     optionsTab.OptionsTab.CanvasSize = UDim2.new(0, 0, 1.5, 0)
     optionsTab.OptionsTab.ScrollBarThickness = 6
 
-    optionsTab.Frame.Parent = OptionsTab
+    optionsTab.Frame.Parent = optionsTab.OptionsTab
     optionsTab.Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     optionsTab.Frame.BackgroundTransparency = 1.000
     optionsTab.Frame.Size = UDim2.new(0.972, 0, 0.12, 0)
 
-    optionsTab.Frame_2.Parent = Frame
+    optionsTab.Frame_2.Parent = optionsTab.Frame
     optionsTab.Frame_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     optionsTab.Frame_2.BackgroundTransparency = 1.000
     optionsTab.Frame_2.Position = UDim2.new(0.377439648, 0, 0, 0)
     optionsTab.Frame_2.Size = UDim2.new(0.597560465, 0, 1, 0)
 
     optionsTab.LightMode.Name = "LightMode"
-    optionsTab.LightMode.Parent = Frame_2
+    optionsTab.LightMode.Parent = optionsTab.Frame_2
     optionsTab.LightMode.AnchorPoint = Vector2.new(0, 0.5)
     optionsTab.LightMode.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     optionsTab.LightMode.BackgroundTransparency = 1.000
@@ -153,10 +153,10 @@ function setupSettings(TabsFolder)
     optionsTab.LightMode.Image = "rbxassetid://3570695787"
     optionsTab.LightMode.ScaleType = Enum.ScaleType.Slice
     optionsTab.LightMode.SliceCenter = Rect.new(100, 100, 100, 100)
-    optionsTab.LightMode.SliceScale = 0.060
+    optionsTab.LightMode.SliceScale = 0.06
 
     optionsTab.BG.Name = "BG"
-    optionsTab.BG.Parent = LightMode
+    optionsTab.BG.Parent = optionsTab.LightMode
     optionsTab.BG.AnchorPoint = Vector2.new(0.5, 0.5)
     optionsTab.BG.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     optionsTab.BG.BackgroundTransparency = 1.000
@@ -167,10 +167,10 @@ function setupSettings(TabsFolder)
     optionsTab.BG.ImageColor3 = uiAccentColors[_G.settings.AccentColor]
     optionsTab.BG.ScaleType = Enum.ScaleType.Slice
     optionsTab.BG.SliceCenter = Rect.new(100, 100, 100, 100)
-    optionsTab.BG.SliceScale = 0.060
+    optionsTab.BG.SliceScale = 0.06
 
     optionsTab.DarkMode.Name = "DarkMode"
-    optionsTab.DarkMode.Parent = Frame_2
+    optionsTab.DarkMode.Parent = optionsTab.Frame_2
     optionsTab.DarkMode.AnchorPoint = Vector2.new(0, 0.5)
     optionsTab.DarkMode.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     optionsTab.DarkMode.BackgroundTransparency = 1.000
@@ -180,10 +180,10 @@ function setupSettings(TabsFolder)
     optionsTab.DarkMode.Image = "rbxassetid://3570695787"
     optionsTab.DarkMode.ScaleType = Enum.ScaleType.Slice
     optionsTab.DarkMode.SliceCenter = Rect.new(100, 100, 100, 100)
-    optionsTab.DarkMode.SliceScale = 0.060
+    optionsTab.DarkMode.SliceScale = 0.06
 
     optionsTab.BG_2.Name = "BG"
-    optionsTab.BG_2.Parent = DarkMode
+    optionsTab.BG_2.Parent = optionsTab.DarkMode
     optionsTab.BG_2.AnchorPoint = Vector2.new(0.5, 0.5)
     optionsTab.BG_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     optionsTab.BG_2.BackgroundTransparency = 1.000
@@ -196,7 +196,7 @@ function setupSettings(TabsFolder)
     optionsTab.BG_2.SliceCenter = Rect.new(100, 100, 100, 100)
     optionsTab.BG_2.SliceScale = 0.060
 
-    optionsTab.TextLabel.Parent = Frame
+    optionsTab.TextLabel.Parent = optionsTab.Frame
     optionsTab.TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     optionsTab.TextLabel.BackgroundTransparency = 1.000
     optionsTab.TextLabel.Position = UDim2.new(0.0489281043, 0, 0, 0)
@@ -210,7 +210,7 @@ function setupSettings(TabsFolder)
     optionsTab.TextLabel.TextXAlignment = Enum.TextXAlignment.Left
 
     optionsTab.Line.Name = "Line"
-    optionsTab.Line.Parent = Frame
+    optionsTab.Line.Parent = optionsTab.Frame
     optionsTab.Line.AnchorPoint = Vector2.new(0.5, 0.5)
     optionsTab.Line.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     optionsTab.Line.BackgroundTransparency = 0.900
@@ -220,21 +220,21 @@ function setupSettings(TabsFolder)
     optionsTab.UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 255, 255))}
     optionsTab.UIGradient.Rotation = 90
     optionsTab.UIGradient.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.00, 1.00), NumberSequenceKeypoint.new(0.25, 1.00), NumberSequenceKeypoint.new(0.50, 0.00), NumberSequenceKeypoint.new(0.74, 1.00), NumberSequenceKeypoint.new(1.00, 1.00)}
-    optionsTab.UIGradient.Parent = Line
+    optionsTab.UIGradient.Parent = optionsTab.Line
 
     optionsTab.Frame_3.Parent = OptionsTab
     optionsTab.Frame_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     optionsTab.Frame_3.BackgroundTransparency = 1.000
     optionsTab.Frame_3.Size = UDim2.new(0.972, 0, 0.058, 0)
 
-    optionsTab.Frame_4.Parent = Frame_3
+    optionsTab.Frame_4.Parent = optionsTab.Frame_3
     optionsTab.Frame_4.AnchorPoint = Vector2.new(0, 0.5)
     optionsTab.Frame_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     optionsTab.Frame_4.BackgroundTransparency = 1.000
     optionsTab.Frame_4.Position = UDim2.new(0.377439648, 0, 0.5, 0)
     optionsTab.Frame_4.Size = UDim2.new(0.48306039, 0, 0.7, 0)
 
-    optionsTab.UIListLayout.Parent = Frame_4
+    optionsTab.UIListLayout.Parent = optionsTab.Frame_4
     optionsTab.UIListLayout.FillDirection = Enum.FillDirection.Horizontal
     optionsTab.UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
     optionsTab.UIListLayout.Padding = UDim.new(0.02, 0)
@@ -242,7 +242,7 @@ function setupSettings(TabsFolder)
     for i, v in pairs(uiAccentColors) do
         local newColorBtn = Instance.new("ImageButton")
         newColorBtn.Name = i
-        newColorBtn.Parent = Frame_4
+        newColorBtn.Parent = optionsTab.Frame_4
         newColorBtn.AnchorPoint = Vector2.new(0, 0.5)
         newColorBtn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         newColorBtn.BackgroundTransparency = 1.000
@@ -278,11 +278,11 @@ function setupSettings(TabsFolder)
         end)
     end
 
-    optionsTab.TextLabel_2.Parent = Frame_3
+    optionsTab.TextLabel_2.Parent = optionsTab.Frame_3
     optionsTab.TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     optionsTab.TextLabel_2.BackgroundTransparency = 1.000
     optionsTab.TextLabel_2.Position = UDim2.new(0.0489281043, 0, 0, 0)
-    optionsTab.TextLabel_2.Size = UDim2.new(0.416493893, 0, 1.00000012, 0)
+    optionsTab.TextLabel_2.Size = UDim2.new(0.416493893, 0, 1, 0)
     optionsTab.TextLabel_2.ZIndex = 3
     optionsTab.TextLabel_2.Font = Enum.Font.GothamBold
     optionsTab.TextLabel_2.Text = "Accent color"
@@ -292,19 +292,19 @@ function setupSettings(TabsFolder)
     optionsTab.TextLabel_2.TextXAlignment = Enum.TextXAlignment.Left
 
     optionsTab.Line_2.Name = "Line"
-    optionsTab.Line_2.Parent = Frame_3
+    optionsTab.Line_2.Parent = optionsTab.Frame_3
     optionsTab.Line_2.AnchorPoint = Vector2.new(0.5, 0.5)
     optionsTab.Line_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     optionsTab.Line_2.BackgroundTransparency = 0.900
-    optionsTab.Line_2.Position = UDim2.new(0.5, 0, 0.949999988, 0)
+    optionsTab.Line_2.Position = UDim2.new(0.5, 0, 0.95, 0)
     optionsTab.Line_2.Size = UDim2.new(0.95, 0, 0.2, 0)
 
     optionsTab.UIGradient_2.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 255, 255))}
     optionsTab.UIGradient_2.Rotation = 90
     optionsTab.UIGradient_2.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.00, 1.00), NumberSequenceKeypoint.new(0.25, 1.00), NumberSequenceKeypoint.new(0.50, 0.00), NumberSequenceKeypoint.new(0.74, 1.00), NumberSequenceKeypoint.new(1.00, 1.00)}
-    optionsTab.UIGradient_2.Parent = Line_2
+    optionsTab.UIGradient_2.Parent = optionsTab.Line_2
 
-    optionsTab.UIListLayout_2.Parent = OptionsTab
+    optionsTab.UIListLayout_2.Parent = optionsTab.OptionsTab
     optionsTab.UIListLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
 end
 
@@ -349,7 +349,7 @@ function Library.new(UI_Name, ThemeColor)
     UI_Background.ImageColor3 = Color3.fromRGB(63, 63, 63)
     UI_Background.ScaleType = Enum.ScaleType.Slice
     UI_Background.SliceCenter = Rect.new(100, 100, 100, 100)
-    UI_Background.SliceScale = 0.080
+    UI_Background.SliceScale = 0.08
 
     TopBar_Frame.Name = "TopBar_Frame"
     TopBar_Frame.Parent = MainFrame
@@ -366,7 +366,7 @@ function Library.new(UI_Name, ThemeColor)
     Min_Button.ImageColor3 = Color3.fromRGB(50, 209, 64)
     Min_Button.ScaleType = Enum.ScaleType.Slice
     Min_Button.SliceCenter = Rect.new(100, 100, 100, 100)
-    Min_Button.SliceScale = 0.120
+    Min_Button.SliceScale = 0.12
 
     X_Button.Name = "X_Button"
     X_Button.Parent = TopBar_Frame
@@ -445,7 +445,6 @@ function Library.new(UI_Name, ThemeColor)
         -- Instances:
         local newTabButton_Frame = Instance.new("Frame")
         local New_TabButton = Instance.new("TextButton")
-        local tabButtonBG = Instance.new("ImageLabel")
         local TabButtonLogo = Instance.new("ImageButton")
         local NewTab = Instance.new("ScrollingFrame")
         local UIListLayout = Instance.new("UIListLayout")
@@ -471,18 +470,6 @@ function Library.new(UI_Name, ThemeColor)
         New_TabButton.TextSize = 14
         New_TabButton.TextWrapped = true
         New_TabButton.TextXAlignment = Enum.TextXAlignment.Left
-
-        tabButtonBG.Name = "tabButtonBG"
-        tabButtonBG.Parent = newTabButton_Frame
-        tabButtonBG.AnchorPoint = Vector2.new(0.5, 0.5)
-        tabButtonBG.BackgroundTransparency = 1
-        tabButtonBG.Position = UDim2.new(0.5, 0, 0.5, 0)
-        tabButtonBG.ZIndex = 4
-        tabButtonBG.Image = "rbxassetid://3570695787"
-        tabButtonBG.ImageColor3 = Color3.fromRGB(63, 63, 63)
-        tabButtonBG.ScaleType = Enum.ScaleType.Slice
-        tabButtonBG.SliceCenter = Rect.new(100, 100, 100, 100)
-        tabButtonBG.SliceScale = 0.080
 
         TabButtonLogo.Name = "TabButtonLogo"
         TabButtonLogo.Parent = newTabButton_Frame
@@ -510,13 +497,13 @@ function Library.new(UI_Name, ThemeColor)
         UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 
         background.Name = "background"
-        background.Parent = New_TabButton
+        background.Parent = newTabButton_Frame
         background.AnchorPoint = Vector2.new(.5, .5)
         background.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         background.BackgroundTransparency = 1
         background.Position = UDim2.new(.5, 0, .5, 0)
         background.Size = UDim2.new(0, 0, 0, 0)
-        background.ZIndex = 3
+        background.ZIndex = 4
         background.Image = "rbxassetid://3570695787"
         background.ImageColor3 = Color3.fromRGB(44, 115, 216)
         background.ScaleType = Enum.ScaleType.Slice
