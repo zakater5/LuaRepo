@@ -1,6 +1,8 @@
 Library = {}
 Library.__index = Library
 
+local configFileName = "UITestLibConfig.json"
+
 local TS = game:GetService("TweenService")
 local UIS = game:GetService("UserInputService")
 local RS = game:GetService("RunService")
@@ -8,6 +10,39 @@ local players = game:GetService("Players")
 
 local player = players.LocalPlayer
 local mouse = player:GetMouse()
+
+local uiAccentColors = {
+    ["Blue"] = Color3.fromRGB(44, 115, 216),
+    ["Purple"] = Color3.fromRGB(173, 17, 216),
+    ["Pink"] = Color3.fromRGB(255, 37, 186),
+    ["Red"] = Color3.fromRGB(255, 0, 4),
+    ["Orange"] = Color3.fromRGB(255, 102, 0),
+    ["Yellow"] = Color3.fromRGB(217, 210, 0),
+    ["Lime"] = Color3.fromRGB(0, 255, 81),
+    ["Cyan"] = Color3.fromRGB(0, 230, 255),
+}
+
+-- [[ SAVING/LOADING SETTINGS ]] --
+function loadSettings()
+    local HttpService = game:GetService("HttpService")
+    if (readfile and isfile and isfile(configFileName)) then
+        _G.settings = HttpService:JSONDecode(readfile(configFileName))
+    end
+end
+loadSettings()
+if _G.settings.AccentColor = nil then _G.settings.AccentColor = "Blue"
+
+function saveSettings()
+    local json
+    local HttpService = game:GetService("HttpService")
+    if (writefile) then
+        json = HttpService:JSONEncode(_G.settings)
+        writefile(configFileName, json)
+    else
+        print("Could not save settings, your executor does not support the 'writefile' function.")
+    end
+end
+
 
 function Library:DraggingEnabled(MainFrame, DragRegObj)
     frame = DragRegObj
@@ -43,6 +78,238 @@ function Library:DraggingEnabled(MainFrame, DragRegObj)
     end)
 end
 
+local optionsTab = {}
+function setupSettings()
+
+    -- Instances:
+    optionsTab = {
+        optionsTab
+        OptionsTab = Instance.new("ScrollingFrame")
+        Frame = Instance.new("Frame")
+        Frame_2 = Instance.new("Frame")
+        LightMode = Instance.new("ImageButton")
+        BG = Instance.new("ImageButton")
+        DarkMode = Instance.new("ImageButton")
+        BG_2 = Instance.new("ImageButton")
+        TextLabel = Instance.new("TextLabel")
+        Line = Instance.new("Frame")
+        UIGradient = Instance.new("UIGradient")
+        Frame_3 = Instance.new("Frame")
+        Frame_4 = Instance.new("Frame")
+        Blue = Instance.new("ImageButton")
+        Toggle_Flight = Instance.new("ImageButton")
+        UIListLayout = Instance.new("UIListLayout")
+        Pruple = Instance.new("ImageButton")
+        Toggle_Flight_2 = Instance.new("ImageButton")
+        Pink = Instance.new("ImageButton")
+        Toggle_Flight_3 = Instance.new("ImageButton")
+        Red = Instance.new("ImageButton")
+        Toggle_Flight_4 = Instance.new("ImageButton")
+        Orange = Instance.new("ImageButton")
+        Toggle_Flight_5 = Instance.new("ImageButton")
+        Yellow = Instance.new("ImageButton")
+        Toggle_Flight_6 = Instance.new("ImageButton")
+        Lime = Instance.new("ImageButton")
+        Toggle_Flight_7 = Instance.new("ImageButton")
+        Cyan = Instance.new("ImageButton")
+        Toggle_Flight_8 = Instance.new("ImageButton")
+        TextLabel_2 = Instance.new("TextLabel")
+        Line_2 = Instance.new("Frame")
+        UIGradient_2 = Instance.new("UIGradient")
+        UIListLayout_2 = Instance.new("UIListLayout")
+    }
+
+    -- Properties:
+    optionsTab.OptionsTab.Name = "OptionsTab"
+    optionsTab.OptionsTab.Parent = game.StarterGui.UI_Lib.MainFrame.Tabs
+    optionsTab.OptionsTab.Active = true
+    optionsTab.OptionsTab.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    optionsTab.OptionsTab.BackgroundTransparency = 1.000
+    optionsTab.OptionsTab.BorderSizePixel = 0
+    optionsTab.OptionsTab.Position = UDim2.new(0.246, 0, 0.016190093, 0)
+    optionsTab.OptionsTab.Size = UDim2.new(0.740969956, 0, 0.96281, 0)
+    optionsTab.OptionsTab.CanvasSize = UDim2.new(0, 0, 1.5, 0)
+    optionsTab.OptionsTab.ScrollBarThickness = 6
+
+    optionsTab.Frame.Parent = OptionsTab
+    optionsTab.Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    optionsTab.Frame.BackgroundTransparency = 1.000
+    optionsTab.Frame.Size = UDim2.new(0.972, 0, 0.12, 0)
+
+    optionsTab.Frame_2.Parent = Frame
+    optionsTab.Frame_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    optionsTab.Frame_2.BackgroundTransparency = 1.000
+    optionsTab.Frame_2.Position = UDim2.new(0.377439648, 0, 0, 0)
+    optionsTab.Frame_2.Size = UDim2.new(0.597560465, 0, 1, 0)
+
+    optionsTab.LightMode.Name = "LightMode"
+    optionsTab.LightMode.Parent = Frame_2
+    optionsTab.LightMode.AnchorPoint = Vector2.new(0, 0.5)
+    optionsTab.LightMode.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    optionsTab.LightMode.BackgroundTransparency = 1.000
+    optionsTab.LightMode.Position = UDim2.new(0.02, 0, 0.45, 0)
+    optionsTab.LightMode.Size = UDim2.new(0.37, 0, 0.8, 0)
+    optionsTab.LightMode.ZIndex = 4
+    optionsTab.LightMode.Image = "rbxassetid://3570695787"
+    optionsTab.LightMode.ScaleType = Enum.ScaleType.Slice
+    optionsTab.LightMode.SliceCenter = Rect.new(100, 100, 100, 100)
+    optionsTab.LightMode.SliceScale = 0.060
+
+    optionsTab.BG.Name = "BG"
+    optionsTab.BG.Parent = LightMode
+    optionsTab.BG.AnchorPoint = Vector2.new(0.5, 0.5)
+    optionsTab.BG.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    optionsTab.BG.BackgroundTransparency = 1.000
+    optionsTab.BG.Position = UDim2.new(0.5, 0, 0.5, 0)
+    optionsTab.BG.Size = UDim2.new(1.05, 0, 1.1, 0)
+    optionsTab.BG.ZIndex = 3
+    optionsTab.BG.Image = "rbxassetid://3570695787"
+    optionsTab.BG.ImageColor3 = uiAccentColors[_G.settings.AccentColor]
+    optionsTab.BG.ScaleType = Enum.ScaleType.Slice
+    optionsTab.BG.SliceCenter = Rect.new(100, 100, 100, 100)
+    optionsTab.BG.SliceScale = 0.060
+
+    optionsTab.DarkMode.Name = "DarkMode"
+    optionsTab.DarkMode.Parent = Frame_2
+    optionsTab.DarkMode.AnchorPoint = Vector2.new(0, 0.5)
+    optionsTab.DarkMode.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    optionsTab.DarkMode.BackgroundTransparency = 1.000
+    optionsTab.DarkMode.Position = UDim2.new(0.5, 0, 0.45, 0)
+    optionsTab.DarkMode.Size = UDim2.new(0.37, 0, 0.8, 0)
+    optionsTab.DarkMode.ZIndex = 4
+    optionsTab.DarkMode.Image = "rbxassetid://3570695787"
+    optionsTab.DarkMode.ScaleType = Enum.ScaleType.Slice
+    optionsTab.DarkMode.SliceCenter = Rect.new(100, 100, 100, 100)
+    optionsTab.DarkMode.SliceScale = 0.060
+
+    optionsTab.BG_2.Name = "BG"
+    optionsTab.BG_2.Parent = DarkMode
+    optionsTab.BG_2.AnchorPoint = Vector2.new(0.5, 0.5)
+    optionsTab.BG_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    optionsTab.BG_2.BackgroundTransparency = 1.000
+    optionsTab.BG_2.Position = UDim2.new(0.5, 0, 0.5, 0)
+    optionsTab.BG_2.Size = UDim2.new(1.05, 0, 1.1, 0)
+    optionsTab.BG_2.ZIndex = 3
+    optionsTab.BG_2.Image = "rbxassetid://3570695787"
+    optionsTab.BG_2.ImageColor3 = uiAccentColors[_G.settings.AccentColor]
+    optionsTab.BG_2.ScaleType = Enum.ScaleType.Slice
+    optionsTab.BG_2.SliceCenter = Rect.new(100, 100, 100, 100)
+    optionsTab.BG_2.SliceScale = 0.060
+
+    optionsTab.TextLabel.Parent = Frame
+    optionsTab.TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    optionsTab.TextLabel.BackgroundTransparency = 1.000
+    optionsTab.TextLabel.Position = UDim2.new(0.0489281043, 0, 0, 0)
+    optionsTab.TextLabel.Size = UDim2.new(0.416493893, 0, 1, 0)
+    optionsTab.TextLabel.ZIndex = 3
+    optionsTab.TextLabel.Font = Enum.Font.GothamBold
+    optionsTab.TextLabel.Text = "Appearance"
+    optionsTab.TextLabel.TextColor3 = Color3.fromRGB(234, 234, 234)
+    optionsTab.TextLabel.TextSize = 12.000
+    optionsTab.TextLabel.TextWrapped = true
+    optionsTab.TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+    optionsTab.Line.Name = "Line"
+    optionsTab.Line.Parent = Frame
+    optionsTab.Line.AnchorPoint = Vector2.new(0.5, 0.5)
+    optionsTab.Line.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    optionsTab.Line.BackgroundTransparency = 0.900
+    optionsTab.Line.Position = UDim2.new(0.5, 0, 0.95, 0)
+    optionsTab.Line.Size = UDim2.new(0.95, 0, 0.1, 0)
+
+    optionsTab.UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 255, 255))}
+    optionsTab.UIGradient.Rotation = 90
+    optionsTab.UIGradient.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.00, 1.00), NumberSequenceKeypoint.new(0.25, 1.00), NumberSequenceKeypoint.new(0.50, 0.00), NumberSequenceKeypoint.new(0.74, 1.00), NumberSequenceKeypoint.new(1.00, 1.00)}
+    optionsTab.UIGradient.Parent = Line
+
+    optionsTab.Frame_3.Parent = OptionsTab
+    optionsTab.Frame_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    optionsTab.Frame_3.BackgroundTransparency = 1.000
+    optionsTab.Frame_3.Size = UDim2.new(0.972, 0, 0.058, 0)
+
+    optionsTab.Frame_4.Parent = Frame_3
+    optionsTab.Frame_4.AnchorPoint = Vector2.new(0, 0.5)
+    optionsTab.Frame_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    optionsTab.Frame_4.BackgroundTransparency = 1.000
+    optionsTab.Frame_4.Position = UDim2.new(0.377439648, 0, 0.5, 0)
+    optionsTab.Frame_4.Size = UDim2.new(0.48306039, 0, 0.7, 0)
+
+    optionsTab.UIListLayout.Parent = Frame_4
+    optionsTab.UIListLayout.FillDirection = Enum.FillDirection.Horizontal
+    optionsTab.UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+    optionsTab.UIListLayout.Padding = UDim.new(0.02 0)
+
+    for i, v in pairs(uiAccentColors) do
+        local newColorBtn = Instance.new("ImageButton")
+        newColorBtn.Name = i
+        newColorBtn.Parent = Frame_4
+        newColorBtn.AnchorPoint = Vector2.new(0, 0.5)
+        newColorBtn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        newColorBtn.BackgroundTransparency = 1.000
+        newColorBtn.Position = UDim2.new(0.05, 0, 1, 0)
+        newColorBtn.Size = UDim2.new(0.125, 0, 1, 0)
+        newColorBtn.ZIndex = 3
+        newColorBtn.Image = "rbxassetid://3570695787"
+        newColorBtn.ImageColor3 = v
+        newColorBtn.ScaleType = Enum.ScaleType.Slice
+        newColorBtn.SliceCenter = Rect.new(100, 100, 100, 100)
+
+        local innerButton = newColorBtn:Clone()
+        innerButton.Name = "Inner"
+        innerButton.Size = UDim2.new(0.5, 0, 0.5, 0)
+        innerButton.Position = UDim2.new(0.5, 0, 0.5, 0)
+        innerButton.ImageColor3 = Color3.fromRGB(255, 255, 255)
+        innerButton.AnchorPoint = Vector2.new(0.5, 0.5)
+        if _G.settings.AccentColor = i then
+            innerButton.Visible = true
+        else
+            innerButton.Visible = false
+        end
+
+        newColorBtn.MouseButton1Click:Connect(function()
+            for _, innerBtn in pairs(Frame_4:GetChildren()) do
+                if innerBtn:IsA("ImageButton") and innerBtn ~= newColorBtn then
+                    innerBtn.Inner.Visible == false
+                end
+            end
+            innerButton.Visible = true
+            _G.settings.AccentColor = i
+            saveSettings()
+        end)
+    end
+
+    optionsTab.TextLabel_2.Parent = Frame_3
+    optionsTab.TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    optionsTab.TextLabel_2.BackgroundTransparency = 1.000
+    optionsTab.TextLabel_2.Position = UDim2.new(0.0489281043, 0, 0, 0)
+    optionsTab.TextLabel_2.Size = UDim2.new(0.416493893, 0, 1.00000012, 0)
+    optionsTab.TextLabel_2.ZIndex = 3
+    optionsTab.TextLabel_2.Font = Enum.Font.GothamBold
+    optionsTab.TextLabel_2.Text = "Accent color"
+    optionsTab.TextLabel_2.TextColor3 = Color3.fromRGB(234, 234, 234)
+    optionsTab.TextLabel_2.TextSize = 12.000
+    optionsTab.TextLabel_2.TextWrapped = true
+    optionsTab.TextLabel_2.TextXAlignment = Enum.TextXAlignment.Left
+
+    optionsTab.Line_2.Name = "Line"
+    optionsTab.Line_2.Parent = Frame_3
+    optionsTab.Line_2.AnchorPoint = Vector2.new(0.5, 0.5)
+    optionsTab.Line_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    optionsTab.Line_2.BackgroundTransparency = 0.900
+    optionsTab.Line_2.Position = UDim2.new(0.5, 0, 0.949999988, 0)
+    optionsTab.Line_2.Size = UDim2.new(0.95, 0, 0.2, 0)
+
+    optionsTab.UIGradient_2.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 255, 255))}
+    optionsTab.UIGradient_2.Rotation = 90
+    optionsTab.UIGradient_2.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.00, 1.00), NumberSequenceKeypoint.new(0.25, 1.00), NumberSequenceKeypoint.new(0.50, 0.00), NumberSequenceKeypoint.new(0.74, 1.00), NumberSequenceKeypoint.new(1.00, 1.00)}
+    optionsTab.UIGradient_2.Parent = Line_2
+
+    optionsTab.UIListLayout_2.Parent = OptionsTab
+    optionsTab.UIListLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
+end
+
+
+
 function Library.new(UI_Name, ThemeColor)
     UI_Name = UI_Name or "Untitled UI"
     ThemeColor = ThemeColor or Color3.fromRGB(255, 255, 255)
@@ -56,7 +323,7 @@ function Library.new(UI_Name, ThemeColor)
     local TopBar_Frame = Instance.new("Frame")
     local Min_Button = Instance.new("ImageButton")
     local X_Button = Instance.new("ImageButton")
-    local Max_Button = Instance.new("ImageButton")
+    local Opt_Button = Instance.new("ImageButton")
     local Tabs_Folder = Instance.new("Folder")
     local SideBar = Instance.new("ImageLabel")
     local TabButtons = Instance.new("Frame")
@@ -113,17 +380,16 @@ function Library.new(UI_Name, ThemeColor)
     X_Button.SliceCenter = Rect.new(100, 100, 100, 100)
     X_Button.SliceScale = 0.120
 
-    Max_Button.Name = "Max_Button"
-    Max_Button.Parent = TopBar_Frame
-    Max_Button.BackgroundTransparency = 1
-    Max_Button.Position = UDim2.new(0.25, 0, 0.221589461, 0)
-    Max_Button.Size = UDim2.new(0.11929135, 0, 0.539204836, 0)
-    Max_Button.ZIndex = 5
-    Max_Button.Image = "rbxassetid://3570695787"
-    Max_Button.ImageColor3 = Color3.fromRGB(254, 191, 45)
-    Max_Button.ScaleType = Enum.ScaleType.Slice
-    Max_Button.SliceCenter = Rect.new(100, 100, 100, 100)
-    Max_Button.SliceScale = 0.120
+    Opt_Button.Name = "Opt_Button"
+    Opt_Button.Parent = TopBar_Frame
+    Opt_Button.BackgroundTransparency = 1.000
+    Opt_Button.Position = UDim2.new(0.804176092, 0, 0.222, 0)
+    Opt_Button.Size = UDim2.new(0.15, 0, 0.7, 0)
+    Opt_Button.ZIndex = 5
+    Opt_Button.Image = "rbxassetid://10565603595"
+    Opt_Button.ImageColor3 = Color3.fromRGB(254, 254, 254)
+    Opt_Button.SliceCenter = Rect.new(100, 100, 100, 100)
+    Opt_Button.SliceScale = 0.12
 
     Tabs_Folder.Name = "Tabs"
     Tabs_Folder.Parent = MainFrame
@@ -159,14 +425,13 @@ function Library.new(UI_Name, ThemeColor)
         MainFrame:TweenSize(UDim2.new(0,0,0,0), "In", "Sine", .2)
     end)
 
-    Max_Button.MouseButton1Click:Connect(function()
-        MainFrame:TweenSize(UDim2.new(0,0,0,0), "In", "Sine", .2)
+    Opt_Button.MouseButton1Click:Connect(function()
+        
     end)
 
     Library:DraggingEnabled(MainFrame, SideBar)
 
     local Tabs = {}
-    local activePageBtn = nil
     function Tabs:AddTab(tabName)
         tabName = tabName or "Tab"
 
@@ -174,7 +439,7 @@ function Library.new(UI_Name, ThemeColor)
         local newTabButton_Frame = Instance.new("Frame")
         local New_TabButton = Instance.new("TextButton")
         local tabButtonBG = Instance.new("ImageLabel")
-        local TabButtonLogo = Instance.new("ImageLabel")
+        local TabButtonLogo = Instance.new("ImageButton")
         local NewTab = Instance.new("ScrollingFrame")
         local UIListLayout = Instance.new("UIListLayout")
         local background = Instance.new("ImageLabel")
@@ -221,7 +486,7 @@ function Library.new(UI_Name, ThemeColor)
         TabButtonLogo.Size = UDim2.new(0.18, 0, 0.6, 0)
         TabButtonLogo.ZIndex = 5
         TabButtonLogo.Image = "rbxassetid://10560634600"
-        TabButtonLogo.ImageColor3 = Color3.fromRGB(44, 115, 216)
+        TabButtonLogo.ImageColor3 = uiAccentColors[_G.settings.AccentColor]
 
         NewTab.Name = tabName
         NewTab.Parent = Tabs_Folder
@@ -229,7 +494,7 @@ function Library.new(UI_Name, ThemeColor)
         NewTab.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         NewTab.BackgroundTransparency = 1
         NewTab.BorderSizePixel = 0
-        NewTab.Position = UDim2.new(0.246, 0, 0.016190093, 0)
+        NewTab.Position = UDim2.new(0.246, 0, 0.01619, 0)
         NewTab.Size = UDim2.new(0.740969956, 0, 0.962810099, 0)
         NewTab.CanvasSize = UDim2.new(0, 0, 1.5, 0)
         NewTab.ScrollBarThickness = 6
@@ -243,48 +508,43 @@ function Library.new(UI_Name, ThemeColor)
         background.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         background.BackgroundTransparency = 1
         background.Position = UDim2.new(.5, 0, .5, 0)
-        background.Size = UDim2.new(1, 0, 1, 0)
+        background.Size = UDim2.new(0, 0, 0, 0)
         background.ZIndex = 3
         background.Image = "rbxassetid://3570695787"
-        background.ImageColor3 = Color3.fromRGB(84, 84, 84) --Color3.fromRGB(44, 115, 216)
+        background.ImageColor3 = Color3.fromRGB(44, 115, 216)
         background.ScaleType = Enum.ScaleType.Slice
         background.SliceCenter = Rect.new(100, 100, 100, 100)
         background.SliceScale = 0.06
 
         --Tab Button Event/s:
-        New_TabButton.MouseEnter:Connect(function()
-            if New_TabButton == activePageBtn then
-                background:TweenSize(UDim2.new(1, 0, 1, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Sine, .2)
-            end
+        newTabButton_Frame.MouseEnter:Connect(function()
+            background:TweenSize(UDim2.new(1, 0, 1, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Sine, .2, false, function()
+                TabButtonLogo.ImageColor3 = Color3.fromRGB(255, 255, 255)
+            end)
         end)
         
-        New_TabButton.MouseLeave:Connect(function()
-            if New_TabButton == activePageBtn then
-                background:TweenSize(UDim2.new(0, 0, 0, 0), Enum.EasingDirection.In, Enum.EasingStyle.Sine, .2)
-            end
+        newTabButton_Frame.MouseLeave:Connect(function()
+            background:TweenSize(UDim2.new(0, 0, 0, 0), Enum.EasingDirection.In, Enum.EasingStyle.Sine, .2, false, function()
+                TabButtonLogo.ImageColor3 = Color3.fromRGB(44, 115, 216)
+            end)
         end)
 
         New_TabButton.MouseButton1Click:Connect(function()
-            New_TabButton = nil
-            if New_TabButton ~= activePageBtn then
-                activePageBtn = New_TabButton
-            end
             for _, v in pairs(Tabs_Folder:GetChildren()) do
                 if v:IsA("Frame") then
                     v.Visible = false
                 end
             end
-            for i, v in pairs(TabButtons:GetChildren()) do
-                if not v:IsA("UIListLayout") then
-                    background.ImageColor3 = Color3.fromRGB(84, 84, 84)
-                    TabButtonLogo.ImageColor3 = Color3.fromRGB(44, 115, 216)
-                    background:TweenSize(UDim2.new(0, 0, 0, 0), Enum.EasingDirection.In, Enum.EasingStyle.Sine, .2)
+            NewTab.Visible = true
+        end)
+
+        TabButtonLogo.MouseButton1Click:Connect(function()
+            for _, v in pairs(Tabs_Folder:GetChildren()) do
+                if v:IsA("Frame") then
+                    v.Visible = false
                 end
             end
             NewTab.Visible = true
-            background.ImageColor3 = Color3.fromRGB(44, 115, 216)
-            TabButtonLogo.ImageColor3 = Color3.fromRGB(255, 255, 255)
-            background.Size = UDim2.new(1, 0, 1, 0)
         end)
 
         Controls = {}
@@ -377,7 +637,7 @@ function Library.new(UI_Name, ThemeColor)
             buttonBG.Size = UDim2.new(1.1, 0, 1, 0)
             buttonBG.ZIndex = 3
             buttonBG.Image = "rbxassetid://3570695787"
-            buttonBG.ImageColor3 = Color3.fromRGB(44, 115, 216)
+            buttonBG.ImageColor3 = uiAccentColors[_G.settings.AccentColor]
             buttonBG.ScaleType = Enum.ScaleType.Slice
             buttonBG.SliceCenter = Rect.new(100, 100, 100, 100)
             buttonBG.SliceScale = 0.06
@@ -571,8 +831,8 @@ function Library.new(UI_Name, ThemeColor)
             Line.AnchorPoint = Vector2.new(0.5, 0.5)
             Line.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             Line.BackgroundTransparency = 0.900
-            Line.Position = UDim2.new(0.5, 0, 0.949999988, 0)
-            Line.Size = UDim2.new(0.949999988, 0, 0.200000003, 0)
+            Line.Position = UDim2.new(0.5, 0, 0.95, 0)
+            Line.Size = UDim2.new(0.95, 0, 0.2, 0)
 
             UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 255, 255))}
             UIGradient.Rotation = 90
@@ -585,7 +845,7 @@ function Library.new(UI_Name, ThemeColor)
                 if not isToggled then
                     isToggled = true
                     newToggle_Btn:TweenPosition(newToggle_Btn.Position + UDim2.new(.066,0,0,0),"In","Sine",.1)
-                    newToggle_BG.ImageColor3 = Color3.fromRGB(227, 32, 240)
+                    newToggle_BG.ImageColor3 = uiAccentColors[_G.settings.AccentColor]
                     callback(isToggled)
                 else
                     isToggled = false
