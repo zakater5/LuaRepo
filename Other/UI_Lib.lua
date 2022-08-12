@@ -43,44 +43,36 @@ function Library:DraggingEnabled(MainFrame, DragRegObj)
     end)
 end
 
-function Library.new(UI_Name, version, ThemeColor)
+function Library.new(UI_Name, ThemeColor)
     UI_Name = UI_Name or "Untitled UI"
-    version = version or ""
     ThemeColor = ThemeColor or Color3.fromRGB(255, 255, 255)
     local UI_Exists = game.CoreGui:FindFirstChild(UI_Name)
     if UI_Exists then UI_Exists:Destroy() end
 
     -- Instances:
-    local MAIN = Instance.new("ScreenGui")
+    local UI_Lib = Instance.new("ScreenGui")
     local MainFrame = Instance.new("Frame")
     local UI_Background = Instance.new("ImageLabel")
     local TopBar_Frame = Instance.new("Frame")
-    local TopBar = Instance.new("ImageLabel")
-    local TopBar_BG = Instance.new("ImageLabel")
-    local UIGradient = Instance.new("UIGradient")
-    local TopBarBorderLine = Instance.new("Frame")
-    local Title_Label = Instance.new("TextLabel")
-    local Version_Label = Instance.new("TextLabel")
-    local TopBar_BG_2 = Instance.new("Frame")
+    local Min_Button = Instance.new("ImageButton")
     local X_Button = Instance.new("ImageButton")
     local Max_Button = Instance.new("ImageButton")
-    local Min_Button = Instance.new("ImageButton")
+    local Tabs = Instance.new("Folder")
     local SideBar = Instance.new("ImageLabel")
-    local Tabs_Folder = Instance.new("Folder")
     local TabButtons = Instance.new("Frame")
     local UIListLayout = Instance.new("UIListLayout")
 
-    --Properties:
-    MAIN.Name = UI_Name
-    MAIN.Parent = game.CoreGui
-    MAIN.ResetOnSpawn = false
+    -- Properties:
+    UI_Lib.Name = UI_Name
+    UI_Lib.Parent = game.CoreGui
+    UI_Lib.ResetOnSpawn = false
 
     MainFrame.Name = "MainFrame"
-    MainFrame.Parent = MAIN
+    MainFrame.Parent = UI_Lib
     MainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
     MainFrame.BackgroundTransparency = 1
-    MainFrame.Position = UDim2.new(0.5, 0, 0.4, 0)
-    MainFrame.Size = UDim2.new(0.22200273, 0, 0.311015934, 0)
+    MainFrame.Position = UDim2.new(0.487256885, 379, 0.653, -115)
+    MainFrame.Size = UDim2.new(0.318675667, 0, 0.427295029, 0)
 
     UI_Background.Name = "UI_Background"
     UI_Background.Parent = MainFrame
@@ -90,81 +82,30 @@ function Library.new(UI_Name, version, ThemeColor)
     UI_Background.ImageColor3 = Color3.fromRGB(63, 63, 63)
     UI_Background.ScaleType = Enum.ScaleType.Slice
     UI_Background.SliceCenter = Rect.new(100, 100, 100, 100)
-    UI_Background.SliceScale = 0.08
+    UI_Background.SliceScale = 0.080
 
     TopBar_Frame.Name = "TopBar_Frame"
     TopBar_Frame.Parent = MainFrame
     TopBar_Frame.BackgroundTransparency = 1
-    TopBar_Frame.Size = UDim2.new(1, 0, 0.0816569924, 0)
+    TopBar_Frame.Size = UDim2.new(0.228033975, 0, 0.073063463, 0)
 
-    TopBar.Name = "TopBar"
-    TopBar.Parent = TopBar_Frame
-    TopBar.BackgroundTransparency = 1
-    TopBar.Size = UDim2.new(1, 0, 1, 0)
-    TopBar.ZIndex = 4
-    TopBar.Image = "rbxassetid://3570695787"
-    TopBar.ImageColor3 = Color3.fromRGB(61, 61, 61)
-    TopBar.ScaleType = Enum.ScaleType.Slice
-    TopBar.SliceCenter = Rect.new(100, 100, 100, 100)
-    TopBar.SliceScale = 0.08
-
-    TopBar_BG.Name = "TopBar_BG"
-    TopBar_BG.Parent = TopBar
-    TopBar_BG.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
-    TopBar_BG.BorderSizePixel = 0
-    TopBar_BG.Position = UDim2.new(0, 0, 0.8, 0)
-    TopBar_BG.Size = UDim2.new(1, 0, 0.2, 0)
-    TopBar_BG.ZIndex = 3
-    TopBar_BG.ImageColor3 = Color3.fromRGB(61, 61, 61)
-
-    UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0, Color3.fromRGB(199, 199, 199)), ColorSequenceKeypoint.new(0.5, Color3.fromRGB(230, 230, 230)), ColorSequenceKeypoint.new(1, Color3.fromRGB(199, 199, 199))}
-    UIGradient.Parent = TopBar
-
-    TopBarBorderLine.Name = "TopBarBorderLine"
-    TopBarBorderLine.Parent = TopBar
-    TopBarBorderLine.BackgroundColor3 = ThemeColor
-    TopBarBorderLine.BorderSizePixel = 0
-    TopBarBorderLine.Position = UDim2.new(0, 0, 1, 0)
-    TopBarBorderLine.Size = UDim2.new(1, 0, 0.05, 0)
-    TopBarBorderLine.ZIndex = 3
-
-    Title_Label.Name = "Title_Label"
-    Title_Label.Parent = TopBar
-    Title_Label.BackgroundTransparency = 1
-    Title_Label.Position = UDim2.new(0.2, 0, 0.25, 0)
-    Title_Label.Size = UDim2.new(0.6, 0, 0.6, 0)
-    Title_Label.ZIndex = 4
-    Title_Label.Font = Enum.Font.GothamBold
-    Title_Label.Text = UI_Name
-    Title_Label.TextColor3 = Color3.fromRGB(220, 220, 220)
-    Title_Label.TextScaled = true
-    Title_Label.TextWrapped = true
-
-    Version_Label.Name = "Version_Label"
-    Version_Label.Parent = TopBar
-    Version_Label.BackgroundTransparency = 1
-    Version_Label.Position = UDim2.new(0.63, 0, 0.25, 0)
-    Version_Label.Size = UDim2.new(0.6, 0, 0.6, 0)
-    Version_Label.ZIndex = 4
-    Version_Label.Font = Enum.Font.GothamBold
-    Version_Label.Text = version
-    Version_Label.TextColor3 = Color3.fromRGB(220, 220, 220)
-    Version_Label.TextScaled = true
-    Version_Label.TextWrapped = true
-
-    TopBar_BG_2.Name = "TopBar_BG"
-    TopBar_BG_2.Parent = TopBar
-    TopBar_BG_2.BackgroundColor3 = Color3.fromRGB(239, 0, 235)
-    TopBar_BG_2.BorderSizePixel = 0
-    TopBar_BG_2.Position = UDim2.new(0, 0, 0.8, 0)
-    TopBar_BG_2.Size = UDim2.new(1, 0, 0.2, 0)
-    TopBar_BG_2.ZIndex = 2
+    Min_Button.Name = "Min_Button"
+    Min_Button.Parent = TopBar_Frame
+    Min_Button.BackgroundTransparency = 1
+    Min_Button.Position = UDim2.new(0.45, 0, 0.221589461, 0)
+    Min_Button.Size = UDim2.new(0.11929135, 0, 0.539204836, 0)
+    Min_Button.ZIndex = 5
+    Min_Button.Image = "rbxassetid://3570695787"
+    Min_Button.ImageColor3 = Color3.fromRGB(50, 209, 64)
+    Min_Button.ScaleType = Enum.ScaleType.Slice
+    Min_Button.SliceCenter = Rect.new(100, 100, 100, 100)
+    Min_Button.SliceScale = 0.120
 
     X_Button.Name = "X_Button"
     X_Button.Parent = TopBar_Frame
     X_Button.BackgroundTransparency = 1
-    X_Button.Position = UDim2.new(0.03, 0, 0.3, 0)
-    X_Button.Size = UDim2.new(0.03, 0, 0.45, 0)
+    X_Button.Position = UDim2.new(0.05, 0, 0.221589461, 0)
+    X_Button.Size = UDim2.new(0.11929135, 0, 0.539204836, 0)
     X_Button.ZIndex = 5
     X_Button.Image = "rbxassetid://3570695787"
     X_Button.ImageColor3 = Color3.fromRGB(249, 77, 78)
@@ -175,8 +116,8 @@ function Library.new(UI_Name, version, ThemeColor)
     Max_Button.Name = "Max_Button"
     Max_Button.Parent = TopBar_Frame
     Max_Button.BackgroundTransparency = 1
-    Max_Button.Position = UDim2.new(0.08, 0, 0.3, 0)
-    Max_Button.Size = UDim2.new(0.03, 0, 0.45, 0)
+    Max_Button.Position = UDim2.new(0.25, 0, 0.221589461, 0)
+    Max_Button.Size = UDim2.new(0.11929135, 0, 0.539204836, 0)
     Max_Button.ZIndex = 5
     Max_Button.Image = "rbxassetid://3570695787"
     Max_Button.ImageColor3 = Color3.fromRGB(254, 191, 45)
@@ -184,40 +125,29 @@ function Library.new(UI_Name, version, ThemeColor)
     Max_Button.SliceCenter = Rect.new(100, 100, 100, 100)
     Max_Button.SliceScale = 0.120
 
-    Min_Button.Name = "Min_Button"
-    Min_Button.Parent = TopBar_Frame
-    Min_Button.BackgroundTransparency = 1
-    Min_Button.Position = UDim2.new(0.13, 0, 0.3, 0)
-    Min_Button.Size = UDim2.new(0.03, 0, 0.45, 0)
-    Min_Button.ZIndex = 5
-    Min_Button.Image = "rbxassetid://3570695787"
-    Min_Button.ImageColor3 = Color3.fromRGB(50, 209, 64)
-    Min_Button.ScaleType = Enum.ScaleType.Slice
-    Min_Button.SliceCenter = Rect.new(100, 100, 100, 100)
-    Min_Button.SliceScale = 0.120
+    Tabs.Name = "Tabs"
+    Tabs.Parent = MainFrame
 
     SideBar.Name = "SideBar"
     SideBar.Parent = MainFrame
     SideBar.BackgroundTransparency = 1
-    SideBar.Size = UDim2.new(0.228, 0, 1, 0)
+    SideBar.Size = UDim2.new(0.228034049, 0, 1, 0)
     SideBar.Image = "rbxassetid://3570695787"
-    SideBar.ImageColor3 = Color3.fromRGB(53, 53, 53)
+    SideBar.ImageColor3 = Color3.fromRGB(50, 50, 50)
     SideBar.ScaleType = Enum.ScaleType.Slice
     SideBar.SliceCenter = Rect.new(100, 100, 100, 100)
-    SideBar.SliceScale = 0.08
-
-    Tabs_Folder.Name = "Tabs"
-    Tabs_Folder.Parent = MainFrame
+    SideBar.SliceScale = 0.080
 
     TabButtons.Name = "TabButtons"
     TabButtons.Parent = MainFrame
     TabButtons.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     TabButtons.BackgroundTransparency = 1
-    TabButtons.Position = UDim2.new(0, 0, 0.1, 0)
-    TabButtons.Size = UDim2.new(0.23, 0, 0.875, 0)
+    TabButtons.Position = UDim2.new(0.009, 0, 0.0924424604, 0)
+    TabButtons.Size = UDim2.new(0.21, 0, 0.884641469, 0)
+    TabButtons.ZIndex = 4
 
-    UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
     UIListLayout.Parent = TabButtons
+    UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 
     X_Button.MouseButton1Click:Connect(function()
         MainFrame:TweenSize(UDim2.new(0,0,0,0), "In", "Sine", .2)
@@ -238,70 +168,95 @@ function Library.new(UI_Name, version, ThemeColor)
     local Tabs = {}
     function Tabs:AddTab(tabName)
         tabName = tabName or "Tab"
-        
-        --Instances:
-        local New_TabButton = Instance.new("TextButton", TabButtons)
-        local background = Instance.new("ImageLabel", New_TabButton)
-        local NewTab = Instance.new("ScrollingFrame")
-        local UIListLayout_Tabs = Instance.new("UIListLayout")
 
-        --Properties:
-        New_TabButton.Name = tabName.."_Button"
+        -- Instances:
+        local newTabButton_Frame = Instance.new("Frame")
+        local New_TabButton = Instance.new("TextButton")
+        local tabButtonBG = Instance.new("ImageLabel")
+        local TabButtonLogo = Instance.new("ImageLabel")
+        local NewTab = Instance.new("ScrollingFrame")
+        local UIListLayout = Instance.new("UIListLayout")
+        local background = Instance.new("ImageLabel")
+
+        -- Properties:
+        newTabButton_Frame.Name = "newTabButton_Frame"
+        newTabButton_Frame.Parent = TabButtons
+        newTabButton_Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        newTabButton_Frame.BackgroundTransparency = 1
+        newTabButton_Frame.Size = UDim2.new(1, 0, 0.0893225521, 0)
+        newTabButton_Frame.ZIndex = 4
+
+        New_TabButton.Name = "newTabButton"
+        New_TabButton.Parent = newTabButton_Frame
         New_TabButton.BackgroundTransparency = 1
-        New_TabButton.Position = UDim2.new(0, 0, 0, 0)
-        New_TabButton.Size = UDim2.new(1, 0, 0.075, 0)
+        New_TabButton.Position = UDim2.new(0.259088218, 0, 0, 0)
+        New_TabButton.Size = UDim2.new(0.812778711, 0, 1, 0)
         New_TabButton.ZIndex = 5
         New_TabButton.Font = Enum.Font.GothamBold
         New_TabButton.Text = tabName
         New_TabButton.TextColor3 = Color3.fromRGB(217, 217, 217)
         New_TabButton.TextSize = 14
         New_TabButton.TextWrapped = true
-    
-        background.Name = "background"
-        background.AnchorPoint = Vector2.new(0.5, 0.5)
-        background.BackgroundTransparency = 1
-        background.Position = UDim2.new(0.5, 0, 0.5, 0)
-        background.ZIndex = 4
-        background.Image = "rbxassetid://3570695787"
-        background.ImageColor3 = Color3.fromRGB(63, 63, 63)
-        background.ScaleType = Enum.ScaleType.Slice
-        background.SliceCenter = Rect.new(100, 100, 100, 100)
-        background.SliceScale = 0.08
+        New_TabButton.TextXAlignment = Enum.TextXAlignment.Left
 
-        --Tab Frame:
+        tabButtonBG.Name = "tabButtonBG"
+        tabButtonBG.Parent = New_TabButton
+        tabButtonBG.AnchorPoint = Vector2.new(0.5, 0.5)
+        tabButtonBG.BackgroundTransparency = 1
+        tabButtonBG.Position = UDim2.new(0.5, 0, 0.5, 0)
+        tabButtonBG.ZIndex = 4
+        tabButtonBG.Image = "rbxassetid://3570695787"
+        tabButtonBG.ImageColor3 = Color3.fromRGB(63, 63, 63)
+        tabButtonBG.ScaleType = Enum.ScaleType.Slice
+        tabButtonBG.SliceCenter = Rect.new(100, 100, 100, 100)
+        tabButtonBG.SliceScale = 0.080
+
+        TabButtonLogo.Name = "TabButtonLogo"
+        TabButtonLogo.Parent = newTabButton_Frame
+        TabButtonLogo.AnchorPoint = Vector2.new(0, 0.5)
+        TabButtonLogo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        TabButtonLogo.BackgroundTransparency = 1
+        TabButtonLogo.Position = UDim2.new(0.05, 0, 0.5, 0)
+        TabButtonLogo.Size = UDim2.new(0.18, 0, 0.6, 0)
+        TabButtonLogo.ZIndex = 5
+        TabButtonLogo.Image = "rbxassetid://10560634600"
+        TabButtonLogo.ImageColor3 = Color3.fromRGB(44, 115, 216)
+
         NewTab.Name = tabName
-        NewTab.Parent = Tabs_Folder
+        NewTab.Parent = Tabs
         NewTab.Active = true
+        NewTab.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         NewTab.BackgroundTransparency = 1
         NewTab.BorderSizePixel = 0
-        NewTab.Position = UDim2.new(0.246, 0, 0.12, 0)
-        NewTab.Size = UDim2.new(0.739, 0, 0.859, 0)
-        NewTab.Visible = false
-        NewTab.CanvasSize = UDim2.new(0, 0, 1, 0)
+        NewTab.Position = UDim2.new(0.245999947, 0, 0.016190093, 0)
+        NewTab.Size = UDim2.new(0.740969956, 0, 0.962810099, 0)
+        NewTab.CanvasSize = UDim2.new(0, 0, 1.5, 0)
         NewTab.ScrollBarThickness = 6
-        NewTab.AutomaticCanvasSize = Enum.AutomaticSize.Y
-        
-        UIListLayout_Tabs.Parent = NewTab
-        UIListLayout_Tabs.SortOrder = Enum.SortOrder.LayoutOrder
-        UIListLayout_Tabs.Padding = UDim.new(0.025, 0)
+
+        UIListLayout.Parent = NewTab
+        UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+
+        background.Name = "background"
+        background.Parent = New_TabButton
+        background.AnchorPoint = Vector2.new(0.5, 0)
+        background.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        background.BackgroundTransparency = 1
+        background.Position = UDim2.new(0.5, 0, 0, 0)
+        background.Size = UDim2.new(1, 0, 1, 0)
+        background.ZIndex = 3
+        background.Image = "rbxassetid://3570695787"
+        background.ImageColor3 = Color3.fromRGB(84, 84, 84) --Color3.fromRGB(44, 115, 216)
+        background.ScaleType = Enum.ScaleType.Slice
+        background.SliceCenter = Rect.new(100, 100, 100, 100)
+        background.SliceScale = 0.060
 
         --Tab Button Event/s:
         New_TabButton.MouseEnter:Connect(function()
-            local opening_tween = TS:Create(
-                background,
-                TweenInfo.new(.2, Enum.EasingStyle.Sine),
-                {Size = UDim2.new(1, 0, 1, 0)}
-            )
-            opening_tween:Play()
+            background:TweenSize(UDim2.new(1, 0, 1, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Sine, .2)
         end)
         
         New_TabButton.MouseLeave:Connect(function()
-            local closing_tween = TS:Create(
-                background,
-                TweenInfo.new(.2, Enum.EasingStyle.Sine),
-                {Size = UDim2.new(0, 0, 0, 0)}
-            )
-            closing_tween:Play()
+            background:TweenSize(UDim2.new(0, 0, 0, 0), Enum.EasingDirection.In, Enum.EasingStyle.Sine, .2)
         end)
 
         New_TabButton.MouseButton1Click:Connect(function()
@@ -310,316 +265,335 @@ function Library.new(UI_Name, version, ThemeColor)
                     v.Visible = false
                 end
             end
+            for i, v in pairs(TabButtons:GetChildren()) do
+                if not v:IsA("UIListLayout") then
+                    background.ImageColor3 = Color3.fromRGB(84, 84, 84)
+                    TabButtonLogo.ImageColor3 = Color3.fromRGB(44, 115, 216)
+                    background:TweenSize(UDim2.new(0, 0, 0, 0), Enum.EasingDirection.In, Enum.EasingStyle.Sine, .2)
+                end
+            end
             NewTab.Visible = true
+            background.ImageColor3 = Color3.fromRGB(44, 115, 216)
+            TabButtonLogo.ImageColor3 = Color3.fromRGB(255, 255, 255)
+            background.Size = UDim2.new(1, 0, 1, 0)
         end)
 
-        Sections = {}
-        function Sections:AddSection(SectionName, isVisible)
-            SectionName = SectionName or "UnNamed-Section"
-            isVisible = isVisible or true
+        Controls = {}
+        function Controls:AddLabel(LabelText)
+            LabelText = LabelText or "Label"
 
             -- Instances:
-            local newSection = Instance.new("ImageLabel")
-            local newSection_TL = Instance.new("TextLabel")
+            local Frame = Instance.new("Frame")
+            local TextLabel = Instance.new("TextLabel")
+            local Line = Instance.new("Frame")
+            local UIGradient = Instance.new("UIGradient")
 
             --Properties:
-            newSection.Name = SectionName
-            newSection.Parent = NewTab
-            newSection.BackgroundTransparency = 1
-            newSection.Position = UDim2.new(0, 0, 0.130746022, 0)
-            newSection.Size = UDim2.new(0.972, 0, 0.09, 0)
-            newSection.Image = "rbxassetid://3570695787"
-            newSection.ImageColor3 = Color3.fromRGB(38, 38, 38)
-            newSection.ScaleType = Enum.ScaleType.Slice
-            newSection.SliceCenter = Rect.new(100, 100, 100, 100)
-            newSection.SliceScale = 0.06
-            newSection.Visible = isVisible
+            Frame.Parent = game.StarterGui.UI_Lib.MainFrame.Tabs.newTab_Frame
+            Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            Frame.BackgroundTransparency = 1
+            Frame.Size = UDim2.new(0.972, 0, 0.058, 0)
 
-            newSection_TL.Name = SectionName.."_TL"
-            newSection_TL.Parent = newSection
-            newSection_TL.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            newSection_TL.BackgroundTransparency = 1
-            newSection_TL.Position = UDim2.new(0.0489280932, 0, 0, 0)
-            newSection_TL.Size = UDim2.new(0.903747737, 0, 1, 0)
-            newSection_TL.ZIndex = 6
-            newSection_TL.Font = Enum.Font.GothamBold
-            newSection_TL.Text = SectionName
-            newSection_TL.TextColor3 = Color3.fromRGB(234, 234, 234)
-            newSection_TL.TextSize = 12
-            newSection_TL.TextWrapped = true
-            newSection_TL.TextXAlignment = Enum.TextXAlignment.Left
+            TextLabel.Name = "TextLabel"
+            TextLabel.Parent = Frame
+            TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            TextLabel.BackgroundTransparency = 1
+            TextLabel.Position = UDim2.new(0.0489281043, 0, 0, 0)
+            TextLabel.Size = UDim2.new(0.416493893, 0, 1, 0)
+            TextLabel.ZIndex = 3
+            TextLabel.Font = Enum.Font.GothamBold
+            TextLabel.Text = "Flight"
+            TextLabel.TextColor3 = Color3.fromRGB(234, 234, 234)
+            TextLabel.TextSize = 12
+            TextLabel.TextWrapped = true
+            TextLabel.TextXAlignment = Enum.TextXAlignment.Left
 
+            Line.Name = "Line"
+            Line.Parent = Frame
+            Line.AnchorPoint = Vector2.new(0.5, 0.5)
+            Line.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            Line.BackgroundTransparency = 0.900
+            Line.Position = UDim2.new(0.5, 0, 0.95, 0)
+            Line.Size = UDim2.new(0.95, 0, 0.2, 0)
 
-            Controls = {}
-            function Controls:AddLabel(LabelText)
-                LabelText = LabelText or "Label"
+            UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 255, 255))}
+            UIGradient.Rotation = 90
+            UIGradient.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.00, 1.00), NumberSequenceKeypoint.new(0.25, 1.00), NumberSequenceKeypoint.new(0.50, 0.00), NumberSequenceKeypoint.new(0.74, 1.00), NumberSequenceKeypoint.new(1.00, 1.00)}
+            UIGradient.Parent = Line
+        end
 
-                -- Instances:
-                local newLabel = Instance.new("ImageLabel")
-                local newLabelText = Instance.new("TextLabel")
+        function Controls:AddButton(Title, ButtonText, callback)
+            Title = Title or "Untitled"
+            ButtonText = ButtonText or "Text"
+            callback = callback or function() end
 
-                -- Properties:
-                newLabel.Name = LabelText
-                newLabel.Parent = NewTab
-                newLabel.BackgroundTransparency = 1
-                newLabel.Position = UDim2.new(0, 0, 0.130746022, 0)
-                newLabel.Size = UDim2.new(0.972, 0, 0.075, 0)
-                newLabel.Image = "rbxassetid://3570695787"
-                newLabel.ImageColor3 = ThemeColor
-                newLabel.ScaleType = Enum.ScaleType.Slice
-                newLabel.SliceCenter = Rect.new(100, 100, 100, 100)
-                newLabel.SliceScale = 0.06
-                newLabel.ImageColor3 = Color3.fromRGB(44, 44, 44)
+            -- Instances:
+            local Frame = Instance.new("Frame")
+            local Frame_2 = Instance.new("Frame")
+            local TextButton = Instance.new("TextButton")
+            local buttonBG = Instance.new("ImageLabel")
+            local Button_TL = Instance.new("TextLabel")
+            local Line = Instance.new("Frame")
+            local UIGradient = Instance.new("UIGradient")
 
-                newLabelText.Name = LabelText.."_TL"
-                newLabelText.Parent = newLabel
-                newLabelText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                newLabelText.BackgroundTransparency = 1
-                newLabelText.Position = UDim2.new(0.0489280932, 0, 0, 0)
-                newLabelText.Size = UDim2.new(0.903747737, 0, 1, 0)
-                newLabelText.ZIndex = 6
-                newLabelText.Font = Enum.Font.GothamBold
-                newLabelText.Text = Title
-                newLabelText.TextColor3 = Color3.fromRGB(234, 234, 234)
-                newLabelText.TextSize = 12
-                newLabelText.TextWrapped = true
-                newLabelText.TextXAlignment = Enum.TextXAlignment.Left
-            end
+            --Properties:
+            Frame.Parent = game.StarterGui.UI_Lib.MainFrame.Tabs.newTab_Frame
+            Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            Frame.BackgroundTransparency = 1
+            Frame.Size = UDim2.new(0.972, 0, 0.058, 0)
 
-            function Controls:AddButton(Title, ButtonText, callback)
-                Title = Title or "Untitled"
-                ButtonText = ButtonText or "Text"
-                callback = callback or function() end
+            Frame_2.Parent = Frame
+            Frame_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            Frame_2.BackgroundTransparency = 1
+            Frame_2.Position = UDim2.new(0.377439648, 0, 0, 0)
+            Frame_2.Size = UDim2.new(0.48306039, 0, 1, 0)
 
-                -- Instances:
-                local newFeature = Instance.new("ImageLabel")
-                local newFeature_TL = Instance.new("TextLabel")
-                local new_Button = Instance.new("TextButton")
-                local Btn_Background = Instance.new("ImageLabel")
+            TextButton.Parent = Frame_2
+            TextButton.AnchorPoint = Vector2.new(0, 0.5)
+            TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            TextButton.BackgroundTransparency = 1
+            TextButton.Position = UDim2.new(0.05, 0, 0.5, 0)
+            TextButton.Size = UDim2.new(0.795529723, 0, 0.7, 0)
+            TextButton.ZIndex = 4
+            TextButton.Font = Enum.Font.GothamBold
+            TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+            TextButton.TextSize = 14
 
-                -- Properties (background):
-                newFeature.Name = Title
-                newFeature.Parent = NewTab
-                newFeature.BackgroundTransparency = 1
-                newFeature.Position = UDim2.new(0, 0, 0.130746022, 0)
-                newFeature.Size = UDim2.new(0.972, 0, 0.075, 0)
-                newFeature.Image = "rbxassetid://3570695787"
-                newFeature.ImageColor3 = ThemeColor
-                newFeature.ScaleType = Enum.ScaleType.Slice
-                newFeature.SliceCenter = Rect.new(100, 100, 100, 100)
-                newFeature.SliceScale = 0.06
-                newFeature.ImageColor3 = Color3.fromRGB(44, 44, 44)
+            buttonBG.Name = "buttonBG"
+            buttonBG.Parent = TextButton
+            buttonBG.AnchorPoint = Vector2.new(0.5, 0)
+            buttonBG.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            buttonBG.BackgroundTransparency = 1
+            buttonBG.Position = UDim2.new(0.5, 0, 0, 0)
+            buttonBG.Size = UDim2.new(1.1, 0, 1, 0)
+            buttonBG.ZIndex = 3
+            buttonBG.Image = "rbxassetid://3570695787"
+            buttonBG.ImageColor3 = Color3.fromRGB(44, 115, 216)
+            buttonBG.ScaleType = Enum.ScaleType.Slice
+            buttonBG.SliceCenter = Rect.new(100, 100, 100, 100)
+            buttonBG.SliceScale = 0.06
 
-                newFeature_TL.Name = Title.."_TL"
-                newFeature_TL.Parent = newFeature
-                newFeature_TL.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                newFeature_TL.BackgroundTransparency = 1
-                newFeature_TL.Position = UDim2.new(0.0489280932, 0, 0, 0)
-                newFeature_TL.Size = UDim2.new(0.903747737, 0, 1, 0)
-                newFeature_TL.ZIndex = 6
-                newFeature_TL.Font = Enum.Font.GothamBold
-                newFeature_TL.Text = Title
-                newFeature_TL.TextColor3 = Color3.fromRGB(234, 234, 234)
-                newFeature_TL.TextSize = 12
-                newFeature_TL.TextWrapped = true
-                newFeature_TL.TextXAlignment = Enum.TextXAlignment.Left
+            Button_TL.Name = "Button_TL"
+            Button_TL.Parent = Frame
+            Button_TL.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            Button_TL.BackgroundTransparency = 1
+            Button_TL.Position = UDim2.new(0.0489281043, 0, 0, 0)
+            Button_TL.Size = UDim2.new(0.416493893, 0, 1, 0)
+            Button_TL.ZIndex = 3
+            Button_TL.Font = Enum.Font.GothamBold
+            Button_TL.Text = ButtonText
+            Button_TL.TextColor3 = Color3.fromRGB(234, 234, 234)
+            Button_TL.TextSize = 12
+            Button_TL.TextWrapped = true
+            Button_TL.TextXAlignment = Enum.TextXAlignment.Left
 
-                -- Properties (button):
-                new_Button.Name = Title.."_Btn"
-                new_Button.Parent = newFeature
-                new_Button.AnchorPoint = Vector2.new(0, 0.5)
-                new_Button.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                new_Button.BackgroundTransparency = 1
-                new_Button.BorderSizePixel = 0
-                new_Button.Position = UDim2.new(0.749213159, 0, 0.5, 0)
-                new_Button.Size = UDim2.new(0.23855485, 0, 0.8, 0)
-                new_Button.ZIndex = 2
-                new_Button.Font = Enum.Font.GothamBold
-                new_Button.Text = "Copy"
-                new_Button.TextColor3 = Color3.fromRGB(211, 211, 211)
-                new_Button.TextSize = 12
-                new_Button.TextWrapped = true
+            Line.Name = "Line"
+            Line.Parent = Frame
+            Line.AnchorPoint = Vector2.new(0.5, 0.5)
+            Line.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            Line.BackgroundTransparency = 0.900
+            Line.Position = UDim2.new(0.5, 0, 0.95, 0)
+            Line.Size = UDim2.new(0.95, 0, 0.2, 0)
 
-                Btn_Background.Name = "Btn_BG"
-                Btn_Background.Parent = new_Button
-                Btn_Background.AnchorPoint = Vector2.new(0.5, 0.5)
-                Btn_Background.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                Btn_Background.BackgroundTransparency = 1
-                Btn_Background.Position = UDim2.new(0.5, 0, 0.5, 0)
-                Btn_Background.Size = UDim2.new(1, 0, 1, 0)
-                Btn_Background.Image = "rbxassetid://3570695787"
-                Btn_Background.ImageColor3 = Color3.fromRGB(62, 62, 62)
-                Btn_Background.ScaleType = Enum.ScaleType.Slice
-                Btn_Background.SliceCenter = Rect.new(100, 100, 100, 100)
-                Btn_Background.SliceScale = 0.06
+            UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 255, 255))}
+            UIGradient.Rotation = 90
+            UIGradient.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.00, 1.00), NumberSequenceKeypoint.new(0.25, 1.00), NumberSequenceKeypoint.new(0.50, 0.00), NumberSequenceKeypoint.new(0.74, 1.00), NumberSequenceKeypoint.new(1.00, 1.00)}
+            UIGradient.Parent = Line
 
-                new_Button.MouseButton1Click:Connect(function()
-                    callback()
-                end)
-            end
+            new_Button.MouseButton1Click:Connect(function()
+                callback()
+            end)
 
-            function Controls:AddTextBox(Title, placeholderText, callback)
-                Title = Title or "Untitled"
-                placeholderText = placeholderText or ""
-                callback = callback or function() end
+            return new_Button
+        end
 
-                -- Instances:
-                local newFeature = Instance.new("ImageLabel")
-                local newFeature_TL = Instance.new("TextLabel")
-                local Input_newFeature = Instance.new("TextBox")
-                local Input_Background = Instance.new("ImageLabel")
+        function Controls:AddTextBox(Title, placeholderText, callback)
+            Title = Title or "Untitled"
+            placeholderText = placeholderText or ""
+            callback = callback or function() end
 
-                -- Properties (background):
-                newFeature.Name = Title
-                newFeature.Parent = NewTab
-                newFeature.BackgroundTransparency = 1
-                newFeature.Position = UDim2.new(0, 0, 0.623232245, 0)
-                newFeature.Size = UDim2.new(0.972, 0, 0.075, 0)
-                newFeature.Image = "rbxassetid://3570695787"
-                newFeature.ImageColor3 = Color3.fromRGB(44, 44, 44)
-                newFeature.ScaleType = Enum.ScaleType.Slice
-                newFeature.SliceCenter = Rect.new(100, 100, 100, 100)
-                newFeature.SliceScale = 0.06
+            -- Instances:
+            local Frame = Instance.new("Frame")
+            local Frame_2 = Instance.new("Frame")
+            local TextBox = Instance.new("TextBox")
+            local TextBox_BG = Instance.new("ImageLabel")
+            local TextBox_TL = Instance.new("TextLabel")
+            local Line = Instance.new("Frame")
+            local UIGradient = Instance.new("UIGradient")
 
-                newFeature_TL.Name = Title.."_TL"
-                newFeature_TL.Parent = newFeature
-                newFeature_TL.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                newFeature_TL.BackgroundTransparency = 1
-                newFeature_TL.Position = UDim2.new(0.0489282086, 0, 0, 0)
-                newFeature_TL.Size = UDim2.new(0.308889121, 0, 1, 0)
-                newFeature_TL.ZIndex = 6
-                newFeature_TL.Font = Enum.Font.GothamBold
-                newFeature_TL.Text = Title
-                newFeature_TL.TextColor3 = Color3.fromRGB(234, 234, 234)
-                newFeature_TL.TextSize = 12
-                newFeature_TL.TextWrapped = true
-                newFeature_TL.TextXAlignment = Enum.TextXAlignment.Left
+            -- Properties:
+            Frame.Parent = game.StarterGui.UI_Lib.MainFrame.Tabs.newTab_Frame
+            Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            Frame.BackgroundTransparency = 1
+            Frame.Size = UDim2.new(0.972, 0, 0.058, 0)
 
-                -- Properties (TextBox):
-                Input_newFeature.Name = "Input_"..Title
-                Input_newFeature.Parent = newFeature
-                Input_newFeature.AnchorPoint = Vector2.new(0, 0.5)
-                Input_newFeature.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                Input_newFeature.BackgroundTransparency = 1
-                Input_newFeature.Position = UDim2.new(0.393182546, 0, 0.5, 0)
-                Input_newFeature.Size = UDim2.new(0.585737407, 0, 0.7, 0)
-                Input_newFeature.ZIndex = 2
-                Input_newFeature.Font = Enum.Font.GothamBold
-                Input_newFeature.PlaceholderText = placeholderText
-                Input_newFeature.Text = ""
-                Input_newFeature.TextColor3 = Color3.fromRGB(232, 232, 232)
-                Input_newFeature.TextSize = 12
+            Frame_2.Parent = Frame
+            Frame_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            Frame_2.BackgroundTransparency = 1
+            Frame_2.Position = UDim2.new(0.377439648, 0, 0, 0)
+            Frame_2.Size = UDim2.new(0.48306039, 0, 1, 0)
 
-                Input_Background.Name = "Btn_BG"
-                Input_Background.Parent = Input_newFeature
-                Input_Background.AnchorPoint = Vector2.new(0.5, 0.5)
-                Input_Background.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                Input_Background.BackgroundTransparency = 1
-                Input_Background.Position = UDim2.new(0.486625284, 0, 0.5, 0)
-                Input_Background.Size = UDim2.new(1.02674866, 0, 1, 0)
-                Input_Background.Image = "rbxassetid://3570695787"
-                Input_Background.ImageColor3 = Color3.fromRGB(62, 62, 62)
-                Input_Background.ScaleType = Enum.ScaleType.Slice
-                Input_Background.SliceCenter = Rect.new(100, 100, 100, 100)
-                Input_Background.SliceScale = 0.06
+            TextBox.Parent = Frame_2
+            TextBox.AnchorPoint = Vector2.new(0, 0.5)
+            TextBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            TextBox.BackgroundTransparency = 1
+            TextBox.Position = UDim2.new(0.05, 0, 0.5, 0)
+            TextBox.Size = UDim2.new(0.796, 0, 0.7, 0)
+            TextBox.ZIndex = 4
+            TextBox.Font = Enum.Font.GothamBold
+            TextBox.PlaceholderText = placeholderText
+            TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+            TextBox.TextSize = 14
 
-                Input_newFeature.FocusLost:Connect(function(EnterPressed)
-                    if EnterPressed then
-                        callback(Input_newFeature.Text)
-                        wait(0.2)
-                        Input_newFeature.Text = ""
-                    else
-                        return
-                    end
-                end)
+            TextBox_BG.Name = "TextBox_BG"
+            TextBox_BG.Parent = TextBox
+            TextBox_BG.AnchorPoint = Vector2.new(0.5, 0)
+            TextBox_BG.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            TextBox_BG.BackgroundTransparency = 1
+            TextBox_BG.Position = UDim2.new(0.5, 0, 0, 0)
+            TextBox_BG.Size = UDim2.new(1.1, 0, 1, 0)
+            TextBox_BG.ZIndex = 3
+            TextBox_BG.Image = "rbxassetid://3570695787"
+            TextBox_BG.ImageColor3 = Color3.fromRGB(113, 113, 113)
+            TextBox_BG.ScaleType = Enum.ScaleType.Slice
+            TextBox_BG.SliceCenter = Rect.new(100, 100, 100, 100)
+            TextBox_BG.SliceScale = 0.06
 
-                return Input_newFeature
-            end
+            TextBox_TL.Name = "TextBox_TL"
+            TextBox_TL.Parent = Frame
+            TextBox_TL.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            TextBox_TL.BackgroundTransparency = 1
+            TextBox_TL.Position = UDim2.new(0.0489281043, 0, 0, 0)
+            TextBox_TL.Size = UDim2.new(0.416493893, 0, 1, 0)
+            TextBox_TL.ZIndex = 3
+            TextBox_TL.Font = Enum.Font.GothamBold
+            TextBox_TL.Text = Title
+            TextBox_TL.TextColor3 = Color3.fromRGB(234, 234, 234)
+            TextBox_TL.TextSize = 12
+            TextBox_TL.TextWrapped = true
+            TextBox_TL.TextXAlignment = Enum.TextXAlignment.Left
 
-            function Controls:AddToggle(Title, callback)
-                Title = Title or "Untitled"
-                callback = callback or function() end
+            Line.Name = "Line"
+            Line.Parent = Frame
+            Line.AnchorPoint = Vector2.new(0.5, 0.5)
+            Line.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            Line.BackgroundTransparency = 0.9
+            Line.Position = UDim2.new(0.5, 0, 0.95, 0)
+            Line.Size = UDim2.new(0.95, 0, 0.2, 0)
 
-                -- Instances:
-                local newFeature = Instance.new("ImageLabel")
-                local newFeature_TL = Instance.new("TextLabel")
-                local newToggle_BG = Instance.new("ImageButton")
-                local newToggle_Btn = Instance.new("ImageButton")
+            UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 255, 255))}
+            UIGradient.Rotation = 90
+            UIGradient.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.00, 1.00), NumberSequenceKeypoint.new(0.25, 1.00), NumberSequenceKeypoint.new(0.50, 0.00), NumberSequenceKeypoint.new(0.74, 1.00), NumberSequenceKeypoint.new(1.00, 1.00)}
+            UIGradient.Parent = Line
 
-                -- Properties:
-                newFeature.Name = Title
-                newFeature.Parent = NewTab
-                newFeature.BackgroundTransparency = 1
-                newFeature.Position = UDim2.new(0, 0, 0.702, 0)
-                newFeature.Size = UDim2.new(0.972, 0, 0.075, 0)
-                newFeature.Image = "rbxassetid://3570695787"
-                newFeature.ImageColor3 = Color3.fromRGB(44, 44, 44)
-                newFeature.ScaleType = Enum.ScaleType.Slice
-                newFeature.SliceCenter = Rect.new(100, 100, 100, 100)
-                newFeature.SliceScale = 0.06
-
-                newFeature_TL.Name = Title.."_TL"
-                newFeature_TL.Parent = newFeature
-                newFeature_TL.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                newFeature_TL.BackgroundTransparency = 1
-                newFeature_TL.Position = UDim2.new(0.0489282086, 0, 0, 0)
-                newFeature_TL.Size = UDim2.new(0.308889121, 0, 1, 0)
-                newFeature_TL.ZIndex = 6
-                newFeature_TL.Font = Enum.Font.GothamBold
-                newFeature_TL.Text = Title
-                newFeature_TL.TextColor3 = Color3.fromRGB(234, 234, 234)
-                newFeature_TL.TextSize = 12
-                newFeature_TL.TextWrapped = true
-                newFeature_TL.TextXAlignment = Enum.TextXAlignment.Left
-
-                newToggle_BG.Name = "Toggle_BG"
-                newToggle_BG.Parent = newFeature
-                newToggle_BG.AnchorPoint = Vector2.new(0, 0.5)
-                newToggle_BG.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                newToggle_BG.BackgroundTransparency = 1
-                newToggle_BG.Position = UDim2.new(0.835, 0, 0.5, 0)
-                newToggle_BG.Size = UDim2.new(0.12, 0, 0.5, 0)
-                newToggle_BG.Image = "rbxassetid://3570695787"
-                newToggle_BG.ImageColor3 = Color3.fromRGB(62, 62, 62)
-                newToggle_BG.ScaleType = Enum.ScaleType.Slice
-                newToggle_BG.SliceCenter = Rect.new(100, 100, 100, 100)
-
-                newToggle_Btn.Name = "newToggle_Btn"
-                newToggle_Btn.Parent = newFeature
-                newToggle_Btn.AnchorPoint = Vector2.new(0, 0.5)
-                newToggle_Btn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                newToggle_Btn.BackgroundTransparency = 1
-                newToggle_Btn.Position = UDim2.new(0.835, 0, 0.5, 0)
-                newToggle_Btn.Size = UDim2.new(0.055, 0, 0.5, 0)
-                newToggle_Btn.ZIndex = 2
-                newToggle_Btn.Image = "rbxassetid://3570695787"
-                newToggle_Btn.ScaleType = Enum.ScaleType.Slice
-                newToggle_Btn.SliceCenter = Rect.new(100, 100, 100, 100)
-
-                local isToggled = false
-
-                local function toggle()
-                    if not isToggled then
-                        isToggled = true
-                        newToggle_Btn:TweenPosition(newToggle_Btn.Position + UDim2.new(.066,0,0,0),"In","Sine",.1)
-                        newToggle_BG.ImageColor3 = Color3.fromRGB(227, 32, 240)
-                        callback(isToggled)
-                    else
-                        isToggled = false
-                        newToggle_Btn:TweenPosition(newToggle_Btn.Position + UDim2.new(-.066,0,0,0),"In","Sine",.1)
-                        newToggle_BG.ImageColor3 = Color3.fromRGB(62, 62, 62)
-                        callback(isToggled)
-                    end
+            TextBox.FocusLost:Connect(function(EnterPressed)
+                if EnterPressed then
+                    callback(TextBox.Text)
+                    wait(0.2)
+                    TextBox.Text = ""
+                else
+                    return
                 end
+            end)
 
-                newToggle_Btn.MouseButton1Click:Connect(function()
-                    toggle()
-                end)
+            return TextBox
+        end
 
-                newToggle_BG.MouseButton1Click:Connect(function()
-                    toggle()
-                end)
+        function Controls:AddToggle(Title, callback)
+            Title = Title or "Untitled"
+            callback = callback or function() end
+
+            -- Instances:
+            local newToggle = Instance.new("Frame")
+            local newToggle_BG = Instance.new("ImageLabel")
+            local newToggle_Btn = Instance.new("ImageButton")
+            local newToggle_TL = Instance.new("TextLabel")
+            local Line = Instance.new("Frame")
+            local UIGradient = Instance.new("UIGradient")
+
+            -- Properties:
+            newToggle.Name = "newToggle"
+            newToggle.Parent = NewTab
+            newToggle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            newToggle.BackgroundTransparency = 1
+            newToggle.Size = UDim2.new(0.972000003, 0, 0.0579999983, 0)
+
+            newToggle_BG.Name = "newToggle_BG"
+            newToggle_BG.Parent = newToggle
+            newToggle_BG.AnchorPoint = Vector2.new(0, 0.5)
+            newToggle_BG.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            newToggle_BG.BackgroundTransparency = 1
+            newToggle_BG.Position = UDim2.new(0.850000143, 0, 0.500000238, 0)
+            newToggle_BG.Size = UDim2.new(0.104999833, 0, 0.50000006, 0)
+            newToggle_BG.ZIndex = 2
+            newToggle_BG.Image = "rbxassetid://3570695787"
+            newToggle_BG.ImageColor3 = Color3.fromRGB(38, 38, 38)
+            newToggle_BG.ScaleType = Enum.ScaleType.Slice
+            newToggle_BG.SliceCenter = Rect.new(100, 100, 100, 100)
+
+            newToggle_Btn.Name = "newToggle_Btn"
+            newToggle_Btn.Parent = newToggle_BG
+            newToggle_Btn.AnchorPoint = Vector2.new(0, 0.5)
+            newToggle_Btn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            newToggle_Btn.BackgroundTransparency = 1
+            newToggle_Btn.Position = UDim2.new(0.100000001, 0, 0.5, 0)
+            newToggle_Btn.Size = UDim2.new(0.319999993, 0, 0.699999988, 0)
+            newToggle_Btn.ZIndex = 3
+            newToggle_Btn.Image = "rbxassetid://3570695787"
+            newToggle_Btn.ScaleType = Enum.ScaleType.Slice
+            newToggle_Btn.SliceCenter = Rect.new(100, 100, 100, 100)
+
+            newToggle_TL.Name = "newToggle_TL"
+            newToggle_TL.Parent = newToggle
+            newToggle_TL.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            newToggle_TL.BackgroundTransparency = 1
+            newToggle_TL.Position = UDim2.new(0.0489281081, 0, 0, 0)
+            newToggle_TL.Size = UDim2.new(0.759346068, 0, 100012, 0)
+            newToggle_TL.ZIndex = 3
+            newToggle_TL.Font = Enum.Font.GothamBold
+            newToggle_TL.Text = "Flight"
+            newToggle_TL.TextColor3 = Color3.fromRGB(234, 234, 234)
+            newToggle_TL.TextSize = 12
+            newToggle_TL.TextWrapped = true
+            newToggle_TL.TextXAlignment = Enum.TextXAlignment.Left
+
+            Line.Name = "Line"
+            Line.Parent = newToggle
+            Line.AnchorPoint = Vector2.new(0.5, 0.5)
+            Line.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            Line.BackgroundTransparency = 0.900
+            Line.Position = UDim2.new(0.5, 0, 0.949999988, 0)
+            Line.Size = UDim2.new(0.949999988, 0, 0.200000003, 0)
+
+            UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 255, 255))}
+            UIGradient.Rotation = 90
+            UIGradient.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.00, 1.00), NumberSequenceKeypoint.new(0.25, 1.00), NumberSequenceKeypoint.new(0.50, 0.00), NumberSequenceKeypoint.new(0.74, 1.00), NumberSequenceKeypoint.new(1.00, 1.00)}
+            UIGradient.Parent = Line
+
+            local isToggled = false
+
+            local function toggle()
+                if not isToggled then
+                    isToggled = true
+                    newToggle_Btn:TweenPosition(newToggle_Btn.Position + UDim2.new(.066,0,0,0),"In","Sine",.1)
+                    newToggle_BG.ImageColor3 = Color3.fromRGB(227, 32, 240)
+                    callback(isToggled)
+                else
+                    isToggled = false
+                    newToggle_Btn:TweenPosition(newToggle_Btn.Position + UDim2.new(-.066,0,0,0),"In","Sine",.1)
+                    newToggle_BG.ImageColor3 = Color3.fromRGB(62, 62, 62)
+                    callback(isToggled)
+                end
             end
+
+            newToggle_Btn.MouseButton1Click:Connect(function()
+                toggle()
+            end)
+
+            newToggle_BG.MouseButton1Click:Connect(function()
+                toggle()
+            end)
+        end
 
             function Controls:AddSlider(Title, maxValue, minValue, defaultValue, callback)
                 Title = Title or "Untitled"
@@ -1175,9 +1149,6 @@ function Library.new(UI_Name, version, ThemeColor)
             end
 
             return Controls
-        end
-
-        return Sections
     end
 
     return Tabs
