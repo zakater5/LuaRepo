@@ -57,7 +57,7 @@ function Library.new(UI_Name, ThemeColor)
     local Min_Button = Instance.new("ImageButton")
     local X_Button = Instance.new("ImageButton")
     local Max_Button = Instance.new("ImageButton")
-    local Tabs = Instance.new("Folder")
+    local Tabs_Folder = Instance.new("Folder")
     local SideBar = Instance.new("ImageLabel")
     local TabButtons = Instance.new("Frame")
     local UIListLayout = Instance.new("UIListLayout")
@@ -125,8 +125,8 @@ function Library.new(UI_Name, ThemeColor)
     Max_Button.SliceCenter = Rect.new(100, 100, 100, 100)
     Max_Button.SliceScale = 0.120
 
-    Tabs.Name = "Tabs"
-    Tabs.Parent = MainFrame
+    Tabs_Folder.Name = "Tabs"
+    Tabs_Folder.Parent = MainFrame
 
     SideBar.Name = "SideBar"
     SideBar.Parent = MainFrame
@@ -223,12 +223,12 @@ function Library.new(UI_Name, ThemeColor)
         TabButtonLogo.ImageColor3 = Color3.fromRGB(44, 115, 216)
 
         NewTab.Name = tabName
-        NewTab.Parent = Tabs
+        NewTab.Parent = Tabs_Folder
         NewTab.Active = true
         NewTab.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         NewTab.BackgroundTransparency = 1
         NewTab.BorderSizePixel = 0
-        NewTab.Position = UDim2.new(0.245999947, 0, 0.016190093, 0)
+        NewTab.Position = UDim2.new(0.246, 0, 0.016190093, 0)
         NewTab.Size = UDim2.new(0.740969956, 0, 0.962810099, 0)
         NewTab.CanvasSize = UDim2.new(0, 0, 1.5, 0)
         NewTab.ScrollBarThickness = 6
@@ -248,7 +248,7 @@ function Library.new(UI_Name, ThemeColor)
         background.ImageColor3 = Color3.fromRGB(84, 84, 84) --Color3.fromRGB(44, 115, 216)
         background.ScaleType = Enum.ScaleType.Slice
         background.SliceCenter = Rect.new(100, 100, 100, 100)
-        background.SliceScale = 0.060
+        background.SliceScale = 0.06
 
         --Tab Button Event/s:
         New_TabButton.MouseEnter:Connect(function()
