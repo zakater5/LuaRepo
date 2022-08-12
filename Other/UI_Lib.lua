@@ -268,7 +268,7 @@ function setupSettings(TabsFolder)
         end
 
         newColorBtn.MouseButton1Click:Connect(function()
-            for _, innerBtn in pairs(Frame_4:GetChildren()) do
+            for _, innerBtn in pairs(optionsTab.Frame_4:GetChildren()) do
                 if innerBtn:IsA("ImageButton") and innerBtn ~= newColorBtn then
                     innerBtn.Inner.Visible = false
                 end
