@@ -44,6 +44,20 @@ function saveSettings()
     end
 end
 
+function updateUI_settings(mainFrame)
+    for i, v in pairs(mainFrame:GetDescendants()) do
+        if v:IsA("ImageLabel") or v:IsA("ImageButton") then
+            for _, color in pairs(uiAccentColors) do
+                if v.ImageColor3 == color then
+                    v.ImageColor3 = _G.settings.AccentColor
+                end
+            end
+        end
+    end
+end
+
+
+
 
 function Library:DraggingEnabled(MainFrame, DragRegObj)
     frame = DragRegObj
@@ -80,7 +94,7 @@ function Library:DraggingEnabled(MainFrame, DragRegObj)
 end
 
 local optionsTab = {}
-function setupSettings(TabsFolder)
+function setupSettings(TabsFolder, mainFrame)
 
     -- Instances:
     optionsTab = {
@@ -277,6 +291,7 @@ function setupSettings(TabsFolder)
             innerButton.Visible = true
             _G.settings.AccentColor = i
             saveSettings()
+            updateUI_settings(mainFrame)
         end)
     end
 
@@ -309,6 +324,7 @@ function setupSettings(TabsFolder)
     optionsTab.UIListLayout_2.Parent = optionsTab.OptionsTab
     optionsTab.UIListLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
 end
+
 
 
 
@@ -417,7 +433,7 @@ function Library.new(UI_Name, ThemeColor)
     UIListLayout.Parent = TabButtons
     UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 
-    setupSettings(Tabs_Folder)
+    setupSettings(Tabs_Folder, MainFrame)
 
     X_Button.MouseButton1Click:Connect(function()
         MainFrame:TweenSize(UDim2.new(0,0,0,0), "In", "Sine", .2)
@@ -854,7 +870,7 @@ function Library.new(UI_Name, ThemeColor)
                 else
                     isToggled = false
                     newToggle_Btn:TweenPosition(newToggle_Btn.Position + UDim2.new(-.5,0,0,0),"In","Sine",.1)
-                    newToggle_BG.ImageColor3 = Color3.fromRGB(62, 62, 62)
+                    newToggle_BG.ImageColor3 = Color3.fromRGB(38, 38, 38)
                     callback(isToggled)
                 end
             end
