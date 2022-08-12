@@ -359,7 +359,7 @@ function Library.new(UI_Name, ThemeColor)
     Min_Button.Name = "Min_Button"
     Min_Button.Parent = TopBar_Frame
     Min_Button.BackgroundTransparency = 1
-    Min_Button.Position = UDim2.new(0.45, 0, 0.221589461, 0)
+    Min_Button.Position = UDim2.new(0.3, 0, 0.221589461, 0)
     Min_Button.Size = UDim2.new(0.11929135, 0, 0.539204836, 0)
     Min_Button.ZIndex = 5
     Min_Button.Image = "rbxassetid://3570695787"
@@ -387,7 +387,7 @@ function Library.new(UI_Name, ThemeColor)
     Opt_Button.Size = UDim2.new(0.15, 0, 0.7, 0)
     Opt_Button.ZIndex = 5
     Opt_Button.Image = "rbxassetid://10565603595"
-    Opt_Button.ImageColor3 = Color3.fromRGB(254, 254, 254)
+    Opt_Button.ImageColor3 = Color3.fromRGB(200, 200, 200)
     Opt_Button.SliceCenter = Rect.new(100, 100, 100, 100)
     Opt_Button.SliceScale = 0.12
 
@@ -473,7 +473,7 @@ function Library.new(UI_Name, ThemeColor)
         New_TabButton.TextXAlignment = Enum.TextXAlignment.Left
 
         tabButtonBG.Name = "tabButtonBG"
-        tabButtonBG.Parent = New_TabButton
+        tabButtonBG.Parent = newTabButton_Frame
         tabButtonBG.AnchorPoint = Vector2.new(0.5, 0.5)
         tabButtonBG.BackgroundTransparency = 1
         tabButtonBG.Position = UDim2.new(0.5, 0, 0.5, 0)
