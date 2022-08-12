@@ -31,7 +31,7 @@ function loadSettings()
     end
 end
 loadSettings()
-if _G.settings.AccentColor == nil then _G.settings.AccentColor = "Blue"
+if _G.settings.AccentColor == nil then _G.settings.AccentColor = "Blue" end
 
 function saveSettings()
     local json
@@ -80,11 +80,10 @@ function Library:DraggingEnabled(MainFrame, DragRegObj)
 end
 
 local optionsTab = {}
-function setupSettings()
+function setupSettings(TabsFolder)
 
     -- Instances:
     optionsTab = {
-        optionsTab
         OptionsTab = Instance.new("ScrollingFrame"),
         Frame = Instance.new("Frame"),
         Frame_2 = Instance.new("Frame"),
@@ -122,7 +121,7 @@ function setupSettings()
 
     -- Properties:
     optionsTab.OptionsTab.Name = "OptionsTab"
-    optionsTab.OptionsTab.Parent = game.StarterGui.UI_Lib.MainFrame.Tabs
+    optionsTab.OptionsTab.Parent = TabsFolder
     optionsTab.OptionsTab.Active = true
     optionsTab.OptionsTab.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     optionsTab.OptionsTab.BackgroundTransparency = 1.000
@@ -238,7 +237,7 @@ function setupSettings()
     optionsTab.UIListLayout.Parent = Frame_4
     optionsTab.UIListLayout.FillDirection = Enum.FillDirection.Horizontal
     optionsTab.UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-    optionsTab.UIListLayout.Padding = UDim.new(0.02 0)
+    optionsTab.UIListLayout.Padding = UDim.new(0.02, 0)
 
     for i, v in pairs(uiAccentColors) do
         local newColorBtn = Instance.new("ImageButton")
@@ -261,7 +260,7 @@ function setupSettings()
         innerButton.Position = UDim2.new(0.5, 0, 0.5, 0)
         innerButton.ImageColor3 = Color3.fromRGB(255, 255, 255)
         innerButton.AnchorPoint = Vector2.new(0.5, 0.5)
-        if _G.settings.AccentColor = i then
+        if _G.settings.AccentColor == i then
             innerButton.Visible = true
         else
             innerButton.Visible = false
@@ -270,7 +269,7 @@ function setupSettings()
         newColorBtn.MouseButton1Click:Connect(function()
             for _, innerBtn in pairs(Frame_4:GetChildren()) do
                 if innerBtn:IsA("ImageButton") and innerBtn ~= newColorBtn then
-                    innerBtn.Inner.Visible == false
+                    innerBtn.Inner.Visible = false
                 end
             end
             innerButton.Visible = true
@@ -308,7 +307,6 @@ function setupSettings()
     optionsTab.UIListLayout_2.Parent = OptionsTab
     optionsTab.UIListLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
 end
-setupSettings()
 
 
 
@@ -417,6 +415,8 @@ function Library.new(UI_Name, ThemeColor)
     UIListLayout.Parent = TabButtons
     UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 
+    setupSettings(Tabs_Folder)
+
     X_Button.MouseButton1Click:Connect(function()
         MainFrame:TweenSize(UDim2.new(0,0,0,0), "In", "Sine", .2)
         wait(.2)
@@ -428,7 +428,12 @@ function Library.new(UI_Name, ThemeColor)
     end)
 
     Opt_Button.MouseButton1Click:Connect(function()
-        
+        for _, v in pairs(Tabs_Folder:GetChildren()) do
+            if v:IsA("Frame") then
+                v.Visible = false
+            end
+        end
+        optionsTab.optionsTab.Visible = true
     end)
 
     Library:DraggingEnabled(MainFrame, SideBar)
