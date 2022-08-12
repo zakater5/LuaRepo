@@ -243,7 +243,7 @@ function setupSettings(TabsFolder)
     for i, v in pairs(uiAccentColors) do
         local newColorBtn = Instance.new("ImageButton")
         newColorBtn.Name = i
-        newColorBtn.Parent = optionsTab.Frame_4
+        newColorBtn.Parent = optionsTab.OptionsTab
         newColorBtn.AnchorPoint = Vector2.new(0, 0.5)
         newColorBtn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         newColorBtn.BackgroundTransparency = 1.000
@@ -339,7 +339,7 @@ function Library.new(UI_Name, ThemeColor)
     MainFrame.Parent = UI_Lib
     MainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
     MainFrame.BackgroundTransparency = 1
-    MainFrame.Position = UDim2.new(0.487256885, 379, 0.653, -115)
+    MainFrame.Position = UDim2.new(0.5, 0, 0.4, 0)
     MainFrame.Size = UDim2.new(0.318675667, 0, 0.427295029, 0)
 
     UI_Background.Name = "UI_Background"
