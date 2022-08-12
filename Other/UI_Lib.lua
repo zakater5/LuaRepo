@@ -130,6 +130,7 @@ function setupSettings(TabsFolder)
     optionsTab.OptionsTab.Size = UDim2.new(0.740969956, 0, 0.96281, 0)
     optionsTab.OptionsTab.CanvasSize = UDim2.new(0, 0, 1.5, 0)
     optionsTab.OptionsTab.ScrollBarThickness = 6
+    optionsTab.OptionsTab.Visible = false
 
     optionsTab.Frame.Parent = optionsTab.OptionsTab
     optionsTab.Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -194,7 +195,7 @@ function setupSettings(TabsFolder)
     optionsTab.BG_2.ImageColor3 = uiAccentColors[_G.settings.AccentColor]
     optionsTab.BG_2.ScaleType = Enum.ScaleType.Slice
     optionsTab.BG_2.SliceCenter = Rect.new(100, 100, 100, 100)
-    optionsTab.BG_2.SliceScale = 0.060
+    optionsTab.BG_2.SliceScale = 0.06
 
     optionsTab.TextLabel.Parent = optionsTab.Frame
     optionsTab.TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
