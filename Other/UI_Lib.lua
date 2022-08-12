@@ -433,7 +433,7 @@ function Library.new(UI_Name, ThemeColor)
                 v.Visible = false
             end
         end
-        optionsTab.optionsTab.Visible = true
+        optionsTab.OptionsTab.Visible = true
     end)
 
     Library:DraggingEnabled(MainFrame, SideBar)
