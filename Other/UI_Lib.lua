@@ -163,7 +163,7 @@ function Library.new(UI_Name, ThemeColor)
         MainFrame:TweenSize(UDim2.new(0,0,0,0), "In", "Sine", .2)
     end)
 
-    Library:DraggingEnabled(MainFrame, TopBar)
+    Library:DraggingEnabled(MainFrame, SideBar)
 
     local Tabs = {}
     function Tabs:AddTab(tabName)
