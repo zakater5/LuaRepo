@@ -337,7 +337,7 @@ function Library.new(UI_Name, ThemeColor)
             local UIGradient = Instance.new("UIGradient")
 
             --Properties:
-            Frame.Parent = game.StarterGui.UI_Lib.MainFrame.Tabs.newTab_Frame
+            Frame.Parent = NewTab
             Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             Frame.BackgroundTransparency = 1
             Frame.Size = UDim2.new(0.972, 0, 0.058, 0)
@@ -422,7 +422,7 @@ function Library.new(UI_Name, ThemeColor)
             local UIGradient = Instance.new("UIGradient")
 
             -- Properties:
-            Frame.Parent = game.StarterGui.UI_Lib.MainFrame.Tabs.newTab_Frame
+            Frame.Parent = NewTab
             Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             Frame.BackgroundTransparency = 1
             Frame.Size = UDim2.new(0.972, 0, 0.058, 0)
