@@ -569,7 +569,7 @@ function Library.new(UI_Name, ThemeColor)
         background.Size = UDim2.new(0, 0, 0, 0)
         background.ZIndex = 4
         background.Image = "rbxassetid://3570695787"
-        background.ImageColor3 = _G.settings.AccentColor
+        background.ImageColor3 = uiAccentColors[_G.settings.AccentColor]
         background.ScaleType = Enum.ScaleType.Slice
         background.SliceCenter = Rect.new(100, 100, 100, 100)
         background.SliceScale = 0.06
@@ -592,7 +592,7 @@ function Library.new(UI_Name, ThemeColor)
                 {Size = UDim2.new(0, 0, 0, 0)}
             )
             closing_tween:Play()
-            TabButtonLogo.ImageColor3 = _G.settings.AccentColor
+            TabButtonLogo.ImageColor3 = uiAccentColors[_G.settings.AccentColor]
         end)
 
         New_TabButton.MouseButton1Click:Connect(function()
