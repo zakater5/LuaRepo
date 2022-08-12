@@ -23,6 +23,7 @@ local uiAccentColors = {
 }
 
 -- [[ SAVING/LOADING SETTINGS ]] --
+_G.settings = {}
 function loadSettings()
     local HttpService = game:GetService("HttpService")
     if (readfile and isfile and isfile(configFileName)) then
@@ -30,7 +31,7 @@ function loadSettings()
     end
 end
 loadSettings()
-if _G.settings.AccentColor = nil then _G.settings.AccentColor = "Blue"
+if _G.settings.AccentColor == nil then _G.settings.AccentColor = "Blue"
 
 function saveSettings()
     local json
@@ -307,6 +308,7 @@ function setupSettings()
     optionsTab.UIListLayout_2.Parent = OptionsTab
     optionsTab.UIListLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
 end
+setupSettings()
 
 
 
