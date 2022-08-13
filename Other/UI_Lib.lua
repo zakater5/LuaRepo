@@ -59,8 +59,8 @@ end
 function updateUI_accents(mainFrame)
     for i, v in pairs(mainFrame:GetDescendants()) do
         if v:IsA("ImageLabel") or v:IsA("ImageButton") then
-            for _, color in pairs(uiAccentColors) do
-                if v.ImageColor3 == color then
+            for i, color in pairs(uiAccentColors) do
+                if v.ImageColor3 == color and v.Name ~= i then
                     v.ImageColor3 = uiAccentColors[_G.settings.AccentColor]
                 end
             end
@@ -382,6 +382,10 @@ function Library.new(UI_Name, ThemeColor)
 
     -- Instances:
     local UI_Lib = Instance.new("ScreenGui")
+    pcall(function()
+        syn.protect_gui(UI_Lib)
+    end)
+
     local MainFrame = Instance.new("Frame")
     local UI_Background = Instance.new("ImageLabel")
     local TopBar_Frame = Instance.new("Frame")
@@ -395,7 +399,7 @@ function Library.new(UI_Name, ThemeColor)
 
     -- Properties:
     UI_Lib.Name = UI_Name
-    UI_Lib.Parent = game.CoreGui
+    UI_Lib.Parent = game:GetService("CoreGui")
     UI_Lib.ResetOnSpawn = false
 
     MainFrame.Name = "MainFrame"
@@ -896,7 +900,7 @@ function Library.new(UI_Name, ThemeColor)
             Line.Parent = newToggle
             Line.AnchorPoint = Vector2.new(0.5, 0.5)
             Line.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            Line.BackgroundTransparency = 0.900
+            Line.BackgroundTransparency = 0.9
             Line.Position = UDim2.new(0.5, 0, 0.95, 0)
             Line.Size = UDim2.new(0.95, 0, 0.2, 0)
 
