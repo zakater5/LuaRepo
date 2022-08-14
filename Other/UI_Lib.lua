@@ -409,14 +409,15 @@ function setupSettings(TabsFolder, mainFrame)
     optionsTab.OptionsTab.BorderSizePixel = 0
     optionsTab.OptionsTab.Position = UDim2.new(0.246, 0, 0.016190093, 0)
     optionsTab.OptionsTab.Size = UDim2.new(0.740969956, 0, 0.96281, 0)
-    optionsTab.OptionsTab.CanvasSize = UDim2.new(0, 0, 1.5, 0)
+    optionsTab.OptionsTab.CanvasSize = UDim2.new(0, 0, 1, 0)
     optionsTab.OptionsTab.ScrollBarThickness = 6
+    optionsTab.OptionsTab.AutomaticCanvasSize = Enum.AutomaticSize.Y
     optionsTab.OptionsTab.Visible = false
 
     optionsTab.Frame.Parent = optionsTab.OptionsTab
     optionsTab.Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     optionsTab.Frame.BackgroundTransparency = 1
-    optionsTab.Frame.Size = UDim2.new(0.972, 0, 0.12, 0)
+    optionsTab.Frame.Size = UDim2.new(0.972, 0, 0.16, 0)
 
     optionsTab.Frame_2.Parent = optionsTab.Frame
     optionsTab.Frame_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -450,6 +451,11 @@ function setupSettings(TabsFolder, mainFrame)
     optionsTab.BG.ScaleType = Enum.ScaleType.Slice
     optionsTab.BG.SliceCenter = Rect.new(100, 100, 100, 100)
     optionsTab.BG.SliceScale = 0.06
+    if _G.settings.Theme == "Light" then
+        optionsTab.BG.Visible = true
+    else
+        optionsTab.BG.Visible = false
+    end
 
     optionsTab.DarkMode.Name = "DarkMode"
     optionsTab.DarkMode.Parent = optionsTab.Frame_2
@@ -477,6 +483,11 @@ function setupSettings(TabsFolder, mainFrame)
     optionsTab.BG_2.ScaleType = Enum.ScaleType.Slice
     optionsTab.BG_2.SliceCenter = Rect.new(100, 100, 100, 100)
     optionsTab.BG_2.SliceScale = 0.06
+    if _G.settings.Theme == "Dark" then
+        optionsTab.BG_2.Visible = true
+    else
+        optionsTab.BG_2.Visible = false
+    end
 
     optionsTab.TextLabel.Parent = optionsTab.Frame
     optionsTab.TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -498,7 +509,7 @@ function setupSettings(TabsFolder, mainFrame)
     optionsTab.Frame_3.Parent = optionsTab.OptionsTab
     optionsTab.Frame_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     optionsTab.Frame_3.BackgroundTransparency = 1
-    optionsTab.Frame_3.Size = UDim2.new(0.972, 0, 0.058, 0)
+    optionsTab.Frame_3.Size = UDim2.new(0.972, 0, 0.09, 0)
 
     optionsTab.Frame_4.Parent = optionsTab.Frame_3
     optionsTab.Frame_4.AnchorPoint = Vector2.new(0, 0.5)
@@ -576,11 +587,15 @@ function setupSettings(TabsFolder, mainFrame)
     optionsTab.LightMode.MouseButton1Click:Connect(function()
         _G.settings.Theme = "Light"
         updateUI_theme(mainFrame, "Light")
+        optionsTab.BG.Visible = true
+        optionsTab.BG_2.Visible = false
     end)
 
     optionsTab.DarkMode.MouseButton1Click:Connect(function()
         _G.settings.Theme = "Dark"
         updateUI_theme(mainFrame, "Dark")
+        optionsTab.BG.Visible = false
+        optionsTab.BG_2.Visible = true
     end)
 
     updateUI_theme(mainFrame, _G.settings.Theme)
@@ -621,7 +636,7 @@ function Library.new(UI_Name)
     MainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
     MainFrame.BackgroundTransparency = 1
     MainFrame.Position = UDim2.new(0.5, 0, 0.4, 0)
-    MainFrame.Size = UDim2.new(0.318675667, 0, 0.427295029, 0)
+    MainFrame.Size = UDim2.new(0.281, 0, 0.377, 0)
 
     UI_Background.Name = "UI_Background"
     UI_Background.Parent = MainFrame
@@ -772,9 +787,10 @@ function Library.new(UI_Name)
         NewTab.BackgroundTransparency = 1
         NewTab.BorderSizePixel = 0
         NewTab.Position = UDim2.new(0.246, 0, 0.01619, 0)
-        NewTab.Size = UDim2.new(0.740969956, 0, 0.962810099, 0)
-        NewTab.CanvasSize = UDim2.new(0, 0, 1.5, 0)
+        NewTab.Size = UDim2.new(0.740969956, 0, 0.96281, 0)
+        NewTab.CanvasSize = UDim2.new(0, 0, 1, 0)
         NewTab.ScrollBarThickness = 6
+        NewTab.AutomaticCanvasSize = Enum.AutomaticSize.Y
         NewTab.Visible = false
 
         UIListLayout.Parent = NewTab
@@ -845,7 +861,7 @@ function Library.new(UI_Name)
             Frame.Parent = NewTab
             Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             Frame.BackgroundTransparency = 1
-            Frame.Size = UDim2.new(0.972, 0, 0.058, 0)
+            Frame.Size = UDim2.new(0.972, 0, 0.09, 0)
 
             TextLabel.Name = "TextLabel"
             TextLabel.Parent = Frame
@@ -881,7 +897,7 @@ function Library.new(UI_Name)
             Frame.Parent = NewTab
             Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             Frame.BackgroundTransparency = 1
-            Frame.Size = UDim2.new(0.972, 0, 0.058, 0)
+            Frame.Size = UDim2.new(0.972, 0, 0.09, 0)
 
             Frame_2.Parent = Frame
             Frame_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -954,7 +970,7 @@ function Library.new(UI_Name)
             Frame.Parent = NewTab
             Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             Frame.BackgroundTransparency = 1
-            Frame.Size = UDim2.new(0.972, 0, 0.058, 0)
+            Frame.Size = UDim2.new(0.972, 0, 0.09, 0)
 
             Frame_2.Parent = Frame
             Frame_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -1033,7 +1049,7 @@ function Library.new(UI_Name)
             newToggle.Parent = NewTab
             newToggle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             newToggle.BackgroundTransparency = 1
-            newToggle.Size = UDim2.new(0.972, 0, 0.058, 0)
+            newToggle.Size = UDim2.new(0.972, 0, 0.09, 0)
 
             newToggle_BG.Name = "newToggle_BG"
             newToggle_BG.Parent = newToggle
@@ -1088,7 +1104,11 @@ function Library.new(UI_Name)
                 else
                     isToggled = false
                     newToggle_Btn:TweenPosition(newToggle_Btn.Position + UDim2.new(-.5,0,0,0),"In","Sine",.1)
-                    newToggle_BG.ImageColor3 = Color3.fromRGB(38, 38, 38)
+                    if _G.settings.Theme == "Dark" then
+                        newToggle_BG.ImageColor3 = Color3.fromRGB(38, 38, 38)
+                    elseif _G.settings.Theme == "Light" then
+                        newToggle_BG.ImageColor3 = Color3.fromRGB(176, 176, 176)
+                    end
                     callback(isToggled)
                 end
             end
@@ -1122,7 +1142,7 @@ function Library.new(UI_Name)
             newSlider.Parent = NewTab
             newSlider.BackgroundTransparency = 1
             newSlider.Position = UDim2.new(0, 0, 0.381, 0)
-            newSlider.Size = UDim2.new(0.972, 0, 0.058, 0)
+            newSlider.Size = UDim2.new(0.972, 0, 0.09, 0)
 
             newSlider_TL.Name = Title .."_TL"
             newSlider_TL.Parent = newSlider
@@ -1261,7 +1281,7 @@ function Library.new(UI_Name)
             callback = callback or function() end
 
             -- Instances:
-            local newDropdown = Instance.new("ImageLabel")
+            local newDropdown = Instance.new("Frame")
             local newDropdown_TL = Instance.new("TextLabel")
             local ScrollingFrame = Instance.new("ScrollingFrame")
             local Dropdown_Items = Instance.new("Folder")
@@ -1277,12 +1297,7 @@ function Library.new(UI_Name)
             newDropdown.Parent = NewTab
             newDropdown.BackgroundTransparency = 1
             newDropdown.Position = UDim2.new(0, 0, 0.52, 0)
-            newDropdown.Size = UDim2.new(0.972, 0, 0.075, 0)
-            newDropdown.Image = "rbxassetid://3570695787"
-            newDropdown.ImageColor3 = Color3.fromRGB(44, 44, 44)
-            newDropdown.ScaleType = Enum.ScaleType.Slice
-            newDropdown.SliceCenter = Rect.new(100, 100, 100, 100)
-            newDropdown.SliceScale = 0.06
+            newDropdown.Size = UDim2.new(0.972, 0, 0.09, 0)
 
             newDropdown_TL.Name = "newDropdown_TL"
             newDropdown_TL.Parent = newDropdown
@@ -1447,123 +1462,122 @@ function Library.new(UI_Name)
                 return Dropdown
             end
 
-            function Controls:AddSelection(Title, Options, itemSelected_callback, itemUnselected_callback)
-                Title = Title or "Untitled"
-                Options = Options or {}
-                itemSelected_callback = itemSelected_callback or function() end
-                itemUnselected_callback = itemUnselected_callback or function() end
+        function Controls:AddSelection(Title, Options, itemSelected_callback, itemUnselected_callback)
+            Title = Title or "Untitled"
+            Options = Options or {}
+            itemSelected_callback = itemSelected_callback or function() end
+            itemUnselected_callback = itemUnselected_callback or function() end
 
-                local selectedOptions = {}
+            local selectedOptions = {}
 
-                -- Instances:
-                local newSelection = Instance.new("ImageLabel")
-                local newSelection_TL = Instance.new("TextLabel")
-                local SelectionFrame = Instance.new("Frame")
-                local SelectionItems = Instance.new("Folder")
-                local UIGridLayout = Instance.new("UIGridLayout")
+            -- Instances:
+            local Selection = Instance.new("Frame")
+            local selectionLabel = Instance.new("TextLabel")
+            local List = Instance.new("Frame")
+            local newOption = Instance.new("Frame")
+            local optionLabel = Instance.new("TextLabel")
+            local optionButton = Instance.new("ImageButton")
+            local checkMarkBtn = Instance.new("ImageButton")
+            local UIListLayout = Instance.new("UIListLayout")
 
-                -- Properties:
-                newSelection.Name = "newSelection"
-                newSelection.Parent = NewTab
-                newSelection.BackgroundTransparency = 1
-                newSelection.Position = UDim2.new(0, 0, 0.21, 0)
-                newSelection.Size = UDim2.new(0.971999943, 0, 0.25, 0)
-                newSelection.Image = "rbxassetid://3570695787"
-                newSelection.ImageColor3 = Color3.fromRGB(44, 44, 44)
-                newSelection.ScaleType = Enum.ScaleType.Slice
-                newSelection.SliceCenter = Rect.new(100, 100, 100, 100)
-                newSelection.SliceScale = 0.06
+            -- Properties:
+            Selection.Name = "Selection"
+            Selection.Parent = game.StarterGui.UI_Lib.MainFrame.Tabs.newTab_Frame
+            Selection.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            Selection.BackgroundTransparency = 1
+            Selection.Size = UDim2.new(0.972, 0, #Options * 0.09, 0)
 
-                newSelection_TL.Name = "newSelection_TL"
-                newSelection_TL.Parent = newSelection
-                newSelection_TL.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                newSelection_TL.BackgroundTransparency = 1
-                newSelection_TL.Position = UDim2.new(0.0489280932, 0, 0, 0)
-                newSelection_TL.Size = UDim2.new(0.663618565, 0, 0.225675911, 0)
-                newSelection_TL.ZIndex = 6
-                newSelection_TL.Font = Enum.Font.GothamBold
-                newSelection_TL.Text = "Look for"
-                newSelection_TL.TextColor3 = Color3.fromRGB(234, 234, 234)
-                newSelection_TL.TextSize = 12
-                newSelection_TL.TextWrapped = true
-                newSelection_TL.TextXAlignment = Enum.TextXAlignment.Left
+            selectionLabel.Name = "selectionLabel"
+            selectionLabel.Parent = Selection
+            selectionLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            selectionLabel.BackgroundTransparency = 1
+            selectionLabel.Position = UDim2.new(0.0489281043, 0, 0, 0)
+            selectionLabel.Size = UDim2.new(0.416493893, 0, 1, 0)
+            selectionLabel.ZIndex = 3
+            selectionLabel.Font = Enum.Font.GothamBold
+            selectionLabel.Text = "Flight"
+            selectionLabel.TextColor3 = Color3.fromRGB(234, 234, 234)
+            selectionLabel.TextSize = 12
+            selectionLabel.TextWrapped = true
+            selectionLabel.TextXAlignment = Enum.TextXAlignment.Left
 
-                SelectionFrame.Name = "SelectionFrame"
-                SelectionFrame.Parent = newSelection
-                SelectionFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                SelectionFrame.BackgroundTransparency = 1
-                SelectionFrame.Position = UDim2.new(0.0314923562, 0, 0.235058755, 0)
-                SelectionFrame.Size = UDim2.new(0.934548557, 0, 0.74648416, 0)
+            local line = Line:Clone()
+            line.Size = UDim2.new(line.Size.X.Scale, 0, line.Size.Y.Scale / #Options, 0)
+            line.Parent = Selection
 
-                SelectionItems.Name = "SelectionItems"
-                SelectionItems.Parent = SelectionFrame
+            List.Name = "List"
+            List.Parent = Selection
+            List.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            List.BackgroundTransparency = 1
+            List.Position = UDim2.new(0.382378072, 0, 0, 0)
+            List.Size = UDim2.new(0.51172173, 0, 1, 0)
 
-                UIGridLayout.Parent = SelectionItems
-                UIGridLayout.SortOrder = Enum.SortOrder.LayoutOrder
-                UIGridLayout.CellPadding = UDim2.new(0.3, 0, 0.05, 0)
-                UIGridLayout.CellSize = UDim2.new(0.05, 0, 0.18, 0)
+            UIListLayout.Parent = List
+            UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 
-                for i, v in pairs(Options) do
-                    -- Instances:
-                    local newOption = Instance.new("ImageButton")
-                    local option_BG = Instance.new("ImageLabel")
-                    local option_TL = Instance.new("TextLabel")
+            for i, v in pairs(Options) do
+                newOption.Name = "newOption"
+                newOption.Parent = List
+                newOption.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                newOption.BackgroundTransparency = 1
+                newOption.Size = UDim2.new(1, 0, 1 / #Options, 0)
 
-                    -- Properties:
-                    newOption.Name = v
-                    newOption.Parent = SelectionItems
-                    newOption.AnchorPoint = Vector2.new(0, 0.5)
-                    newOption.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                    newOption.BackgroundTransparency = 1
-                    newOption.Position = UDim2.new(0.04, 0, 0.301115066, 0)
-                    newOption.Size = UDim2.new(0.045, 0, 0.116359457, 0)
-                    newOption.ZIndex = 2
-                    newOption.Image = "rbxassetid://3570695787"
-                    newOption.ScaleType = Enum.ScaleType.Slice
-                    newOption.SliceCenter = Rect.new(100, 100, 100, 100)
+                optionLabel.Name = "selectionLabel"
+                optionLabel.Parent = newOption
+                optionLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                optionLabel.BackgroundTransparency = 1
+                optionLabel.Position = UDim2.new(0.207002029, 0, 0, 0)
+                optionLabel.Size = UDim2.new(0.747997642, 0, 1, 0)
+                optionLabel.ZIndex = 3
+                optionLabel.Font = Enum.Font.GothamBold
+                optionLabel.Text = "Flight"
+                optionLabel.TextColor3 = Color3.fromRGB(234, 234, 234)
+                optionLabel.TextSize = 12
+                optionLabel.TextWrapped = true
+                optionLabel.TextXAlignment = Enum.TextXAlignment.Left
 
-                    option_BG.Name = "option_BG"
-                    option_BG.Parent = newOption
-                    option_BG.AnchorPoint = Vector2.new(0.5, 0.5)
-                    option_BG.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                    option_BG.BackgroundTransparency = 1
-                    option_BG.Position = UDim2.new(0.5, 0, 0.5, 0)
-                    option_BG.Size = UDim2.new(1.5, 0, 1.5, 0)
-                    option_BG.Image = "rbxassetid://3570695787"
-                    option_BG.ImageColor3 = Color3.fromRGB(62, 62, 62)
-                    option_BG.ScaleType = Enum.ScaleType.Slice
-                    option_BG.SliceCenter = Rect.new(100, 100, 100, 100)
+                optionButton.Name = "optionButton"
+                optionButton.Parent = newOption
+                optionButton.AnchorPoint = Vector2.new(0, 0.5)
+                optionButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                optionButton.BackgroundTransparency = 1
+                optionButton.Position = UDim2.new(0.05, 0, 0.5, 0)
+                optionButton.Size = UDim2.new(0.119658366, 0, 0.7, 0)
+                optionButton.ZIndex = 3
+                optionButton.Image = "rbxassetid://3570695787"
+                optionButton.ImageColor3 = Color3.fromRGB(44, 115, 216)
+                optionButton.ScaleType = Enum.ScaleType.Slice
+                optionButton.SliceCenter = Rect.new(100, 100, 100, 100)
+                optionButton.SliceScale = 0.060
 
-                    option_TL.Name = "option_TL"
-                    option_TL.Parent = newOption
-                    option_TL.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                    option_TL.BackgroundTransparency = 1
-                    option_TL.Position = UDim2.new(1.5, 0, 0, 0)
-                    option_TL.Size = UDim2.new(5, 0, 1, 0)
-                    option_TL.ZIndex = 6
-                    option_TL.Font = Enum.Font.GothamBold
-                    option_TL.Text = v
-                    option_TL.TextColor3 = Color3.fromRGB(234, 234, 234)
-                    option_TL.TextSize = 11
-                    option_TL.TextWrapped = true
-                    option_TL.TextXAlignment = Enum.TextXAlignment.Left
+                checkMarkBtn.Name = v
+                checkMarkBtn.Parent = optionButton
+                checkMarkBtn.AnchorPoint = Vector2.new(0.5, 0.5)
+                checkMarkBtn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                checkMarkBtn.BackgroundTransparency = 1
+                checkMarkBtn.Position = UDim2.new(0.5, 0, 0.5, 0)
+                checkMarkBtn.Size = UDim2.new(0.5, 0, 0.5, 0)
+                checkMarkBtn.ZIndex = 3
+                checkMarkBtn.Image = "rbxassetid://10560437392"
+                checkMarkBtn.ScaleType = Enum.ScaleType.Slice
+                checkMarkBtn.SliceCenter = Rect.new(100, 100, 100, 100)
 
-                    newOption.MouseButton1Click:Connect(function()
-                        if newOption.ImageTransparency == 1 then
-                            newOption.ImageTransparency = 0
-                            table.insert(selectedOptions, newOption.Name)
-                            itemSelected_callback(newOption.Name, selectedOptions)
-                        else
-                            newOption.ImageTransparency = 1
-                            local findOption = table.find(selectedOptions, newOption.Name)
-                            if findOption then
-                                table.remove(selectedOptions, findOption)
-                                itemUnselected_callback(newOption.Name, selectedOptions)
-                            end
+                checkMarkBtn.MouseButton1Click:Connect(function()
+                    if checkMarkBtn.ImageTransparency == 1 then
+                        checkMarkBtn.ImageTransparency = 0
+                        table.insert(selectedOptions, checkMarkBtn.Name)
+                        itemSelected_callback(checkMarkBtn.Name, selectedOptions)
+                    else
+                        checkMarkBtn.ImageTransparency = 1
+                        local findOption = table.find(selectedOptions, checkMarkBtn.Name)
+                        if findOption then
+                            table.remove(selectedOptions, findOption)
+                            itemUnselected_callback(checkMarkBtn.Name, selectedOptions)
                         end
-                    end)
-                end
+                    end
+                end)
             end
+        end
 
             function Controls:AddKeybind(Title, keyString, onKey_Callback)
                 Title = Title or "Untitled"
@@ -1660,6 +1674,14 @@ end
 
 -- test code here:
 
+local newUI = Library.new("e", "e", nil)
+local newTab = newUI:AddTab("Tab 1")
+local newTab2 = newUI:AddTab("Tab 2")
+newTab:AddLabel("Label")
+newTab:AddButton("Button")
+newTab:AddTextBox("TextBox")
+newTab:AddToggle("Toggle")
+newTab:AddSlider("Slider")
 
 -- end of test code
 
