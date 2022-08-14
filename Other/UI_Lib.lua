@@ -1482,7 +1482,7 @@ function Library.new(UI_Name)
 
             -- Properties:
             Selection.Name = "Selection"
-            Selection.Parent = game.StarterGui.UI_Lib.MainFrame.Tabs.newTab_Frame
+            Selection.Parent = NewTab
             Selection.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             Selection.BackgroundTransparency = 1
             Selection.Size = UDim2.new(0.972, 0, #Options * 0.09, 0)
