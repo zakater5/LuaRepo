@@ -1660,14 +1660,6 @@ end
 
 -- test code here:
 
-local newUI = Library.new("e", "e", nil)
-local newTab = newUI:AddTab("Tab 1")
-local newTab2 = newUI:AddTab("Tab 2")
-newTab:AddLabel("Label")
-newTab:AddButton("Button")
-newTab:AddTextBox("TextBox")
-newTab:AddToggle("Toggle")
-newTab:AddSlider("Slider")
 
 -- end of test code
 
