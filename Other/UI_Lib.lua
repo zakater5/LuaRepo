@@ -109,7 +109,6 @@ local Line = Instance.new("Frame")
 local UIGradient = Instance.new("UIGradient")
 
 Line.Name = "Line"
---Line.Parent = Frame
 Line.AnchorPoint = Vector2.new(0.5, 0.5)
 Line.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Line.BackgroundTransparency = 0.900
@@ -776,6 +775,7 @@ function Library.new(UI_Name)
         NewTab.Size = UDim2.new(0.740969956, 0, 0.962810099, 0)
         NewTab.CanvasSize = UDim2.new(0, 0, 1.5, 0)
         NewTab.ScrollBarThickness = 6
+        NewTab.Visible = false
 
         UIListLayout.Parent = NewTab
         UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
@@ -840,8 +840,6 @@ function Library.new(UI_Name)
             -- Instances:
             local Frame = Instance.new("Frame")
             local TextLabel = Instance.new("TextLabel")
-            local Line = Instance.new("Frame")
-            local UIGradient = Instance.new("UIGradient")
 
             --Properties:
             Frame.Parent = NewTab
@@ -878,8 +876,6 @@ function Library.new(UI_Name)
             local TextButton = Instance.new("TextButton")
             local buttonBG = Instance.new("ImageLabel")
             local Button_TL = Instance.new("TextLabel")
-            local Line = Instance.new("Frame")
-            local UIGradient = Instance.new("UIGradient")
 
             --Properties:
             Frame.Parent = NewTab
@@ -953,8 +949,6 @@ function Library.new(UI_Name)
             local TextBox = Instance.new("TextBox")
             local TextBox_BG = Instance.new("ImageLabel")
             local TextBox_TL = Instance.new("TextLabel")
-            local Line = Instance.new("Frame")
-            local UIGradient = Instance.new("UIGradient")
 
             -- Properties:
             Frame.Parent = NewTab
@@ -1033,8 +1027,6 @@ function Library.new(UI_Name)
             local newToggle_BG = Instance.new("ImageButton")
             local newToggle_Btn = Instance.new("ImageButton")
             local newToggle_TL = Instance.new("TextLabel")
-            local Line = Instance.new("Frame")
-            local UIGradient = Instance.new("UIGradient")
 
             -- Properties:
             newToggle.Name = "newToggle"
@@ -1130,7 +1122,7 @@ function Library.new(UI_Name)
             newSlider.Parent = NewTab
             newSlider.BackgroundTransparency = 1
             newSlider.Position = UDim2.new(0, 0, 0.381, 0)
-            newSlider.Size = UDim2.new(0.972, 0, 0.075, 0)
+            newSlider.Size = UDim2.new(0.972, 0, 0.058, 0)
 
             newSlider_TL.Name = Title .."_TL"
             newSlider_TL.Parent = newSlider
@@ -1153,7 +1145,7 @@ function Library.new(UI_Name)
             newSliderFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             newSliderFrame.BackgroundTransparency = 1
             newSliderFrame.Position = UDim2.new(0.24038364, 0, 0.5, 0)
-            newSliderFrame.Size = UDim2.new(0.596787989, 0, 0.2, 0)
+            newSliderFrame.Size = UDim2.new(0.596787989, 0, 0.25, 0)
             newSliderFrame.Image = "rbxassetid://3570695787"
             newSliderFrame.ImageColor3 = Color3.fromRGB(38, 38, 38)
             newSliderFrame.ScaleType = Enum.ScaleType.Slice
@@ -1178,7 +1170,7 @@ function Library.new(UI_Name)
             newSliderKnob.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             newSliderKnob.BackgroundTransparency = 1
             newSliderKnob.Position = UDim2.new(0.8, 0, 0.5, 0)
-            newSliderKnob.Size = UDim2.new(0.05, 0, 1.2, 0)
+            newSliderKnob.Size = UDim2.new(0.05, 0, 1.3, 0)
             newSliderKnob.ZIndex = 2
             newSliderKnob.Image = "rbxassetid://3570695787"
             newSliderKnob.ScaleType = Enum.ScaleType.Slice
@@ -1668,7 +1660,14 @@ end
 
 -- test code here:
 
-
+local newUI = Library.new("e", "e", nil)
+local newTab = newUI:AddTab("Tab 1")
+local newTab2 = newUI:AddTab("Tab 2")
+newTab:AddLabel("Label")
+newTab:AddButton("Button")
+newTab:AddTextBox("TextBox")
+newTab:AddToggle("Toggle")
+newTab:AddSlider("Slider")
 
 -- end of test code
 
