@@ -855,7 +855,7 @@ function Library.new(UI_Name)
             TextLabel.Size = UDim2.new(0.416493893, 0, 1, 0)
             TextLabel.ZIndex = 3
             TextLabel.Font = Enum.Font.GothamBold
-            TextLabel.Text = "Flight"
+            TextLabel.Text = LabelText
             TextLabel.TextColor3 = Color3.fromRGB(234, 234, 234)
             TextLabel.TextSize = 12
             TextLabel.TextWrapped = true
@@ -1068,7 +1068,7 @@ function Library.new(UI_Name)
             newToggle_TL.Size = UDim2.new(0.759346068, 0, 1, 0)
             newToggle_TL.ZIndex = 3
             newToggle_TL.Font = Enum.Font.GothamBold
-            newToggle_TL.Text = "Flight"
+            newToggle_TL.Text = Title
             newToggle_TL.TextColor3 = Color3.fromRGB(234, 234, 234)
             newToggle_TL.TextSize = 12
             newToggle_TL.TextWrapped = true
