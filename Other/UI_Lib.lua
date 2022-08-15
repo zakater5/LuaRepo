@@ -625,6 +625,8 @@ function Library.new(UI_Name)
     local SideBar = Instance.new("ImageLabel")
     local TabButtons = Instance.new("Frame")
     local UIListLayout = Instance.new("UIListLayout")
+    local _Image = Instance.new("ImageButton")
+    local xImage = Instance.new("ImageButton")
 
     -- Properties:
     UI_Lib.Name = UI_Name
@@ -649,44 +651,66 @@ function Library.new(UI_Name)
     UI_Background.SliceScale = 0.08
 
     TopBar_Frame.Name = "TopBar_Frame"
-    TopBar_Frame.Parent = MainFrame
-    TopBar_Frame.BackgroundTransparency = 1
+    TopBar_Frame.Parent = game.StarterGui.UI_Lib.MainFrame
+    TopBar_Frame.BackgroundTransparency = 1.000
     TopBar_Frame.Size = UDim2.new(0.228033975, 0, 0.073063463, 0)
 
     Min_Button.Name = "Min_Button"
     Min_Button.Parent = TopBar_Frame
-    Min_Button.BackgroundTransparency = 1
-    Min_Button.Position = UDim2.new(0.2, 0, 0.221589461, 0)
+    Min_Button.BackgroundTransparency = 1.000
+    Min_Button.Position = UDim2.new(0.230000004, 0, 0.222000003, 0)
     Min_Button.Size = UDim2.new(0.11929135, 0, 0.539204836, 0)
     Min_Button.ZIndex = 5
     Min_Button.Image = "rbxassetid://3570695787"
-    Min_Button.ImageColor3 = Color3.fromRGB(50, 209, 64)
+    Min_Button.ImageColor3 = Color3.fromRGB(113, 113, 113)
     Min_Button.ScaleType = Enum.ScaleType.Slice
     Min_Button.SliceCenter = Rect.new(100, 100, 100, 100)
-    Min_Button.SliceScale = 0.12
+    Min_Button.SliceScale = 0.120
+
+    _Image.Name = "_Image"
+    _Image.Parent = Min_Button
+    _Image.AnchorPoint = Vector2.new(0.5, 0.5)
+    _Image.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    _Image.BackgroundTransparency = 1.000
+    _Image.Position = UDim2.new(0.5, 0, 0.5, 0)
+    _Image.Size = UDim2.new(0.800000012, 0, 0.800000012, 0)
+    _Image.ZIndex = 6
+    _Image.Image = "rbxassetid://10597869630"
+    _Image.ImageColor3 = Color3.fromRGB(254, 254, 254)
 
     X_Button.Name = "X_Button"
     X_Button.Parent = TopBar_Frame
-    X_Button.BackgroundTransparency = 1
-    X_Button.Position = UDim2.new(0.05, 0, 0.221589461, 0)
+    X_Button.BackgroundTransparency = 1.000
+    X_Button.Position = UDim2.new(0.0500000864, 0, 0.221589461, 0)
     X_Button.Size = UDim2.new(0.11929135, 0, 0.539204836, 0)
     X_Button.ZIndex = 5
     X_Button.Image = "rbxassetid://3570695787"
-    X_Button.ImageColor3 = Color3.fromRGB(249, 77, 78)
+    X_Button.ImageColor3 = Color3.fromRGB(113, 113, 113)
     X_Button.ScaleType = Enum.ScaleType.Slice
     X_Button.SliceCenter = Rect.new(100, 100, 100, 100)
     X_Button.SliceScale = 0.120
 
+    xImage.Name = "xImage"
+    xImage.Parent = X_Button
+    xImage.AnchorPoint = Vector2.new(0.5, 0.5)
+    xImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    xImage.BackgroundTransparency = 1.000
+    xImage.Position = UDim2.new(0.5, 0, 0.5, 0)
+    xImage.Size = UDim2.new(0.800000012, 0, 0.800000012, 0)
+    xImage.ZIndex = 6
+    xImage.Image = "rbxassetid://10597813580"
+    xImage.ImageColor3 = Color3.fromRGB(254, 254, 254)
+
     Opt_Button.Name = "Opt_Button"
     Opt_Button.Parent = TopBar_Frame
-    Opt_Button.BackgroundTransparency = 1
-    Opt_Button.Position = UDim2.new(0.804176092, 0, 0.222, 0)
-    Opt_Button.Size = UDim2.new(0.15, 0, 0.7, 0)
+    Opt_Button.BackgroundTransparency = 1.000
+    Opt_Button.Position = UDim2.new(0.400000006, 0, 0.222000003, 0)
+    Opt_Button.Size = UDim2.new(0.119000003, 0, 0.538999975, 0)
     Opt_Button.ZIndex = 5
     Opt_Button.Image = "rbxassetid://10565603595"
-    Opt_Button.ImageColor3 = Color3.fromRGB(200, 200, 200)
+    Opt_Button.ImageColor3 = Color3.fromRGB(254, 254, 254)
     Opt_Button.SliceCenter = Rect.new(100, 100, 100, 100)
-    Opt_Button.SliceScale = 0.12
+    Opt_Button.SliceScale = 0.120
 
     Tabs_Folder.Name = "Tabs"
     Tabs_Folder.Parent = MainFrame
@@ -902,7 +926,7 @@ function Library.new(UI_Name)
             Frame_2.Parent = Frame
             Frame_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             Frame_2.BackgroundTransparency = 1
-            Frame_2.Position = UDim2.new(0.377439648, 0, 0, 0)
+            Frame_2.Position = UDim2.new(0.5, 0, 0, 0)
             Frame_2.Size = UDim2.new(0.48306039, 0, 1, 0)
 
             TextButton.Parent = Frame_2
@@ -976,7 +1000,7 @@ function Library.new(UI_Name)
             Frame_2.Parent = Frame
             Frame_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             Frame_2.BackgroundTransparency = 1
-            Frame_2.Position = UDim2.new(0.377439648, 0, 0, 0)
+            Frame_2.Position = UDim2.new(0.5, 0, 0, 0)
             Frame_2.Size = UDim2.new(0.48306039, 0, 1, 0)
 
             TextBox.Parent = Frame_2
@@ -1676,6 +1700,14 @@ end
 
 -- test code here:
 
+local newUI = Library.new("e", "e", nil)
+local newTab = newUI:AddTab("Tab 1")
+local newTab2 = newUI:AddTab("Tab 2")
+newTab:AddLabel("Label")
+newTab:AddButton("Button")
+newTab:AddTextBox("TextBox")
+newTab:AddToggle("Toggle")
+newTab:AddSlider("Slider")
 
 -- end of test code
 
