@@ -1,6 +1,6 @@
 Library = {}
 
-local playIntro = false
+local playIntro = true
 local configFileName = "UITestLibConfig.json"
 
 local TS = game:GetService("TweenService")
@@ -114,6 +114,7 @@ Line.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Line.BackgroundTransparency = 0.900
 Line.Position = UDim2.new(0.5, 0, 0.95, 0)
 Line.Size = UDim2.new(0.95, 0, 0.2, 0)
+
 UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 255, 255))}
 UIGradient.Rotation = 90
 UIGradient.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.00, 1.00), NumberSequenceKeypoint.new(0.25, 1.00), NumberSequenceKeypoint.new(0.50, 0.00), NumberSequenceKeypoint.new(0.74, 1.00), NumberSequenceKeypoint.new(1.00, 1.00)}
@@ -123,7 +124,7 @@ function runIntro(mainBG, sideBar, uiName)
     local mainBG_OrigSize = mainBG.Size
     local sideBar_OrigSize = sideBar.Size
     mainBG.Size = UDim2.new(0,0,0,0)
-    sideBar.Size = UDim2.new(0,0,sideBar.Size.Y.Scale,0)
+    sideBar.Size = UDim2.new(0,0,0,0)
 
     TS:Create(
         mainBG,
@@ -651,14 +652,14 @@ function Library.new(UI_Name)
     UI_Background.SliceScale = 0.08
 
     TopBar_Frame.Name = "TopBar_Frame"
-    TopBar_Frame.Parent = game.StarterGui.UI_Lib.MainFrame
+    TopBar_Frame.Parent = MainFrame
     TopBar_Frame.BackgroundTransparency = 1.000
     TopBar_Frame.Size = UDim2.new(0.228033975, 0, 0.073063463, 0)
 
     Min_Button.Name = "Min_Button"
     Min_Button.Parent = TopBar_Frame
     Min_Button.BackgroundTransparency = 1.000
-    Min_Button.Position = UDim2.new(0.230000004, 0, 0.222000003, 0)
+    Min_Button.Position = UDim2.new(0.23, 0, 0.222, 0)
     Min_Button.Size = UDim2.new(0.11929135, 0, 0.539204836, 0)
     Min_Button.ZIndex = 5
     Min_Button.Image = "rbxassetid://3570695787"
@@ -673,7 +674,7 @@ function Library.new(UI_Name)
     _Image.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     _Image.BackgroundTransparency = 1.000
     _Image.Position = UDim2.new(0.5, 0, 0.5, 0)
-    _Image.Size = UDim2.new(0.800000012, 0, 0.800000012, 0)
+    _Image.Size = UDim2.new(0.8, 0, 0.8, 0)
     _Image.ZIndex = 6
     _Image.Image = "rbxassetid://10597869630"
     _Image.ImageColor3 = Color3.fromRGB(254, 254, 254)
@@ -681,7 +682,7 @@ function Library.new(UI_Name)
     X_Button.Name = "X_Button"
     X_Button.Parent = TopBar_Frame
     X_Button.BackgroundTransparency = 1.000
-    X_Button.Position = UDim2.new(0.0500000864, 0, 0.221589461, 0)
+    X_Button.Position = UDim2.new(0.05, 0, 0.221589461, 0)
     X_Button.Size = UDim2.new(0.11929135, 0, 0.539204836, 0)
     X_Button.ZIndex = 5
     X_Button.Image = "rbxassetid://3570695787"
@@ -696,7 +697,7 @@ function Library.new(UI_Name)
     xImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     xImage.BackgroundTransparency = 1.000
     xImage.Position = UDim2.new(0.5, 0, 0.5, 0)
-    xImage.Size = UDim2.new(0.800000012, 0, 0.800000012, 0)
+    xImage.Size = UDim2.new(0.8, 0, 0.8, 0)
     xImage.ZIndex = 6
     xImage.Image = "rbxassetid://10597813580"
     xImage.ImageColor3 = Color3.fromRGB(254, 254, 254)
@@ -704,8 +705,8 @@ function Library.new(UI_Name)
     Opt_Button.Name = "Opt_Button"
     Opt_Button.Parent = TopBar_Frame
     Opt_Button.BackgroundTransparency = 1.000
-    Opt_Button.Position = UDim2.new(0.400000006, 0, 0.222000003, 0)
-    Opt_Button.Size = UDim2.new(0.119000003, 0, 0.538999975, 0)
+    Opt_Button.Position = UDim2.new(0.4, 0, 0.222, 0)
+    Opt_Button.Size = UDim2.new(0.119, 0, 0.538999975, 0)
     Opt_Button.ZIndex = 5
     Opt_Button.Image = "rbxassetid://10565603595"
     Opt_Button.ImageColor3 = Color3.fromRGB(254, 254, 254)
