@@ -915,6 +915,7 @@ function Library.new(UI_Name)
             TextButton.Font = Enum.Font.GothamBold
             TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
             TextButton.TextSize = 14
+            TextButton.Text = ButtonText
 
             buttonBG.Name = "buttonBG"
             buttonBG.Parent = TextButton
@@ -938,7 +939,7 @@ function Library.new(UI_Name)
             Button_TL.Size = UDim2.new(0.416493893, 0, 1, 0)
             Button_TL.ZIndex = 3
             Button_TL.Font = Enum.Font.GothamBold
-            Button_TL.Text = ButtonText
+            Button_TL.Text = Title
             Button_TL.TextColor3 = Color3.fromRGB(234, 234, 234)
             Button_TL.TextSize = 12
             Button_TL.TextWrapped = true
@@ -1474,10 +1475,6 @@ function Library.new(UI_Name)
             local Selection = Instance.new("Frame")
             local selectionLabel = Instance.new("TextLabel")
             local List = Instance.new("Frame")
-            local newOption = Instance.new("Frame")
-            local optionLabel = Instance.new("TextLabel")
-            local optionButton = Instance.new("ImageButton")
-            local checkMarkBtn = Instance.new("ImageButton")
             local UIListLayout = Instance.new("UIListLayout")
 
             -- Properties:
@@ -1516,6 +1513,11 @@ function Library.new(UI_Name)
             UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 
             for i, v in pairs(Options) do
+                local newOption = Instance.new("Frame")
+                local optionLabel = Instance.new("TextLabel")
+                local optionButton = Instance.new("ImageButton")
+                local checkMarkBtn = Instance.new("ImageButton")
+
                 newOption.Name = "newOption"
                 newOption.Parent = List
                 newOption.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -1530,7 +1532,7 @@ function Library.new(UI_Name)
                 optionLabel.Size = UDim2.new(0.747997642, 0, 1, 0)
                 optionLabel.ZIndex = 3
                 optionLabel.Font = Enum.Font.GothamBold
-                optionLabel.Text = "Flight"
+                optionLabel.Text = v
                 optionLabel.TextColor3 = Color3.fromRGB(234, 234, 234)
                 optionLabel.TextSize = 12
                 optionLabel.TextWrapped = true
@@ -1674,14 +1676,6 @@ end
 
 -- test code here:
 
-local newUI = Library.new("e", "e", nil)
-local newTab = newUI:AddTab("Tab 1")
-local newTab2 = newUI:AddTab("Tab 2")
-newTab:AddLabel("Label")
-newTab:AddButton("Button")
-newTab:AddTextBox("TextBox")
-newTab:AddToggle("Toggle")
-newTab:AddSlider("Slider")
 
 -- end of test code
 
