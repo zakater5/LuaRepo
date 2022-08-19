@@ -652,12 +652,12 @@ function Library.new(UI_Name)
 
     TopBar_Frame.Name = "TopBar_Frame"
     TopBar_Frame.Parent = MainFrame
-    TopBar_Frame.BackgroundTransparency = 1.000
+    TopBar_Frame.BackgroundTransparency = 1
     TopBar_Frame.Size = UDim2.new(0.228033975, 0, 0.073063463, 0)
 
     Min_Button.Name = "Min_Button"
     Min_Button.Parent = TopBar_Frame
-    Min_Button.BackgroundTransparency = 1.000
+    Min_Button.BackgroundTransparency = 1
     Min_Button.Position = UDim2.new(0.23, 0, 0.222, 0)
     Min_Button.Size = UDim2.new(0.11929135, 0, 0.539204836, 0)
     Min_Button.ZIndex = 5
@@ -671,7 +671,7 @@ function Library.new(UI_Name)
     _Image.Parent = Min_Button
     _Image.AnchorPoint = Vector2.new(0.5, 0.5)
     _Image.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    _Image.BackgroundTransparency = 1.000
+    _Image.BackgroundTransparency = 1
     _Image.Position = UDim2.new(0.5, 0, 0.5, 0)
     _Image.Size = UDim2.new(0.8, 0, 0.8, 0)
     _Image.ZIndex = 6
@@ -680,7 +680,7 @@ function Library.new(UI_Name)
 
     X_Button.Name = "X_Button"
     X_Button.Parent = TopBar_Frame
-    X_Button.BackgroundTransparency = 1.000
+    X_Button.BackgroundTransparency = 1
     X_Button.Position = UDim2.new(0.05, 0, 0.221589461, 0)
     X_Button.Size = UDim2.new(0.11929135, 0, 0.539204836, 0)
     X_Button.ZIndex = 5
@@ -694,7 +694,7 @@ function Library.new(UI_Name)
     xImage.Parent = X_Button
     xImage.AnchorPoint = Vector2.new(0.5, 0.5)
     xImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    xImage.BackgroundTransparency = 1.000
+    xImage.BackgroundTransparency = 1
     xImage.Position = UDim2.new(0.5, 0, 0.5, 0)
     xImage.Size = UDim2.new(0.8, 0, 0.8, 0)
     xImage.ZIndex = 6
@@ -703,7 +703,7 @@ function Library.new(UI_Name)
 
     Opt_Button.Name = "Opt_Button"
     Opt_Button.Parent = TopBar_Frame
-    Opt_Button.BackgroundTransparency = 1.000
+    Opt_Button.BackgroundTransparency = 1
     Opt_Button.Position = UDim2.new(0.4, 0, 0.222, 0)
     Opt_Button.Size = UDim2.new(0.119, 0, 0.538999975, 0)
     Opt_Button.ZIndex = 5
@@ -1299,59 +1299,104 @@ function Library.new(UI_Name)
             end)
         end
 
-        function Controls:AddDropdown(Title, Options, callback)
+        function Controls:AddDropdown(Title, Options, defaultOption, callback)
             local Dropdown = {}
             local OptionsTable = {}
             Title = Title or "Untitled"
             Options = Options or {}
+            defaultOption = defaultOption or ""
             callback = callback or function() end
 
             -- Instances:
-            local newDropdown = Instance.new("Frame")
-            local newDropdown_TL = Instance.new("TextLabel")
+            local Dropdown = Instance.new("Frame")
+            local Frame = Instance.new("Frame")
+            local DropdownIcon_BG = Instance.new("ImageButton")
+            local DropdownIcon = Instance.new("ImageButton")
+            local DropdownBtn = Instance.new("TextButton")
+            local DropdownBtn_BG = Instance.new("ImageButton")
             local ScrollingFrame = Instance.new("ScrollingFrame")
             local Dropdown_Items = Instance.new("Folder")
             local UIListLayout = Instance.new("UIListLayout")
-            local SelectedOption_Btn = Instance.new("TextButton")
-            local SelectedOption_Btn_BG = Instance.new("ImageLabel")
-            local Arrow = Instance.new("ImageLabel")
             local DropDownBG = Instance.new("ImageLabel")
-            local DropDownBG_BG = Instance.new("ImageLabel")
+            local dropdownLabel = Instance.new("TextLabel")
 
             -- Properties:
-            newDropdown.Name = "newDropdown"
-            newDropdown.Parent = NewTab
-            newDropdown.BackgroundTransparency = 1
-            newDropdown.Position = UDim2.new(0, 0, 0.52, 0)
-            newDropdown.Size = UDim2.new(0.972, 0, 0.09, 0)
+            Dropdown.Name = "Dropdown"
+            Dropdown.Parent = NewTab
+            Dropdown.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            Dropdown.BackgroundTransparency = 1
+            Dropdown.Size = UDim2.new(0.972, 0, 0.09, 0)
 
-            newDropdown_TL.Name = "newDropdown_TL"
-            newDropdown_TL.Parent = newDropdown
-            newDropdown_TL.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            newDropdown_TL.BackgroundTransparency = 1
-            newDropdown_TL.Position = UDim2.new(0.0489282086, 0, 0, 0)
-            newDropdown_TL.Size = UDim2.new(0.16822055, 0, 1, 0)
-            newDropdown_TL.ZIndex = 6
-            newDropdown_TL.Font = Enum.Font.GothamBold
-            newDropdown_TL.Text = "Quest"
-            newDropdown_TL.TextColor3 = Color3.fromRGB(234, 234, 234)
-            newDropdown_TL.TextSize = 12
-            newDropdown_TL.TextWrapped = true
-            newDropdown_TL.TextXAlignment = Enum.TextXAlignment.Left
+            Frame.Parent = Dropdown
+            Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            Frame.BackgroundTransparency = 1
+            Frame.Position = UDim2.new(0.5, 0, 0, 0)
+            Frame.Size = UDim2.new(0.48306039, 0, 1, 0)
 
-            ScrollingFrame.Name = "ScrollingFrame"
-            ScrollingFrame.Parent = newDropdown
+            DropdownIcon_BG.Name = "DropdownIcon_BG"
+            DropdownIcon_BG.Parent = Frame
+            DropdownIcon_BG.AnchorPoint = Vector2.new(0, 0.5)
+            DropdownIcon_BG.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            DropdownIcon_BG.BackgroundTransparency = 1
+            DropdownIcon_BG.Position = UDim2.new(0.87830627, 0, 0.5, 0)
+            DropdownIcon_BG.Size = UDim2.new(0.121942624, 0, 0.7, 0)
+            DropdownIcon_BG.ZIndex = 8
+            DropdownIcon_BG.Image = "rbxassetid://3570695787"
+            DropdownIcon_BG.ImageColor3 = uiAccentColors[_G.settings.AccentColor]
+            DropdownIcon_BG.ScaleType = Enum.ScaleType.Slice
+            DropdownIcon_BG.SliceCenter = Rect.new(100, 100, 100, 100)
+            DropdownIcon_BG.SliceScale = 0.060
+
+            DropdownIcon.Name = "DropdownIcon"
+            DropdownIcon.Parent = DropdownIcon_BG
+            DropdownIcon.AnchorPoint = Vector2.new(0.5, 0.5)
+            DropdownIcon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            DropdownIcon.BackgroundTransparency = 1
+            DropdownIcon.Position = UDim2.new(0.5, 0, 0.5, 0)
+            DropdownIcon.Size = UDim2.new(1, 0, 1, 0)
+            DropdownIcon.ZIndex = 9
+            DropdownIcon.Image = "rbxassetid://10104292792"
+            DropdownIcon.SliceCenter = Rect.new(100, 100, 100, 100)
+            DropdownIcon.SliceScale = 0
+
+            DropdownBtn.Name = "DropdownBtn"
+            DropdownBtn.Parent = Frame
+            DropdownBtn.AnchorPoint = Vector2.new(0, 0.5)
+            DropdownBtn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            DropdownBtn.BackgroundTransparency = 1
+            DropdownBtn.Position = UDim2.new(0.050000228, 0, 0.5, 0)
+            DropdownBtn.Size = UDim2.new(0.904998064, 0, 0.7, 0)
+            DropdownBtn.ZIndex = 8
+            DropdownBtn.Font = Enum.Font.GothamBold
+            DropdownBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+            DropdownBtn.TextSize = 14
+            DropdownBtn.TextXAlignment = Enum.TextXAlignment.Left
+            DropdownBtn.Text = defaultOption
+
+            DropdownBtn_BG.Name = "DropdownBtn_BG"
+            DropdownBtn_BG.Parent = DropdownBtn
+            DropdownBtn_BG.AnchorPoint = Vector2.new(0.5, 0)
+            DropdownBtn_BG.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            DropdownBtn_BG.BackgroundTransparency = 1
+            DropdownBtn_BG.Position = UDim2.new(0.5, 0, 0, 0)
+            DropdownBtn_BG.Size = UDim2.new(1.1, 0, 1, 0)
+            DropdownBtn_BG.ZIndex = 3
+            DropdownBtn_BG.Image = "rbxassetid://3570695787"
+            DropdownBtn_BG.ImageColor3 = Color3.fromRGB(113, 113, 113)
+            DropdownBtn_BG.ScaleType = Enum.ScaleType.Slice
+            DropdownBtn_BG.SliceCenter = Rect.new(100, 100, 100, 100)
+            DropdownBtn_BG.SliceScale = 0.06
+
+            ScrollingFrame.Parent = Frame
             ScrollingFrame.Active = true
             ScrollingFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             ScrollingFrame.BackgroundTransparency = 1
             ScrollingFrame.BorderSizePixel = 0
-            ScrollingFrame.Position = UDim2.new(0.294, 0, 0.829, 0)
-            ScrollingFrame.Size = UDim2.new(0.692, 0, 2.268, 0)
-            ScrollingFrame.Visible = false
+            ScrollingFrame.Position = UDim2.new(0.0102236029, 0, 0.85, 0)
             ScrollingFrame.ZIndex = 8
-            ScrollingFrame.CanvasSize = UDim2.new(0, 0, 1.5, 0)
+            ScrollingFrame.CanvasSize = UDim2.new(0, 0, 1, 0)
             ScrollingFrame.ScrollBarThickness = 10
-            ScrollingFrame.AutomaticCanvasSize = Enum.AutomaticSize.Y
+            ScrollingFrame.Visible = false
 
             Dropdown_Items.Name = "Dropdown_Items"
             Dropdown_Items.Parent = ScrollingFrame
@@ -1359,134 +1404,114 @@ function Library.new(UI_Name)
             UIListLayout.Parent = Dropdown_Items
             UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 
-            SelectedOption_Btn.Name = "SelectedOption_Btn"
-            SelectedOption_Btn.Parent = newDropdown
-            SelectedOption_Btn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            SelectedOption_Btn.BackgroundTransparency = 1
-            SelectedOption_Btn.BorderSizePixel = 0
-            SelectedOption_Btn.Position = UDim2.new(0.293, 0, 0.206, 0)
-            SelectedOption_Btn.Size = UDim2.new(0.692, 0, 0.642, 0)
-            SelectedOption_Btn.ZIndex = 6
-            SelectedOption_Btn.Font = Enum.Font.GothamBold
-            SelectedOption_Btn.Text = "Officer Sam [Lvl. 1+]"
-            SelectedOption_Btn.TextColor3 = Color3.fromRGB(209, 209, 209)
-            SelectedOption_Btn.TextSize = 12
-
-            SelectedOption_Btn_BG.Name = "SelectedOption_Btn_BG"
-            SelectedOption_Btn_BG.Parent = SelectedOption_Btn
-            SelectedOption_Btn_BG.AnchorPoint = Vector2.new(0.5, 0.5)
-            SelectedOption_Btn_BG.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            SelectedOption_Btn_BG.BackgroundTransparency = 1
-            SelectedOption_Btn_BG.Position = UDim2.new(0.5, 0, 0.5, 0)
-            SelectedOption_Btn_BG.Size = UDim2.new(1, 0, 1, 0)
-            SelectedOption_Btn_BG.ZIndex = 2
-            SelectedOption_Btn_BG.Image = "rbxassetid://3570695787"
-            SelectedOption_Btn_BG.ImageColor3 = Color3.fromRGB(62, 62, 62)
-            SelectedOption_Btn_BG.ScaleType = Enum.ScaleType.Slice
-            SelectedOption_Btn_BG.SliceCenter = Rect.new(100, 100, 100, 100)
-            SelectedOption_Btn_BG.SliceScale = 0.12
-
-            Arrow.Name = "Arrow"
-            Arrow.Parent = SelectedOption_Btn
-            Arrow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            Arrow.BackgroundTransparency = 1
-            Arrow.Position = UDim2.new(0.05, 0, 0.15, 0)
-            Arrow.Rotation = 90
-            Arrow.Size = UDim2.new(0.07, 0, 0.7, 0)
-            Arrow.ZIndex = 2
-            Arrow.Image = "rbxassetid://71659683"
-            Arrow.ImageColor3 = Color3.fromRGB(230, 230, 230)
-
             DropDownBG.Name = "DropDownBG"
-            DropDownBG.Parent = newDropdown
+            DropDownBG.Parent = Frame
             DropDownBG.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             DropDownBG.BackgroundTransparency = 1
-            DropDownBG.Position = UDim2.new(0.294, 0, 0.206, 0)
-            DropDownBG.Size = UDim2.new(0.692, 0, 3.072, 0)
-            DropDownBG.ZIndex = 2
-            DropDownBG.Visible = false
+            DropDownBG.Position = UDim2.new(0.00475058611, 0, 0.15, 0)
+            DropDownBG.ZIndex = 7
             DropDownBG.Image = "rbxassetid://3570695787"
-            DropDownBG.ImageColor3 = Color3.fromRGB(62, 62, 62)
+            DropDownBG.ImageColor3 = Color3.fromRGB(113, 113, 113)
             DropDownBG.ScaleType = Enum.ScaleType.Slice
             DropDownBG.SliceCenter = Rect.new(100, 100, 100, 100)
             DropDownBG.SliceScale = 0.12
+            DropDownBG.Visible = false
 
-            --DropDownBG_BG.Name = "DropDownBG_BG"
-            --DropDownBG_BG.Parent = DropDownBG
-            --DropDownBG_BG.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            --DropDownBG_BG.BackgroundTransparency = 1
-            --DropDownBG_BG.Position = UDim2.new(-0.01, 0, -0.01, 0)
-            --DropDownBG_BG.Size = UDim2.new(1.02, 0, 1.02, 0)
-            --DropDownBG_BG.Image = "rbxassetid://3570695787"
-            --DropDownBG_BG.ImageColor3 = Color3.fromRGB(216, 34, 128)
-            --DropDownBG_BG.ScaleType = Enum.ScaleType.Slice
-            --DropDownBG_BG.SliceCenter = Rect.new(100, 100, 100, 100)
-            --DropDownBG_BG.SliceScale = 0.12
+            ScrollingFrame.Size = UDim2.new(1, 0, .8 * #Options, 0)
+            DropDownBG.Size = UDim2.new(1, 0, (.8 * #Options) + 1, 0)
 
-                for _, v in pairs(Options) do
+            dropdownLabel.Name = "dropdownLabel"
+            dropdownLabel.Parent = Dropdown
+            dropdownLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            dropdownLabel.BackgroundTransparency = 1
+            dropdownLabel.Position = UDim2.new(0.0489281043, 0, 0, 0)
+            dropdownLabel.Size = UDim2.new(0.416493893, 0, 1, 0)
+            dropdownLabel.ZIndex = 3
+            dropdownLabel.Font = Enum.Font.GothamBold
+            dropdownLabel.Text = Title
+            dropdownLabel.TextColor3 = Color3.fromRGB(234, 234, 234)
+            dropdownLabel.TextSize = 12
+            dropdownLabel.TextWrapped = true
+            dropdownLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+            local line = Line:Clone()
+            line.Parent = newSlider
+
+            local function onClick()
+                if ScrollingFrame.Visible == true then
+                    local tween1 = TS:Create(DropDownBG, TweenInfo.new(.3, Enum.EasingStyle.Quad), {Size = UDim2.new(1, 0, 0, 0)})
+                    local tween2 = TS:Create(ScrollingFrame, TweenInfo.new(.3, Enum.EasingStyle.Quad), {Size = UDim2.new(1, 0, 0, 0)})
+                    tween1:Play()
+                    tween2:Play()
+                    tween1.Completed:Wait()
+                    ScrollingFrame.Visible = false
+                    DropDownBG.Visible = false
+                else
+                    ScrollingFrame.Visible = true
+                    DropDownBG.Visible = true
+                    ScrollingFrame.Size = UDim2.new(1, 0, 0, 0)
+                    DropDownBG.Size = UDim2.new(1, 0, 0, 0)
+                    TS:Create(DropDownBG, TweenInfo.new(.3, Enum.EasingStyle.Quad), {Size = UDim2.new(1, 0, (.8 * #Options) + 1, 0)}):Play()
+                    TS:Create(ScrollingFrame, TweenInfo.new(.3, Enum.EasingStyle.Quad), {Size = UDim2.new(1, 0, .8 * #Options, 0)}):Play()
+                end
+            end
+
+            DropdownBtn.MouseButton1Click:Connect(onClick)
+            DropdownIcon.MouseButton1Click:Connect(onClick)
+            DropdownIcon_BG.MouseButton1Click:Connect(onClick)
+
+            for _, v in pairs(Options) do
+                local newOption = Instance.new("TextButton")
+                newOption.Name = v
+                newOption.Parent = Dropdown_Items
+                newOption.BackgroundColor3 = Color3.fromRGB(113, 113, 113)
+                newOption.BorderSizePixel = 0
+                newOption.Position = UDim2.new(0.250659823, 0, 0.157962978, 0)
+                newOption.Size = UDim2.new(1, 0, 1 / #Options, 0)
+                newOption.ZIndex = 9
+                newOption.Font = Enum.Font.GothamBold
+                newOption.Text = v
+                newOption.TextColor3 = Color3.fromRGB(209, 209, 209)
+                newOption.TextSize = 12
+                table.insert(OptionsTable, newOption)
+
+                newOption.MouseButton1Click:Connect(function()
+                    DropdownBtn.Text = v
+                    callback(v)
+                    onClick()
+                end)
+            end
+
+
+            function Dropdown:RefreshDropdown(newOptions, newCallback)
+                newOptions = newOptions or {}
+                newCallback = newCallback or function() end
+
+                for i, v in pairs(newOptions) do
                     local newOption = Instance.new("TextButton")
                     newOption.Name = v
                     newOption.Parent = Dropdown_Items
-                    newOption.BackgroundColor3 = Color3.fromRGB(62, 62, 62)
+                    newOption.BackgroundColor3 = Color3.fromRGB(113, 113, 113)
                     newOption.BorderSizePixel = 0
                     newOption.Position = UDim2.new(0.250659823, 0, 0.157962978, 0)
-                    newOption.Size = UDim2.new(1, 0, 0.3, 0)
-                    newOption.ZIndex = 4
+                    newOption.Size = UDim2.new(1, 0, 0.13, 0)
+                    newOption.ZIndex = 9
                     newOption.Font = Enum.Font.GothamBold
                     newOption.Text = v
                     newOption.TextColor3 = Color3.fromRGB(209, 209, 209)
                     newOption.TextSize = 12
-                    newOption.TextWrapped = true
-                    table.insert(OptionsTable, newOption)
 
                     newOption.MouseButton1Click:Connect(function()
-                        SelectedOption_Btn.Text = v
+                        DropdownBtn.Text = v
                         ScrollingFrame.Visible = false
                         DropDownBG.Visible = false
-                        callback(v)
+                        newCallback(v)
                     end)
                 end
-
-                SelectedOption_Btn.MouseButton1Click:Connect(function()
-                    if ScrollingFrame.Visible == true then
-                        ScrollingFrame.Visible = false
-                        DropDownBG.Visible = false
-                    else
-                        ScrollingFrame.Visible = true
-                        DropDownBG.Visible = true
-                    end
-                end)
-
-                function Dropdown:RefreshDropdown(newOptions, newCallback)
-                    newOptions = newOptions or {}
-                    newCallback = newCallback or function() end
-
-                    for i, v in pairs(newOptions) do
-                        local newOption = Instance.new("TextButton")
-                        newOption.Name = v
-                        newOption.Parent = Dropdown_Items
-                        newOption.BackgroundColor3 = Color3.fromRGB(62, 62, 62)
-                        newOption.BorderSizePixel = 0
-                        newOption.Position = UDim2.new(0.250659823, 0, 0.157962978, 0)
-                        newOption.Size = UDim2.new(1, 0, 0.3, 0)
-                        newOption.ZIndex = 4
-                        newOption.Font = Enum.Font.GothamBold
-                        newOption.Text = v
-                        newOption.TextColor3 = Color3.fromRGB(209, 209, 209)
-                        newOption.TextSize = 12
-                        newOption.TextWrapped = true
-
-                        newOption.MouseButton1Click:Connect(function()
-                            SelectedOption_Btn.Text = v
-                            ScrollingFrame.Visible = false
-                            DropDownBG.Visible = false
-                            newCallback(v)
-                        end)
-                    end
-                end
-
-                return Dropdown
             end
+
+            return Dropdown
+        end
 
         function Controls:AddSelection(Title, Options, itemSelected_callback, itemUnselected_callback)
             Title = Title or "Untitled"
@@ -1495,6 +1520,11 @@ function Library.new(UI_Name)
             itemUnselected_callback = itemUnselected_callback or function() end
 
             local selectedOptions = {}
+
+            local dictCount = 0 --instead of #Options because its a disctionary not a table..
+            for i, v in pairs(Options) do
+                dictCount = dictCount + 1
+            end
 
             -- Instances:
             local Selection = Instance.new("Frame")
@@ -1507,31 +1537,31 @@ function Library.new(UI_Name)
             Selection.Parent = NewTab
             Selection.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             Selection.BackgroundTransparency = 1
-            Selection.Size = UDim2.new(0.972, 0, #Options * 0.09, 0)
+            Selection.Size = UDim2.new(0.972, 0, dictCount * 0.09, 0)
 
             selectionLabel.Name = "selectionLabel"
             selectionLabel.Parent = Selection
             selectionLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             selectionLabel.BackgroundTransparency = 1
             selectionLabel.Position = UDim2.new(0.0489281043, 0, 0, 0)
-            selectionLabel.Size = UDim2.new(0.416493893, 0, 1, 0)
+            selectionLabel.Size = UDim2.new(0.416493893, 0, 1 / dictCount, 0)
             selectionLabel.ZIndex = 3
             selectionLabel.Font = Enum.Font.GothamBold
-            selectionLabel.Text = "Flight"
+            selectionLabel.Text = Title
             selectionLabel.TextColor3 = Color3.fromRGB(234, 234, 234)
             selectionLabel.TextSize = 12
             selectionLabel.TextWrapped = true
             selectionLabel.TextXAlignment = Enum.TextXAlignment.Left
 
             local line = Line:Clone()
-            line.Size = UDim2.new(line.Size.X.Scale, 0, line.Size.Y.Scale / #Options, 0)
+            line.Size = UDim2.new(line.Size.X.Scale, 0, line.Size.Y.Scale / dictCount, 0)
             line.Parent = Selection
 
             List.Name = "List"
             List.Parent = Selection
             List.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             List.BackgroundTransparency = 1
-            List.Position = UDim2.new(0.382378072, 0, 0, 0)
+            List.Position = UDim2.new(0.475, 0, 0, 0)
             List.Size = UDim2.new(0.51172173, 0, 1, 0)
 
             UIListLayout.Parent = List
@@ -1547,7 +1577,7 @@ function Library.new(UI_Name)
                 newOption.Parent = List
                 newOption.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
                 newOption.BackgroundTransparency = 1
-                newOption.Size = UDim2.new(1, 0, 1 / #Options, 0)
+                newOption.Size = UDim2.new(1, 0, 1 / dictCount, 0)
 
                 optionLabel.Name = "selectionLabel"
                 optionLabel.Parent = newOption
@@ -1572,7 +1602,7 @@ function Library.new(UI_Name)
                 optionButton.Size = UDim2.new(0.119658366, 0, 0.7, 0)
                 optionButton.ZIndex = 3
                 optionButton.Image = "rbxassetid://3570695787"
-                optionButton.ImageColor3 = Color3.fromRGB(44, 115, 216)
+                optionButton.ImageColor3 = uiAccentColors[_G.settings.AccentColor]
                 optionButton.ScaleType = Enum.ScaleType.Slice
                 optionButton.SliceCenter = Rect.new(100, 100, 100, 100)
                 optionButton.SliceScale = 0.06
@@ -1596,12 +1626,12 @@ function Library.new(UI_Name)
                     table.insert(selectedOptions, i)
                 end
 
-                checkMarkBtn.MouseButton1Click:Connect(function()
+                local function onClick()
                     if checkMarkBtn.ImageTransparency == 1 then
                         table.insert(selectedOptions, i)
                         itemSelected_callback(i, selectedOptions)
                         checkMarkBtn.ImageTransparency = 0
-                        optionButton.ImageColor3 = Color3.fromRGB(44, 115, 216)
+                        optionButton.ImageColor3 = uiAccentColors[_G.settings.AccentColor]
                     else                      
                         local findOption = table.find(selectedOptions, i)
                         if findOption then
@@ -1611,7 +1641,10 @@ function Library.new(UI_Name)
                         checkMarkBtn.ImageTransparency = 1
                         optionButton.ImageColor3 = Color3.fromRGB(38, 38, 38)
                     end
-                end)
+                end
+
+                checkMarkBtn.MouseButton1Click:Connect(onClick)
+                optionButton.MouseButton1Click:Connect(onClick)
             end
         end
 
@@ -1726,9 +1759,3 @@ end
 
 return Library
 
-
-
---local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/zakater5/LuaRepo/main/Other/UI_Lib.lua"))()
---local newUI = Library.new("e", "e", nil)
---local newTab = newUI:NewTab("tabname")
---newTab:AddSlider("Label", 100, 0, 30)
