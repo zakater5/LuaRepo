@@ -112,7 +112,7 @@ Line.Name = "Line"
 Line.AnchorPoint = Vector2.new(0.5, 0.5)
 Line.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Line.BackgroundTransparency = 0.900
-Line.Position = UDim2.new(0.5, 0, 0.95, 0)
+Line.Position = UDim2.new(0.5, 0, 1, 0)
 Line.Size = UDim2.new(0.95, 0, 0.2, 0)
 
 UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 255, 255))}
@@ -292,19 +292,17 @@ Roundify_4.ImageColor3 = Color3.fromRGB(102, 102, 102)
 Roundify_4.ImageTransparency = 0.500
 Roundify_4.ScaleType = Enum.ScaleType.Slice
 Roundify_4.SliceCenter = Rect.new(100, 100, 100, 100)
-Roundify_4.SliceScale = 0.120
+Roundify_4.SliceScale = 0.12
 
 -- CONSTRUCTORS / FUNCTION FOR NOTIFICATION:
 function Library:sendNotification(settings)
     local newNotification = NotificationFrame:Clone()
     newNotification.Parent = NotificationsList
-
     newNotification.Title.Text = settings.Title
     newNotification["Text"].Text = settings.Text
     newNotification["Text"].TextColor3 = itemColors[settings.Text]
     newNotification.Button1.Text = settings.button1Text
     newNotification.Button2.Text = settings.button2Text
-
     newNotification.Button1.MouseButton1Click:Connect(settings.onButton1Click)
     newNotification.Button2.MouseButton1Click:Connect(settings.onButton2Click)
     
@@ -323,6 +321,7 @@ function Library:sendNotification(settings)
     end
     
     Debris:AddItem(newNotification, settings.Duration)
+    return newNotification
 end
 
 
@@ -1015,6 +1014,7 @@ function Library.new(UI_Name)
             TextBox.PlaceholderText = placeholderText
             TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
             TextBox.TextSize = 14
+            TextBox.Text = ""
 
             TextBox_BG.Name = "TextBox_BG"
             TextBox_BG.Parent = TextBox
@@ -1721,15 +1721,6 @@ function Library:AddKeybind(key, callback, description)
 end
 
 -- test code here:
-
-local newUI = Library.new("e", "e", nil)
-local newTab = newUI:AddTab("Tab 1")
-local newTab2 = newUI:AddTab("Tab 2")
-newTab:AddLabel("Label")
-newTab:AddButton("Button")
-newTab:AddTextBox("TextBox")
-newTab:AddToggle("Toggle")
-newTab:AddSlider("Slider")
 
 -- end of test code
 
