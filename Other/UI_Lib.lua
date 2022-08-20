@@ -1435,7 +1435,7 @@ function Library.new(UI_Name)
             dropdownLabel.TextXAlignment = Enum.TextXAlignment.Left
 
             local line = Line:Clone()
-            line.Parent = newSlider
+            line.Parent = Dropdown
 
             local function onClick()
                 if ScrollingFrame.Visible == true then
