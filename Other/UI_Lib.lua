@@ -1300,7 +1300,7 @@ function Library.new(UI_Name)
         end
 
         function Controls:AddDropdown(Title, Options, defaultOption, callback)
-            local Dropdown = {}
+            local dropdown = {}
             local OptionsTable = {}
             Title = Title or "Untitled"
             Options = Options or {}
@@ -1483,7 +1483,7 @@ function Library.new(UI_Name)
             end
 
 
-            function Dropdown:RefreshDropdown(newOptions, newCallback)
+            function dropdown:RefreshDropdown(newOptions, newCallback)
                 newOptions = newOptions or {}
                 newCallback = newCallback or function() end
 
@@ -1510,7 +1510,7 @@ function Library.new(UI_Name)
                 end
             end
 
-            return Dropdown
+            return dropdown
         end
 
         function Controls:AddSelection(Title, Options, itemSelected_callback, itemUnselected_callback)
@@ -1755,7 +1755,42 @@ end
 
 -- test code here:
 
+local newUI = Library.new("e", "e", nil)
+local newTab = newUI:AddTab("Tab 1")
+local newTab2 = newUI:AddTab("Tab 2")
+newTab:AddLabel("Label")
+newTab:AddButton("Button")
+newTab:AddTextBox("TextBox")
+newTab:AddToggle("Toggle")
+newTab:AddSlider("Slider")
+newTab:AddSelection("Use Moves",
+    {
+        ["m1"] = true,
+        ["m2"] = true,
+        ["e"] = false,
+        ["r"] = false,
+        ["z"] = false,
+        ["x"] = false,
+        ["y"] = false,
+        ["t"] = false
+    },
+    function(selectedOption, allOptions)
+
+    end,
+    function(unSelectedOption, allOptions)
+
+    end
+)
+
+newTab2:AddDropdown("Title", {"Option1", "Option2", "Option3", "Option1", "Option2", "Option3", "Option1", "Option2", "Option3", "Option1", "Option2", "Option3"}, "e", function(optionSelected) print("Selected " .. optionSelected) end)
+
 -- end of test code
 
 return Library
 
+
+
+--local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/zakater5/LuaRepo/main/Other/UI_Lib.lua"))()
+--local newUI = Library.new("e", "e", nil)
+--local newTab = newUI:NewTab("tabname")
+--newTab:AddSlider("Label", 100, 0, 30)
