@@ -874,6 +874,10 @@ function Library.new(UI_Name)
         end)
 
         Controls = {}
+        function Controls:MakeMainTab()
+            NewTab.Visible = true
+        end
+
         function Controls:AddLabel(LabelText)
             LabelText = LabelText or "Label"
 
@@ -1757,6 +1761,7 @@ end
 
 local newUI = Library.new("e", "e", nil)
 local newTab = newUI:AddTab("Tab 1")
+newTab:MakeMainTab()
 local newTab2 = newUI:AddTab("Tab 2")
 newTab:AddLabel("Label")
 newTab:AddButton("Button")
