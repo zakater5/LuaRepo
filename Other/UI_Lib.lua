@@ -1,6 +1,6 @@
 Library = {}
 
-local playIntro = false
+local playIntro = true
 local configFileName = "UITestLibConfig.json"
 
 local TS = game:GetService("TweenService")
@@ -123,19 +123,46 @@ UIGradient.Parent = Line
 function runIntro(mainBG, sideBar, uiName)
     local mainBG_OrigSize = mainBG.Size
     local sideBar_OrigSize = sideBar.Size
-    mainBG.Size = UDim2.new(0,0,0,0)
-    sideBar.Size = UDim2.new(0,0,0,0)
+    mainBG.Size = UDim2.new(0, 0, mainBG_OrigSize.Y.Scale, 0)
+    sideBar.Size = UDim2.new(0, 0, sideBar_OrigSize.Y.Scale, 0)
+
+    local introTitle = Instance.new("TextLabel")
+    introTitle.Size = UDim2.new(1, 0, 1, 0)
+    introTitle.BackgroundTransparency = 1
+    introTitle.Text = uiName
+    introTitle.TextTransparency = 1
+    introTitle.Parent = mainBG
+    introTitle.ZIndex = 3
+    introTitle.Font = Enum.Font.GothamBold
+    introTitle.TextColor3 = Color3.fromRGB(234, 234, 234)
+    introTitle.TextSize = 20
+    introTitle.TextWrapped = true
 
     TS:Create(
         mainBG,
         TweenInfo.new(.5, Enum.EasingStyle.Sine),
         {Size = mainBG_OrigSize}
     ):Play()
+    wait(.3)
+
+    TS:Create(
+        introTitle,
+        TweenInfo.new(.3, Enum.EasingStyle.Sine),
+        {TextTransparency = 0}
+    ):Play()
     wait(1)
+
+    TS:Create(
+        introTitle,
+        TweenInfo.new(.3, Enum.EasingStyle.Sine),
+        {TextTransparency = 1}
+    ):Play()
+    wait(.3)
+
     TS:Create(
         sideBar,
-        TweenInfo.new(.5, Enum.EasingStyle.Sine),
-        {Size = mainBG_OrigSize}
+        TweenInfo.new(.3, Enum.EasingStyle.Sine),
+        {Size = sideBar_OrigSize}
     ):Play()
 end
 
@@ -906,6 +933,39 @@ function Library.new(UI_Name)
             TextLabel.TextXAlignment = Enum.TextXAlignment.Left
 
             local line = Line:Clone()
+            line.Parent = Frame
+        end
+
+        function Controls:AddParagraph(ParaText)
+            ParaText = ParaText or "Label"
+            local _, count = ParaText:gsub('\n', '\n')
+
+            -- Instances:
+            local Frame = Instance.new("Frame")
+            local TextLabel = Instance.new("TextLabel")
+
+            --Properties:
+            Frame.Parent = NewTab
+            Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            Frame.BackgroundTransparency = 1
+            Frame.Size = UDim2.new(0.972, 0, (0.09 * count) / 2, 0)
+
+            TextLabel.Name = "TextLabel"
+            TextLabel.Parent = Frame
+            TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            TextLabel.BackgroundTransparency = 1
+            TextLabel.Position = UDim2.new(0.0489281043, 0, 0, 0)
+            TextLabel.Size = UDim2.new(1, 0, 1, 0)
+            TextLabel.ZIndex = 3
+            TextLabel.Font = Enum.Font.GothamBold
+            TextLabel.Text = ParaText
+            TextLabel.TextColor3 = Color3.fromRGB(234, 234, 234)
+            TextLabel.TextSize = 12
+            TextLabel.TextWrapped = true
+            TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+            local line = Line:Clone()
+            line.Size = UDim2.new(line.Size.X.Scale, 0, line.Size.Y.Scale / count, 0)
             line.Parent = Frame
         end
 
@@ -1758,36 +1818,6 @@ function Library:AddKeybind(key, callback, description)
 end
 
 -- test code here:
-
-local newUI = Library.new("e", "e", nil)
-local newTab = newUI:AddTab("Tab 1")
-newTab:MakeMainTab()
-local newTab2 = newUI:AddTab("Tab 2")
-newTab:AddLabel("Label")
-newTab:AddButton("Button")
-newTab:AddTextBox("TextBox")
-newTab:AddToggle("Toggle")
-newTab:AddSlider("Slider")
-newTab:AddSelection("Use Moves",
-    {
-        ["m1"] = true,
-        ["m2"] = true,
-        ["e"] = false,
-        ["r"] = false,
-        ["z"] = false,
-        ["x"] = false,
-        ["y"] = false,
-        ["t"] = false
-    },
-    function(selectedOption, allOptions)
-
-    end,
-    function(unSelectedOption, allOptions)
-
-    end
-)
-
-newTab2:AddDropdown("Title", {"Option1", "Option2", "Option3", "Option1", "Option2", "Option3", "Option1", "Option2", "Option3", "Option1", "Option2", "Option3"}, "e", function(optionSelected) print("Selected " .. optionSelected) end)
 
 -- end of test code
 
