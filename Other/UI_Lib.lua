@@ -2,6 +2,7 @@ Library = {}
 
 local playIntro = true
 local configFileName = "UITestLibConfig.json"
+local saveData = true
 
 local TS = game:GetService("TweenService")
 local UIS = game:GetService("UserInputService")
@@ -34,6 +35,14 @@ local darkTheme_Shades = {
     ["Tertiary"] = Color3.fromRGB(38, 38, 38),
 }
 
+function Library:SaveData(boolean)
+    saveData = boolean
+end
+
+function Library:PlayIntro(boolean)
+    playIntro = boolean
+end
+
 -- [[ SAVING/LOADING SETTINGS ]] --
 _G.settings = {}
 function loadSettings()
@@ -47,6 +56,7 @@ if _G.settings.AccentColor == nil then _G.settings.AccentColor = "Blue" end
 if _G.settings.Theme == nil then _G.settings.Theme = "Dark" end
 
 function saveSettings()
+    if not saveData then return end
     local json
     local HttpService = game:GetService("HttpService")
     if (writefile) then
@@ -138,12 +148,30 @@ function runIntro(mainBG, sideBar, uiName)
     introTitle.TextSize = 20
     introTitle.TextWrapped = true
 
+    local UIMainLogo = Instance.new("ImageLabel")
+    UIMainLogo.Name = "UIMainLogo"
+    UIMainLogo.Parent = mainBG
+    UIMainLogo.AnchorPoint = Vector2.new(0.5, 0.5)
+    UIMainLogo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    UIMainLogo.BackgroundTransparency = 1.000
+    UIMainLogo.Position = UDim2.new(0.5, 0, 0.25, 0)
+    UIMainLogo.Size = UDim2.new(0, 0, 0, 0)
+    UIMainLogo.Image = "rbxassetid://10700710572"
+    UIMainLogo.ImageTransparency = 1
+
     TS:Create(
         mainBG,
         TweenInfo.new(.5, Enum.EasingStyle.Sine),
         {Size = mainBG_OrigSize}
     ):Play()
     wait(.3)
+
+    TS:Create(
+        UIMainLogo,
+        TweenInfo.new(.5, Enum.EasingStyle.Sine),
+        {Size = UDim2.new(0.3, 0, 0.42, 0), ImageTransparency = 0}
+    ):Play()
+    wait(.2)
 
     TS:Create(
         introTitle,
@@ -157,7 +185,13 @@ function runIntro(mainBG, sideBar, uiName)
         TweenInfo.new(.3, Enum.EasingStyle.Sine),
         {TextTransparency = 1}
     ):Play()
+    TS:Create(
+        UIMainLogo,
+        TweenInfo.new(.5, Enum.EasingStyle.Sine),
+        {ImageTransparency = 1}
+    ):Play()
     wait(.3)
+    UIMainLogo:Destroy()
 
     TS:Create(
         sideBar,
@@ -169,6 +203,8 @@ end
 -- [[ CREATING CUSTOM NOTIFICATION GUI ]] --
 -- NOTIFICATION LIST:
 -- Instances:
+local notifExists = game.CoreGui:FindFirstChild("NotificationGui")
+if notifExists then notifExists:Destroy() end
 local NotificationGui = Instance.new("ScreenGui")
 local NotificationsList = Instance.new("Frame")
 local UIListLayout = Instance.new("UIListLayout")
@@ -1436,6 +1472,7 @@ function Library.new(UI_Name)
             DropdownBtn.TextSize = 14
             DropdownBtn.TextXAlignment = Enum.TextXAlignment.Left
             DropdownBtn.Text = defaultOption
+            DropdownBtn.TextWrapped = true
 
             DropdownBtn_BG.Name = "DropdownBtn_BG"
             DropdownBtn_BG.Parent = DropdownBtn
@@ -1716,66 +1753,60 @@ function Library.new(UI_Name)
             Title = Title or "Untitled"
             keyString = keyString:upper() or "F"
             onKey_Callback = onKey_Callback or function() end
+            if _G.settings.keybinds then
+                if _G.settings.keybinds[Title] then keyString = _G.settings.keybinds[Title] end
+            end
 
             -- Instances:
-            local newKeybind = Instance.new("ImageLabel")
-            local newKeybind_TL = Instance.new("TextLabel")
+            local newKeybind = Instance.new("Frame")
             local newKeybind_Btn = Instance.new("TextButton")
-            local Btn_BG = Instance.new("ImageLabel")
+            local Btn_BG = Instance.new("ImageButton")
+            local newKeybind_TL = Instance.new("TextLabel")
 
             -- Properties:
             newKeybind.Name = "newKeybind"
             newKeybind.Parent = NewTab
+            newKeybind.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             newKeybind.BackgroundTransparency = 1
-            newKeybind.Position = UDim2.new(4.6708, 0, -0.5, 0)
-            newKeybind.Size = UDim2.new(0.972, 0, 0.08, 0)
-            newKeybind.Image = "rbxassetid://3570695787"
-            newKeybind.ImageColor3 = Color3.fromRGB(38, 38, 38)
-            newKeybind.ScaleType = Enum.ScaleType.Slice
-            newKeybind.SliceCenter = Rect.new(100, 100, 100, 100)
-            newKeybind.SliceScale = 0.06
+            newKeybind.Size = UDim2.new(0.972, 0, 0.09, 0)
 
-            newKeybind_TL.Name = "newKeybind_TL"
-            newKeybind_TL.Parent = newKeybind
-            newKeybind_TL.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            newKeybind_TL.BackgroundTransparency = 1
-            newKeybind_TL.Position = UDim2.new(0.0489282086, 0, 0, 0)
-            newKeybind_TL.Size = UDim2.new(0.663618565, 0, 1, 0)
-            newKeybind_TL.ZIndex = 6
-            newKeybind_TL.Font = Enum.Font.GothamBold
-            newKeybind_TL.Text = Title
-            newKeybind_TL.TextColor3 = Color3.fromRGB(234, 234, 234)
-            newKeybind_TL.TextSize = 12
-            newKeybind_TL.TextWrapped = true
-            newKeybind_TL.TextXAlignment = Enum.TextXAlignment.Left
+            Frame.Parent = Dropdown
+            Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            Frame.BackgroundTransparency = 1
+            Frame.Position = UDim2.new(0.5, 0, 0, 0)
+            Frame.Size = UDim2.new(0.48306039, 0, 1, 0)
 
             newKeybind_Btn.Name = "newKeybind_Btn"
-            newKeybind_Btn.Parent = newKeybind
+            newKeybind_Btn.Parent = Frame
             newKeybind_Btn.AnchorPoint = Vector2.new(0, 0.5)
             newKeybind_Btn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             newKeybind_Btn.BackgroundTransparency = 1
-            newKeybind_Btn.BorderSizePixel = 0
-            newKeybind_Btn.Position = UDim2.new(0.749213159, 0, 0.5, 0)
-            newKeybind_Btn.Size = UDim2.new(0.23855485, 0, 0.8, 0)
-            newKeybind_Btn.ZIndex = 2
+            newKeybind_Btn.Position = UDim2.new(0.05, 0, 0.5, 0)
+            newKeybind_Btn.Size = UDim2.new(0.904998064, 0, 0.7, 0)
+            newKeybind_Btn.ZIndex = 8
             newKeybind_Btn.Font = Enum.Font.GothamBold
-            newKeybind_Btn.Text = keyString
-            newKeybind_Btn.TextColor3 = Color3.fromRGB(211, 211, 211)
-            newKeybind_Btn.TextSize = 12
+            newKeybind_Btn.TextColor3 = Color3.fromRGB(255, 255, 255)
+            newKeybind_Btn.TextSize = 14
+            newKeybind_Btn.TextXAlignment = Enum.TextXAlignment.Left
+            newKeybind_Btn.Text = defaultOption
             newKeybind_Btn.TextWrapped = true
 
             Btn_BG.Name = "Btn_BG"
             Btn_BG.Parent = newKeybind_Btn
-            Btn_BG.AnchorPoint = Vector2.new(0.5, 0.5)
+            Btn_BG.AnchorPoint = Vector2.new(0.5, 0)
             Btn_BG.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             Btn_BG.BackgroundTransparency = 1
-            Btn_BG.Position = UDim2.new(0.5, 0, 0.5, 0)
-            Btn_BG.Size = UDim2.new(1, 0, 1, 0)
+            Btn_BG.Position = UDim2.new(0.5, 0, 0, 0)
+            Btn_BG.Size = UDim2.new(1.1, 0, 1, 0)
+            Btn_BG.ZIndex = 3
             Btn_BG.Image = "rbxassetid://3570695787"
-            Btn_BG.ImageColor3 = Color3.fromRGB(62, 62, 62)
+            Btn_BG.ImageColor3 = Color3.fromRGB(113, 113, 113)
             Btn_BG.ScaleType = Enum.ScaleType.Slice
             Btn_BG.SliceCenter = Rect.new(100, 100, 100, 100)
             Btn_BG.SliceScale = 0.06
+
+            local line = Line:Clone()
+            line.Parent = Dropdown
 
             local logKey = false
             mouse.KeyDown:Connect(function(key)
@@ -1786,8 +1817,9 @@ function Library.new(UI_Name)
                 end
 
                 if logKey then
-                    _G.settings.flight_KeyBind = pressedKey
-                    newKeybind_Btn.Text = pressedKey:upper()
+                    _G.settings.keybinds[Title] = pressedKey
+                    keyString = pressedKey
+                    newKeybind_Btn.Text = "[" .. pressedKey:upper() .. "]"
                     logKey = false
                     saveSettings()
                 end
