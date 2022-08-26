@@ -1771,7 +1771,7 @@ function Library.new(UI_Name)
             newKeybind.Size = UDim2.new(0.972, 0, 0.09, 0)
 
             newKeybind_Btn.Name = "newKeybind_Btn"
-            newKeybind_Btn.Parent = Frame
+            newKeybind_Btn.Parent = newKeybind
             newKeybind_Btn.AnchorPoint = Vector2.new(0, 0.5)
             newKeybind_Btn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             newKeybind_Btn.BackgroundTransparency = 1
