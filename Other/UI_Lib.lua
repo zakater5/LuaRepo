@@ -1781,8 +1781,7 @@ function Library.new(UI_Name)
             newKeybind_Btn.Font = Enum.Font.GothamBold
             newKeybind_Btn.TextColor3 = Color3.fromRGB(255, 255, 255)
             newKeybind_Btn.TextSize = 14
-            newKeybind_Btn.TextXAlignment = Enum.TextXAlignment.Left
-            newKeybind_Btn.Text = defaultOption
+            newKeybind_Btn.Text = "[" .. keyString .. "]"
             newKeybind_Btn.TextWrapped = true
 
             Btn_BG.Name = "Btn_BG"
@@ -1844,7 +1843,6 @@ function Library:AddKeybind(key, callback, description)
 end
 
 -- test code here:
-
 
 -- end of test code
 
