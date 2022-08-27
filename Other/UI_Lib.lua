@@ -45,6 +45,7 @@ end
 
 -- [[ SAVING/LOADING SETTINGS ]] --
 _G.settings = {}
+_G.settings.keybinds = {}
 function loadSettings()
     local HttpService = game:GetService("HttpService")
     if (readfile and isfile and isfile(configFileName)) then
@@ -1843,6 +1844,7 @@ function Library:AddKeybind(key, callback, description)
 end
 
 -- test code here:
+
 
 -- end of test code
 
