@@ -8,6 +8,7 @@ local TS = game:GetService("TweenService")
 local UIS = game:GetService("UserInputService")
 local RS = game:GetService("RunService")
 local players = game:GetService("Players")
+local Debris = game:GetService("Debris")
 
 local player = players.LocalPlayer
 local mouse = player:GetMouse()
