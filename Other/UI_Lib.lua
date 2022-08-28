@@ -132,6 +132,52 @@ UIGradient.Rotation = 90
 UIGradient.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.00, 1.00), NumberSequenceKeypoint.new(0.25, 1.00), NumberSequenceKeypoint.new(0.50, 0.00), NumberSequenceKeypoint.new(0.74, 1.00), NumberSequenceKeypoint.new(1.00, 1.00)}
 UIGradient.Parent = Line
 
+-- The minimized button:
+function createMinimized(mainUI)
+    local Minimized = Instance.new("ImageButton")
+    Minimized.Name = "Minimized"
+    Minimized.Parent = mainUI
+    Minimized.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    Minimized.BackgroundTransparency = 1
+    Minimized.Position = UDim2.new(0.481481493, 0, 0.05, 0)
+    Minimized.Size = UDim2.new(0.02, 0, 0.04, 0)
+    Minimized.Image = "rbxassetid://3570695787"
+    Minimized.ImageColor3 = Color3.fromRGB(214, 0, 204)
+    Minimized.ScaleType = Enum.ScaleType.Slice
+    Minimized.SliceCenter = Rect.new(100, 100, 100, 100)
+    Minimized.SliceScale = 0.1
+    Minimized.Visible = false
+    Minimized.ZIndex = 1
+
+    local Logo = Instance.new("ImageButton")
+    Logo.Parent = Minimized
+    Logo.AnchorPoint = Vector2.new(0.5, 0.5)
+    Logo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    Logo.BackgroundTransparency = 1
+    Logo.Position = UDim2.new(0.5, 0, 0.5, 0)
+    Logo.Size = UDim2.new(1, 0, 1, 0)
+    Logo.Image = "rbxassetid://3570695787"
+    Logo.ImageColor3 = Color3.fromRGB(66, 66, 66)
+    Logo.ScaleType = Enum.ScaleType.Slice
+    Logo.SliceCenter = Rect.new(100, 100, 100, 100)
+    Logo.SliceScale = 0.1
+    Logo.ZIndex = 2
+
+    local Logo2 = Instance.new("ImageButton")
+    Logo2.Parent = Logo
+    Logo2.AnchorPoint = Vector2.new(0.5, 0.5)
+    Logo2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    Logo2.BackgroundTransparency = 1
+    Logo2.Position = UDim2.new(0.5, 0, 0.5, 0)
+    Logo2.Size = UDim2.new(0.8, 0, 0.8, 0)
+    Logo2.Image = "rbxassetid://10700710572"
+    Logo2.ScaleType = Enum.ScaleType.Stretch
+    Logo2.ZIndex = 3
+
+    return Logo2
+end
+
+
 function runIntro(mainBG, sideBar, uiName)
     local mainBG_OrigSize = mainBG.Size
     local sideBar_OrigSize = sideBar.Size
@@ -770,7 +816,7 @@ function Library.new(UI_Name)
     SideBar.ImageColor3 = Color3.fromRGB(50, 50, 50)
     SideBar.ScaleType = Enum.ScaleType.Slice
     SideBar.SliceCenter = Rect.new(100, 100, 100, 100)
-    SideBar.SliceScale = 0.080
+    SideBar.SliceScale = 0.08
 
     TabButtons.Name = "TabButtons"
     TabButtons.Parent = MainFrame
@@ -786,6 +832,13 @@ function Library.new(UI_Name)
     setupSettings(Tabs_Folder, MainFrame)
     if playIntro then runIntro(MainFrame, SideBar, UI_Name) end
 
+    local minimized = createMinimized(UI_Lib)
+    minimized.MouseButton1Click:Connect(function()
+        MainFrame.Visible = true
+        minimized.Parent.Parent.Visible = false
+        MainFrame:TweenPosition(UDim2.new(.5, 0, .5, 0),"In","Sine",.3)
+    end)
+
     xImage.MouseButton1Click:Connect(function() -- XButton
         MainFrame:TweenSize(UDim2.new(0,0,0,0), "In", "Sine", .2)
         wait(.2)
@@ -793,7 +846,10 @@ function Library.new(UI_Name)
     end)
 
     _Image.MouseButton1Click:Connect(function() -- MinButton
-        MainFrame:TweenSize(UDim2.new(0,0,0,0), "In", "Sine", .2)
+        MainFrame:TweenPosition(UDim2.new(.5, 0, -2, 0),"In","Sine",.3)
+        wait(.3)
+        MainFrame.Visible = false
+        minimized.Parent.Parent.Visible = true
     end)
 
     Opt_Button.MouseButton1Click:Connect(function()
