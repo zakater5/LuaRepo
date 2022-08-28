@@ -442,26 +442,8 @@ function setupSettings(TabsFolder, mainFrame)
         UIGradient = Instance.new("UIGradient"),
         Frame_3 = Instance.new("Frame"),
         Frame_4 = Instance.new("Frame"),
-        Blue = Instance.new("ImageButton"),
-        Toggle_Flight = Instance.new("ImageButton"),
         UIListLayout = Instance.new("UIListLayout"),
-        Pruple = Instance.new("ImageButton"),
-        Toggle_Flight_2 = Instance.new("ImageButton"),
-        Pink = Instance.new("ImageButton"),
-        Toggle_Flight_3 = Instance.new("ImageButton"),
-        Red = Instance.new("ImageButton"),
-        Toggle_Flight_4 = Instance.new("ImageButton"),
-        Orange = Instance.new("ImageButton"),
-        Toggle_Flight_5 = Instance.new("ImageButton"),
-        Yellow = Instance.new("ImageButton"),
-        Toggle_Flight_6 = Instance.new("ImageButton"),
-        Lime = Instance.new("ImageButton"),
-        Toggle_Flight_7 = Instance.new("ImageButton"),
-        Cyan = Instance.new("ImageButton"),
-        Toggle_Flight_8 = Instance.new("ImageButton"),
         TextLabel_2 = Instance.new("TextLabel"),
-        Line_2 = Instance.new("Frame"),
-        UIGradient_2 = Instance.new("UIGradient"),
         UIListLayout_2 = Instance.new("UIListLayout"),
     }
 
@@ -1777,8 +1759,8 @@ function Library.new(UI_Name)
             newKeybind_Btn.AnchorPoint = Vector2.new(0, 0.5)
             newKeybind_Btn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             newKeybind_Btn.BackgroundTransparency = 1
-            newKeybind_Btn.Position = UDim2.new(0.05, 0, 0.5, 0)
-            newKeybind_Btn.Size = UDim2.new(0.904998064, 0, 0.7, 0)
+            newKeybind_Btn.Position = UDim2.new(.7, 0, 0.5, 0)
+            newKeybind_Btn.Size = UDim2.new(0.25, 0, 0.7, 0)
             newKeybind_Btn.ZIndex = 8
             newKeybind_Btn.Font = Enum.Font.GothamBold
             newKeybind_Btn.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -1800,8 +1782,22 @@ function Library.new(UI_Name)
             Btn_BG.SliceCenter = Rect.new(100, 100, 100, 100)
             Btn_BG.SliceScale = 0.06
 
+            newKeybind_TL.Name = "newKeybind_TL"
+            newKeybind_TL.Parent = newKeybind
+            newKeybind_TL.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            newKeybind_TL.BackgroundTransparency = 1
+            newKeybind_TL.Position = UDim2.new(0.0489281043, 0, 0, 0)
+            newKeybind_TL.Size = UDim2.new(0.416493893, 0, 1, 0)
+            newKeybind_TL.ZIndex = 3
+            newKeybind_TL.Font = Enum.Font.GothamBold
+            newKeybind_TL.Text = Title
+            newKeybind_TL.TextColor3 = Color3.fromRGB(234, 234, 234)
+            newKeybind_TL.TextSize = 12
+            newKeybind_TL.TextWrapped = true
+            newKeybind_TL.TextXAlignment = Enum.TextXAlignment.Left
+
             local line = Line:Clone()
-            line.Parent = Dropdown
+            line.Parent = newKeybind
 
             local logKey = false
             mouse.KeyDown:Connect(function(key)
@@ -1845,7 +1841,6 @@ function Library:AddKeybind(key, callback, description)
 end
 
 -- test code here:
-
 
 -- end of test code
 
