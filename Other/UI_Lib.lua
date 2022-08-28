@@ -44,8 +44,9 @@ function Library:PlayIntro(boolean)
 end
 
 -- [[ SAVING/LOADING SETTINGS ]] --
-_G.settings = {}
-_G.settings.keybinds = {}
+_G.settings = {
+    keybinds = {}
+}
 function loadSettings()
     local HttpService = game:GetService("HttpService")
     if (readfile and isfile and isfile(configFileName)) then
@@ -1811,8 +1812,8 @@ function Library.new(UI_Name)
                 end
 
                 if logKey then
-                    _G.settings.keybinds[Title] = pressedKey
                     keyString = pressedKey
+                    _G.settings.keybinds[Title] = pressedKey
                     newKeybind_Btn.Text = "[" .. pressedKey:upper() .. "]"
                     logKey = false
                     saveSettings()
@@ -1844,7 +1845,6 @@ function Library:AddKeybind(key, callback, description)
 end
 
 -- test code here:
-
 
 -- end of test code
 
