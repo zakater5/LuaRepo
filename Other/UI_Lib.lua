@@ -411,7 +411,7 @@ function Library:sendNotification(settings)
     newNotification.Parent = NotificationsList
     newNotification.Title.Text = settings.Title
     newNotification["Text"].Text = settings.Text
-    newNotification["Text"].TextColor3 = itemColors[settings.Text]
+    newNotification["Text"].TextColor3 = settings.Color
     newNotification.Button1.Text = settings.button1Text
     newNotification.Button2.Text = settings.button2Text
     newNotification.Button1.MouseButton1Click:Connect(settings.onButton1Click)
@@ -1901,10 +1901,3 @@ end
 -- end of test code
 
 return Library
-
-
-
---local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/zakater5/LuaRepo/main/Other/UI_Lib.lua"))()
---local newUI = Library.new("e", "e", nil)
---local newTab = newUI:NewTab("tabname")
---newTab:AddSlider("Label", 100, 0, 30)
