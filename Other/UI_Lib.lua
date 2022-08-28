@@ -1755,8 +1755,8 @@ function Library.new(UI_Name)
             Title = Title or "Untitled"
             keyString = keyString:upper() or "F"
             onKey_Callback = onKey_Callback or function() end
-            if _G.settings.keybinds then
-                if _G.settings.keybinds[Title] then keyString = _G.settings.keybinds[Title] end
+            if _G.settings then
+                if _G.settings[Title] then keyString = _G.settings[Title] end
             end
 
             -- Instances:
@@ -1813,7 +1813,7 @@ function Library.new(UI_Name)
 
                 if logKey then
                     keyString = pressedKey
-                    _G.settings.keybinds[Title] = pressedKey
+                    _G.settings[Title] = pressedKey
                     newKeybind_Btn.Text = "[" .. pressedKey:upper() .. "]"
                     logKey = false
                     saveSettings()
@@ -1845,6 +1845,7 @@ function Library:AddKeybind(key, callback, description)
 end
 
 -- test code here:
+
 
 -- end of test code
 
