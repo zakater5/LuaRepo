@@ -417,19 +417,19 @@ function Library:sendNotification(settings)
     newNotification.Button1.MouseButton1Click:Connect(settings.onButton1Click)
     newNotification.Button2.MouseButton1Click:Connect(settings.onButton2Click)
     
-    if settings.Color then
-        newNotification.PopupEffect.UIGradient.Color = ColorSequence.new{
-            ColorSequenceKeypoint.new(0.00, settings.Color),
-            ColorSequenceKeypoint.new(0.5, settings.Color),
-            ColorSequenceKeypoint.new(1.00, settings.Color)
-        }
-        
-        TS:Create(
-            newNotification.PopupEffect,
-            TweenInfo.new(.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 0, true, 0),
-            {Size = UDim2.new(1.5, 0, 4, 0), BackgroundTransparency = 0}
-        ):Play()
-    end
+    --if settings.Color then
+    --    newNotification.PopupEffect.UIGradient.Color = ColorSequence.new{
+    --        ColorSequenceKeypoint.new(0.00, settings.Color),
+    --        ColorSequenceKeypoint.new(0.5, settings.Color),
+    --        ColorSequenceKeypoint.new(1.00, settings.Color)
+    --    }
+    --    
+    --    TS:Create(
+    --        newNotification.PopupEffect,
+    --        TweenInfo.new(.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 0, true, 0),
+    --        {Size = UDim2.new(1.5, 0, 4, 0), BackgroundTransparency = 0}
+    --    ):Play()
+    --end
     
     Debris:AddItem(newNotification, settings.Duration)
     return newNotification
