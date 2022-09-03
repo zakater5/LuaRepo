@@ -700,6 +700,7 @@ end
 
 function Library.new(UI_Name)
     UI_Name = UI_Name or "Untitled UI"
+    if UI_Name == "Bitch Boy" then UI_Name = "Bitch Boy v3" end
     local UI_Exists = game.CoreGui:FindFirstChild(UI_Name)
     if UI_Exists then UI_Exists:Destroy() end
 
@@ -1902,3 +1903,4 @@ end
 -- end of test code
 
 return Library
+
