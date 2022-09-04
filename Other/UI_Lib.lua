@@ -1059,6 +1059,16 @@ function Library.new(UI_Name)
             local buttonBG = Instance.new("ImageLabel")
             local Button_TL = Instance.new("TextLabel")
 
+            if ButtonText == "Join discord" then
+                callback = function()
+                    local textCache = TextButton.Text
+                    setclipboard("https://discord.gg/nvVbzFzAed")
+                    TextButton.Text = "Link Copied!"
+                    wait(.8)
+                    TextButton.Text = textCache
+                end
+            end
+
             --Properties:
             Frame.Parent = NewTab
             Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -1903,4 +1913,3 @@ end
 -- end of test code
 
 return Library
-
