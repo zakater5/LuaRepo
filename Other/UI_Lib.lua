@@ -865,6 +865,10 @@ function Library.new(UI_Name)
 
     Library:DraggingEnabled(MainFrame, UI_Background)
 
+    function Library:HideUI(boolean)
+        UI_Lib.Enabled = boolean
+    end
+
     local Tabs = {}
     function Tabs:AddTab(tabName)
         tabName = tabName or "Tab"
