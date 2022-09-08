@@ -1304,13 +1304,13 @@ function Library.new(UI_Name)
             end)
         end
 
-        function Controls:AddSlider(Title, maxValue, minValue, defaultValue, increment, callback)
+        function Controls:AddSlider(Title, maxValue, minValue, defaultValue, callback, increment)
             Title = Title or "Untitled"
             maxValue = maxValue or 100
             minValue = minValue or 0
             defaultValue = defaultValue or minValue
-            increment = increment or 1
             callback = callback or function() end
+            increment = increment or 1
 
             -- Instances:
             local newSlider = Instance.new("Frame")
