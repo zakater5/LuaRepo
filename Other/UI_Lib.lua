@@ -1304,11 +1304,12 @@ function Library.new(UI_Name)
             end)
         end
 
-        function Controls:AddSlider(Title, maxValue, minValue, defaultValue, callback)
+        function Controls:AddSlider(Title, maxValue, minValue, defaultValue, increment, callback)
             Title = Title or "Untitled"
             maxValue = maxValue or 100
             minValue = minValue or 0
             defaultValue = defaultValue or minValue
+            increment = increment or 1
             callback = callback or function() end
 
             -- Instances:
@@ -1418,7 +1419,8 @@ function Library.new(UI_Name)
                         local percentage = math.clamp(relativePos.X / newSliderFrame.AbsoluteSize.X, 0, 1)
                         newSliderKnob.Position = UDim2.new(percentage - newSliderKnob.Size.X.Scale / 2, 0, .5, 0)
                         newSliderBar.Size = UDim2.new(percentage, 0, newSliderBar.Size.Y.Scale, 0)
-                        local value = math.floor(math.clamp((percentage * maxValue), minValue, maxValue))
+                        --local value = math.floor(math.clamp((percentage * maxValue), minValue, maxValue))
+                        local value = math.round(math.clamp((percentage * maxValue), minValue, maxValue) * (1/increment))/(1/increment)
                         newSliderValue_TL.Text = value
                         defaultValue = value
                         pcall(function() callback(value) end)
@@ -1433,7 +1435,8 @@ function Library.new(UI_Name)
                     local percentage = math.clamp(relativePos.X / newSliderFrame.AbsoluteSize.X, 0, 1)
                     newSliderKnob:TweenPosition(UDim2.new(percentage - newSliderKnob.Size.X.Scale / 2, 0, .5, 0),"In","Sine",.1)
                     newSliderBar:TweenSize(UDim2.new(percentage, 0, newSliderBar.Size.Y.Scale, 0),"In","Sine",.1)
-                    local value = math.floor(math.clamp((percentage * maxValue), minValue, maxValue))
+                    --local value = math.floor(math.clamp((percentage * maxValue), minValue, maxValue))
+                    local value = math.round(math.clamp((percentage * maxValue), minValue, maxValue) * (1/increment))/(1/increment)
                     newSliderValue_TL.Text = value
                     defaultValue = value
                     pcall(function() callback(value) end)
@@ -1447,7 +1450,8 @@ function Library.new(UI_Name)
                     local percentage = math.clamp(relativePos.X / newSliderFrame.AbsoluteSize.X, 0, 1)
                     newSliderKnob:TweenPosition(UDim2.new(percentage - newSliderKnob.Size.X.Scale / 2, 0, .5, 0),"In","Sine",.1)
                     newSliderBar:TweenSize(UDim2.new(percentage, 0, newSliderBar.Size.Y.Scale, 0),"In","Sine",.1)
-                    local value = math.floor(math.clamp((percentage * maxValue), minValue, maxValue))
+                    --local value = math.floor(math.clamp((percentage * maxValue), minValue, maxValue))
+                    local value = math.round(math.clamp((percentage * maxValue), minValue, maxValue) * (1/increment))/(1/increment)
                     newSliderValue_TL.Text = value
                     defaultValue = value
                     pcall(function() callback(value) end)
