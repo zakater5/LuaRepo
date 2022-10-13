@@ -1953,10 +1953,3 @@ end
 -- end of test code
 
 return Library
-
-
-
---local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/zakater5/LuaRepo/main/Other/UI_Lib.lua"))()
---local newUI = Library.new("e", "e", nil)
---local newTab = newUI:NewTab("tabname")
---newTab:AddSlider("Label", 100, 0, 30)
