@@ -437,6 +437,38 @@ function Library:sendNotification(settings)
 end
 
 
+function Library:createCounter(settings)
+    local counterGui = Instance.new("ScreenGui", game.CoreGui)
+    counterGui.Name = "UIxCounter"
+    local counterText = Instance.new("TextLabel", counterGui)
+    counterText["TextXAlignment"] = Enum.TextXAlignment.Left;
+    counterText["BackgroundColor3"] = Color3.fromRGB(49, 49, 49);
+    counterText["TextSize"] = 20;
+    counterText["TextColor3"] = Color3.fromRGB(255, 255, 255);
+    counterText["Size"] = UDim2.new(0, 218, 0, 50);
+    counterText["Font"] = Enum.Font.Gotham;
+    counterText["Position"] = UDim2.new(0.00803461018949747, 0, 0.11, 0);
+    counterText["Active"] = true
+    counterText["Draggable"] = true
+
+    counterPadding = Instance.new("UIPadding", counterText);
+    counterPadding["PaddingLeft"] = UDim.new(0, 4);
+
+    counterStroke = Instance.new("UIStroke", counterText);
+    counterStroke["Color"] = Color3.fromRGB(255, 255, 255);
+    counterStroke["Thickness"] = 2;
+    counterStroke["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+
+    counterImageLabel = Instance.new("ImageLabel", counterText);
+    counterImageLabel["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    counterImageLabel["Image"] = [[rbxassetid://2790547157]];
+    counterImageLabel["Size"] = UDim2.new(0, 27, 0, 27);
+    counterImageLabel["BackgroundTransparency"] = 1;
+    counterImageLabel["Position"] = UDim2.new(1.1, -60, 0.22, 0);
+
+    return counterGui
+end
+
 
 function Library:DraggingEnabled(MainFrame, DragRegObj)
     frame = DragRegObj
@@ -1921,3 +1953,10 @@ end
 -- end of test code
 
 return Library
+
+
+
+--local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/zakater5/LuaRepo/main/Other/UI_Lib.lua"))()
+--local newUI = Library.new("e", "e", nil)
+--local newTab = newUI:NewTab("tabname")
+--newTab:AddSlider("Label", 100, 0, 30)
